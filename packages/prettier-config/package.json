@@ -1,0 +1,25 @@
+{
+  "name": "@void-aurora/prettier-config",
+  "description": "Prettier configuration for Void Aurora.",
+  "license": "MIT",
+  "author": "duduluu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/void-aurora/toolkit.git"
+  },
+  "version": "0.0.1",
+  "main": "index.js",
+  "sideEffects": false,
+  "peerDependencies": {
+    "prettier": "^1.19.0"
+  },
+  "devDependencies": {
+    "@types/prettier": "^1.19.0",
+    "prettier": "^1.19.1"
+  },
+  "keywords": [
+    "prettier",
+    "prettierconfig",
+    "styleguide"
+  ]
+}
