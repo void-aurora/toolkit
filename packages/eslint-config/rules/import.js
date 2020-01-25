@@ -40,7 +40,7 @@ module.exports = {
 
     // Prevent importing the submodules of other modules
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-internal-modules.md
-    'import/no-internal-modules': 'error',
+    'import/no-internal-modules': 'off',
 
     // Forbid webpack loader syntax in imports
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md
@@ -60,7 +60,7 @@ module.exports = {
 
     // Forbid importing modules from parent directories
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-relative-parent-imports.md
-    'import/no-relative-parent-imports': 'error',
+    'import/no-relative-parent-imports': 'off',
 
     // Forbid modules without any export, and exports not imported by any modules.
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-unused-modules.md

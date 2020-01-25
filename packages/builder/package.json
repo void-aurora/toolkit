@@ -8,23 +8,24 @@
     "url": "git+https://github.com/void-aurora/toolkit.git"
   },
   "version": "0.0.1",
-  "main": "lib/index.js",
+  "main": "./dist/index.js",
+  "bin": {
+    "vabuild": "./bin/vabuild"
+  },
   "files": [
-    "bin",
-    "dist",
-    "src"
+    "./bin",
+    "./dist"
   ],
   "scripts": {
     "build": "tsc -p ./tsconfig.json",
-
-
-    "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
+    "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json",
+    "vabuild": "vabuild"
   },
-
-  
   "sideEffects": false,
   "dependencies": {
     "chalk": "^3.0.0",
+    "commander": "^4.1.0",
     "execa": "^4.0.0",
     "fs-extra": "^8.1.0",
     "globby": "^11.0.0",

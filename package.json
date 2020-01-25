@@ -4,7 +4,6 @@
     "packages/*"
   ],
   "scripts": {
-    "format:package": "prettier-package-json --write",
     "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json"
   },
   "devDependencies": {

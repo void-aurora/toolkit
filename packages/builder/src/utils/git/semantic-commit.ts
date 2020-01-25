@@ -18,6 +18,14 @@ export type CommitType =
 
 const allCommitTypes: CommitType[] = ['feat'];
 
+/**
+ * Git commit with semantic message.
+ * @param type
+ * @param scope
+ * @param subject
+ * @param body
+ * @param footer
+ */
 export function sematicCommit(
   type: CommitType,
   scope: string,

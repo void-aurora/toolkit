@@ -27,6 +27,14 @@ export interface PackageInfo {
  * Loads all packages and gets info in the monorepo
  * @param root the root path of the monorepo
  */
+// eslint-disable-next-line @typescript-eslint/require-await
 export async function loadAllPackage(root: string): Promise<PackageInfo[]> {
-
+  return [
+    {
+      name: '',
+      version: '',
+      dependencies: [],
+      dependent: [],
+    },
+  ];
 }

@@ -187,7 +187,7 @@ const rules = {
     'error',
     {
       checksConditionals: true,
-      checksVoidReturn: true,
+      checksVoidReturn: false,
     },
   ],
 
