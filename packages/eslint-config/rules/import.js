@@ -156,7 +156,7 @@ module.exports = {
 
     // Ensure all exports appear after other statements
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/exports-last.md
-    'import/exports-last': 'error',
+    'import/exports-last': 'off',
 
     // Report repeated import of the same module in multiple places
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-duplicates.md

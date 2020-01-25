@@ -7,7 +7,6 @@
     "typeRoots": ["./node_modules/@types"],
     "strict": true,
     "jsx": "preserve",
-    "importHelpers": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "esModuleInterop": true,
@@ -17,10 +16,6 @@
     "declarationMap": true,
     "baseUrl": "."
   },
-  "include": [
-    "scripts/**/*.ts",
-    "packages/*/src/**/*.ts",
-    "packages/*/scripts/**/*.ts"
-  ],
+  "include": ["scripts", "packages/*/src", "packages/*/lib", "packages/*/scripts"],
   "exclude": ["node_modules", "*/node_modules", "coverage", "*/coverage"]
 }

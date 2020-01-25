@@ -17,8 +17,5 @@
     "test": "yarn ts scripts/test",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.15.0"
   }
 }

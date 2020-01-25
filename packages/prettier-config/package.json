@@ -8,7 +8,7 @@
     "url": "git+https://github.com/void-aurora/toolkit.git"
   },
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "./index.js",
   "sideEffects": false,
   "peerDependencies": {
     "prettier": "^1.19.0"
