@@ -17,6 +17,13 @@ export async function verifyCommitMessage(...args: string[]): Promise<boolean> {
 
   console.error(`
   ${chalk.bgRed.white(' ERROR ')} invalid commit message format.
+
+  You must use the strict git commit message format:
+    <type>(scope): <subject>
+  
+  - type: required
+  - scope: optional
+  - subject: required
 `);
 
   return false;

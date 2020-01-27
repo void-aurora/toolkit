@@ -2,7 +2,7 @@
 
 > Category: Style Guide
 
-This package provides Void-Aurora TypeScript .eslintrc as an extensible shared config, referred to eslint-config-airbnb-base.
+This package provides Void-Aurora **TypeScript** .eslintrc as an extensible shared config, referred to eslint-config-airbnb-base.
 
 ## Usage
 
@@ -18,4 +18,43 @@ npm i --save-dev @void-aurora/eslint-config
 
 ### Config file
 
-Add `"extends": "@void-aurora"` to your .eslintrc.
+Add `"extends": "@void-aurora"` to your `.eslintrc` or `.eslintrc.js`.
+
+```js
+// .eslintrc.js
+module.exports = {
+  extends: ['@void-aurora'],
+};
+```
+
+## Parsing error related to project config
+
+Sometimes, your would get this error:
+
+```
+
+Parsing error: "parserOptions.project" has been set for @typescript-eslint/parser.
+The file does not match your project config: xxx/xxx/xxx.js.
+The file must be included in at least one of the projects provided.
+
+```
+
+You some includes your source code files in `tsconfig.json` for each package and includes these `tsconfig.json` files in `.eslintrc.js`. Like:
+
+```json
+// tsconfig.json
+{
+  ...
+  "include": ["lib", "src", "index.js"]
+}
+```
+
+```js
+// .eslintrc.js
+module.exports = {
+  extends: ['@void-aurora'],
+  parserOptions: {
+    project: ['./tsconfig.json', './packages/*/tsconfig.json'],
+  },
+};
+```
