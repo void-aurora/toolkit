@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "@void-aurora/template",
+  "description": "The sub package template for monorepo.",
+  "license": "MIT",
+  "author": "duduluu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/void-aurora/toolkit.git"
+  },
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "files": [
+    "./dist"
+  ],
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
+    "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
+  },
+  "sideEffects": false,
+  "dependencies": {},
+  "devDependencies": {}
+}

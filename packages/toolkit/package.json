@@ -1,0 +1,26 @@
+{
+  "name": "@void-aurora/toolkit",
+  "description": "Packs tools for Void-Aurora.",
+  "license": "MIT",
+  "author": "duduluu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/void-aurora/toolkit.git"
+  },
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
+    "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "@types/fs-extra": "^8.0.1",
+    "@types/rimraf": "^2.0.3",
+    "chalk": "^3.0.0",
+    "fs-extra": "^8.1.0",
+    "globby": "^11.0.0",
+    "rimraf": "^3.0.0"
+  },
+  "devDependencies": {}
+}

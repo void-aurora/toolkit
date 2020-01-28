@@ -1,5 +1,10 @@
 # @void-aurora/eslint-config
 
+[eslint-config-version]: https://img.shields.io/npm/v/@void-aurora/eslint-config
+[eslint-config-npm]: https://www.npmjs.com/package/@void-aurora/eslint-config
+
+[![eslint-config-version]][eslint-config-npm]
+
 > Category: Style Guide
 
 This package provides Void-Aurora **TypeScript** .eslintrc as an extensible shared config, referred to eslint-config-airbnb-base.
