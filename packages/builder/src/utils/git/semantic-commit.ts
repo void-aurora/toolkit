@@ -1,35 +1,56 @@
 import execa from 'execa';
 
-export type CommitType =
-  | 'feat' // adds features
-  | 'fix' // fixs bugs
-  | 'docs' // changes document
-  | 'style' // fixs coding style and format
-  | 'refactor' // changes codebase without adding feature and fixing bugs
-  | 'perf' // performance improvement
-  | 'test' // changes for unit test and e2e test
-  | 'build' // related to build system
-  | 'ci' // related to the continuous integration and deployment system
-  | 'chore' // alias of `build`
-  | 'types' // related to type system
-  | 'wip' // work in progress
-  | 'release' // release and publish
-  | 'revert'; // revert commit
+export const COMMIT_TYPE_MAP = {
+  fix: 'fix bugs',
+  feat: 'adds features',
+  refactor: 'changes codebase',
+  perf: 'performance improvement',
+  types: 'type system related',
 
-const allCommitTypes: CommitType[] = ['feat'];
+  chore: 'change chore',
+  release: 'new version and publish',
+  ci: 'change continuous integration and deployment system',
+  build: 'change build system: configs, scripts, workflow',
+  test: 'update test scripts',
+  docs: 'update document',
+  style: 'fix code style',
+
+  wip: 'work in process',
+};
+
+export type GitCommitTypeMap = typeof COMMIT_TYPE_MAP;
+
+export type GitCommitType = keyof GitCommitTypeMap;
+
+export const ALL_COMMIT_TYPES = Object.keys(COMMIT_TYPE_MAP) as readonly GitCommitType[];
+
+export const COMMIT_MESSAGE_LIMIT = 50;
 
 /**
- * Git commit with semantic message.
- * @param type
- * @param scope
- * @param subject
- * @param body
- * @param footer
+ * The option for git semantic commit.
  */
-export function sematicCommit(
-  type: CommitType,
-  scope: string,
-  subject: string,
-  body: string,
-  footer: string,
-): void {}
+export interface GitSemanticCommitOptions {
+  type: GitCommitType;
+  scope?: string;
+  subject: string;
+}
+
+/**
+ * Create a git commit with semantic message format.
+ * @param options the options
+ */
+export async function semanticCommit(options: GitSemanticCommitOptions): Promise<void> {
+  const { type, scope, subject } = options;
+  if (!ALL_COMMIT_TYPES.includes(type)) {
+    throw new Error(`Error: invalid commit type '${type}'`);
+  }
+  if (typeof subject !== 'string' || subject.length < 1 || subject.length > COMMIT_MESSAGE_LIMIT) {
+    throw new Error(`Error: invalid commit subject length ${subject.length}`);
+  }
+
+  await execa('git', [
+    'commit',
+    '-m',
+    `${type}${typeof scope === 'string' && scope.length > 0 ? `(${scope})` : ''}: ${subject}`,
+  ]);
+}

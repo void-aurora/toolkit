@@ -5,7 +5,9 @@
     "packages/*"
   ],
   "scripts": {
-    "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json"
+    "publish": "lerna publish --yes",
+    "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json",
+    "version": "lerna version --amend --conventional-commits"
   },
   "devDependencies": {
     "@types/jest": "^24.9.1",

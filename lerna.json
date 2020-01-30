@@ -2,5 +2,18 @@
   "packages": ["packages/*"],
   "version": "independent",
   "npmClient": "yarn",
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "ignoreChanges": [
+    "packages/*/__fixtures__/**",
+    "packages/*/__tests__/**",
+    "packages/*/docs/**",
+    "packages/*/scripts/**",
+    "packages/*/README.md"
+  ],
+  "command": {
+    "version": {
+      "allowBranch": "master",
+      "message": "release: publish"
+    }
+  }
 }
