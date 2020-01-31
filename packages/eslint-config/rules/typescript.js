@@ -403,7 +403,7 @@ const rules = {
     'error',
     {
       arrayDestructuring: false,
-      arrowParameter: true,
+      arrowParameter: false,
       memberVariableDeclaration: true,
       objectDestructuring: false,
       parameter: true,

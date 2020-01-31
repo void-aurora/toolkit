@@ -1,31 +1,23 @@
-const MESSAGE_REGEX = /^(?<typeRevert>revert: )?(?<type>feat|fix|docs|style|refactor|perf|test|workflow|build|ci|chore|types|wip|release)(?<scope>\(.+\))?: (?<subject>.{1,50})/u;
+import fs from 'fs-extra';
+import chalk from 'chalk';
 
-export interface GitCommitMessageVerifyResult {
-  valid: boolean;
-  info: string;
-}
+const MESSAGE_REGEX = /^(?<revert>revert: )?(?<type>fix|feat|refactor|perf|types|chore|release|ci|build|test|docs|style|wip)(?<scope>\(.+\))?: (?<subject>.{1,50})/u;
 
-export function verifyCommitMessage(message: string): GitCommitMessageVerifyResult {
+export async function verifyCommitMessage(): Promise<boolean | string> {
+  const {
+    env: { HUSKY_GIT_PARAMS: messagePath },
+  } = process;
+
+  const message = await fs.readFile(messagePath as string, 'utf-8');
+
   if (MESSAGE_REGEX.test(message)) {
-    return {
-      valid: true,
-      info: 'valid',
-    };
+    return true;
   }
 
-  //   console.error(`
-  //   ${chalk.bgRed.white(' ERROR ')} invalid commit message format.
+  return `
+  ${chalk.bgRed.white(' ERROR ')} invalid commit message.
 
-  //   You must use the strict git commit message format:
-  //     <type>(scope): <subject>
-
-  //   - type: required
-  //   - scope: optional
-  //   - subject: required
-  // `);
-
-  return {
-    valid: false,
-    info: '',
-  };
+  The head of the must matched by the following regex:
+    ${chalk.greenBright(MESSAGE_REGEX.toString())}
+`;
 }
