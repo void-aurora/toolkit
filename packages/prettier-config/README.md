@@ -19,7 +19,7 @@ npm i --save-dev @void-aurora/prettier-config
 `.prettierrc.js` or `prettier.config.js`
 
 ```js
-const config = require("@void-aurora/prettier-config");
+const config = require('@void-aurora/prettier-config');
 
 module.exports = config;
 ```

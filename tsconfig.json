@@ -16,6 +16,6 @@
     "declarationMap": true,
     "baseUrl": "."
   },
-  "include": ["scripts", "packages/*/src", "packages/*/lib", "packages/*/scripts"],
-  "exclude": ["node_modules", "*/node_modules", "coverage", "*/coverage"]
+  "include": ["./scripts", "./packages/*/src", "./packages/*/lib", "./packages/*/scripts"],
+  "exclude": ["./node_modules", "./packages/*/node_modules", "coverage", "./packages/*/coverage"]
 }

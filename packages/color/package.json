@@ -1,21 +1,22 @@
 {
+  "private": true,
   "name": "@void-aurora/color",
   "description": "JavaScript Library for CSS color module.",
-  "keywords": [
-    "color",
-    "css"
-  ],
-  "sideEffects": false,
-  "version": "0.0.1",
-  "author": "duduluu",
   "license": "MIT",
+  "author": "duduluu",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/void-aurora/toolkit.git"
   },
+  "version": "0.0.1",
   "scripts": {
-    "test": "yarn ts scripts/test",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
+    "test": "yarn ts scripts/test",
     "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
-  }
+  },
+  "sideEffects": false,
+  "keywords": [
+    "color",
+    "css"
+  ]
 }
