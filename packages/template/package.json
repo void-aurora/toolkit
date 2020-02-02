@@ -8,7 +8,7 @@
     "type": "git",
     "url": "git+https://github.com/void-aurora/toolkit.git"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./dist/index.js",
   "files": [
     "./dist",
@@ -19,7 +19,5 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
   },
-  "sideEffects": false,
-  "dependencies": {},
-  "devDependencies": {}
+  "sideEffects": false
 }
