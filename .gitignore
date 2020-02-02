@@ -21,14 +21,11 @@ lerna-debug.log*
 coverage
 
 # Dependency directories
-node_modules/
+node_modules
 
-# Output
-dist/
+# Output directories
+dist
 
 # Temporary directories and files
-.tmp/
+.tmp
 .tmp.*
-
-# Playground
-/scripts/try.ts

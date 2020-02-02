@@ -10,10 +10,15 @@ A series of tools for Void Aurora projects
 
 ## Packages
 
-| Package         | NPM                                           | Coverage |
-| --------------- | --------------------------------------------- | -------- |
-| [eslint-config] | [![eslint-config-version]][eslint-config-npm] |          |
+| Package            | NPM                                                 |
+| ------------------ | --------------------------------------------------- |
+| [prettier-config]  | [![prettier-config-version]][prettier-config-npm]   |
+| [eslint-config]    | [![eslint-config-version]][eslint-config-npm]       |
+| [stylelint-config] | [![stylelint-config-version]][stylelint-config-npm] |
 
+[prettier-config]: https://github.com/void-aurora/toolkit/tree/master/packages/prettier-config
+[prettier-config-version]: https://img.shields.io/npm/v/@void-aurora/prettier-config
+[prettier-config-npm]: https://www.npmjs.com/package/@void-aurora/prettier-config
 [eslint-config]: https://github.com/void-aurora/toolkit/tree/master/packages/eslint-config
 [eslint-config-version]: https://img.shields.io/npm/v/@void-aurora/eslint-config
 [eslint-config-npm]: https://www.npmjs.com/package/@void-aurora/eslint-config

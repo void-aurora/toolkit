@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "publish": "lerna publish --yes",
-    "try": "yarn ts scripts/try",
+    "tmp": "yarn ts scripts/tmp",
     "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json",
     "version": "lerna version --amend --conventional-commits"
   },
