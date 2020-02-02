@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/void-aurora/toolkit/compare/@void-aurora/toolkit@0.2.0...@void-aurora/toolkit@0.2.1) (2020-02-02)
+
+### Bug Fixes
+
+- fix package access to public ([21ed5e1](https://github.com/void-aurora/toolkit/commit/21ed5e13060ab7da2dbac755c9d6cbc74c6853a8))
+
 # [0.2.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/toolkit@0.1.1...@void-aurora/toolkit@0.2.0) (2020-02-02)
 
 ### Features
