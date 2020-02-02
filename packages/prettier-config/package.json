@@ -1,6 +1,6 @@
 {
   "name": "@void-aurora/prettier-config",
-  "description": "Prettier configuration for Void Aurora.",
+  "description": "This package provides Prettier configuration for Void-Aurora.",
   "license": "MIT",
   "author": "duduluu",
   "repository": {

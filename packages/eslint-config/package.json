@@ -1,6 +1,6 @@
 {
   "name": "@void-aurora/eslint-config",
-  "description": "ESLint configuration for Void Aurora.",
+  "description": "This package provides **TypeScript** ESLint configuration for Void Aurora",
   "license": "MIT",
   "author": "duduluu",
   "repository": {

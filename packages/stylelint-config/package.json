@@ -1,6 +1,6 @@
 {
   "name": "@void-aurora/stylelint-config",
-  "description": "Stylelint configuration for Void Aurora.",
+  "description": "This package provides **SCSS** StyleLint configuration for Void-Aurora.",
   "license": "MIT",
   "author": "duduluu",
   "repository": {

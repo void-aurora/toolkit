@@ -1,6 +1,6 @@
 {
   "name": "@void-aurora/commitlint-config",
-  "description": "CommitLint configuration for Void Aurora.",
+  "description": "This package provides CommitLint configuration for Void-Aurora.",
   "license": "MIT",
   "author": "duduluu",
   "repository": {
