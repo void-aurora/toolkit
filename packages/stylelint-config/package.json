@@ -29,5 +29,8 @@
     "stylelint",
     "stylelint-config",
     "void-aurora"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

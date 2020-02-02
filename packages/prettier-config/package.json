@@ -25,5 +25,8 @@
     "prettierconfig",
     "styleguide",
     "void-aurora"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

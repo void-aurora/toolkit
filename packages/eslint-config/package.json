@@ -32,5 +32,8 @@
     "eslintconfig",
     "styleguide",
     "void-aurora"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

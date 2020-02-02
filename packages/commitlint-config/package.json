@@ -28,5 +28,8 @@
     "commitlint-config",
     "styleguide",
     "void-aurora"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
