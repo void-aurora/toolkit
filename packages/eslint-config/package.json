@@ -18,7 +18,7 @@
     "@typescript-eslint/parser": "^2.18.0",
     "confusing-browser-globals": "^1.0.9",
     "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-import": "^2.20.0"
+    "eslint-plugin-import": "^2.20.1"
   },
   "peerDependencies": {
     "eslint": "^6.8.0"
