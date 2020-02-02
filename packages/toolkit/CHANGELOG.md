@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/toolkit@0.1.1...@void-aurora/toolkit@0.2.0) (2020-02-02)
+
+### Features
+
+- **toolkit:** add package commitlint-config ([8b88c8d](https://github.com/void-aurora/toolkit/commit/8b88c8d17d4126c346cb8dec4bb616acae1b3a1f))
+
 ## [0.1.1](https://github.com/void-aurora/toolkit/compare/@void-aurora/toolkit@0.1.0...@void-aurora/toolkit@0.1.1) (2020-02-02)
 
 **Note:** Version bump only for package @void-aurora/toolkit
