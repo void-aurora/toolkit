@@ -1,18 +1,22 @@
 {
   "private": true,
   "license": "MIT",
+  "version": "0.0.0",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
+    "new-version": "lerna version --conventional-commits",
     "publish": "lerna publish --yes",
     "tmp": "yarn ts scripts/tmp",
-    "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json",
-    "version": "lerna version --amend --conventional-commits"
+    "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
     "@types/jest": "^25.1.1",
     "@types/node": "^13.7.0",
+    "commitizen": "^4.0.3",
+    "conventional-changelog-cli": "^2.0.31",
     "eslint": "^6.8.0",
     "husky": "^4.2.1",
     "jest": "^25.1.0",
