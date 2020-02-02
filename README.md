@@ -16,6 +16,7 @@ A series of tools for Void Aurora projects
 | [eslint-config]     | [![eslint-config-version]][eslint-config-npm]         |
 | [stylelint-config]  | [![stylelint-config-version]][stylelint-config-npm]   |
 | [commitlint-config] | [![commitlint-config-version]][commitlint-config-npm] |
+| [toolkit]           | [![toolkit-version]][toolkit-npm]                     |
 
 [prettier-config]: https://github.com/void-aurora/toolkit/tree/master/packages/prettier-config
 [prettier-config-version]: https://img.shields.io/npm/v/@void-aurora/prettier-config
@@ -29,3 +30,6 @@ A series of tools for Void Aurora projects
 [commitlint-config]: https://github.com/void-aurora/toolkit/tree/master/packages/commitlint-config
 [commitlint-config-version]: https://img.shields.io/npm/v/@void-aurora/commitlint-config
 [commitlint-config-npm]: https://www.npmjs.com/package/@void-aurora/commitlint-config
+[toolkit]: https://github.com/void-aurora/toolkit/tree/master/packages/toolkit
+[toolkit-version]: https://img.shields.io/npm/v/@void-aurora/toolkit
+[toolkit-npm]: https://www.npmjs.com/package/@void-aurora/toolkit
