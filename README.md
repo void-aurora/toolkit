@@ -28,4 +28,4 @@ A series of tools for Void Aurora projects
 [stylelint-config-npm]: https://www.npmjs.com/package/@void-aurora/stylelint-config
 [commitlint-config]: https://github.com/void-aurora/toolkit/tree/master/packages/commitlint-config
 [commitlint-config-version]: https://img.shields.io/npm/v/@void-aurora/commitlint-config
-[commitlint-config-npm]: https://www.npmjs.com/package/@void-aurora/stylelint-config
+[commitlint-config-npm]: https://www.npmjs.com/package/@void-aurora/commitlint-config
