@@ -7,7 +7,7 @@
 
 > Category: Style Guide
 
-This package provides Void-Aurora **TypeScript** .eslintrc as an extensible shared config, referred to eslint-config-airbnb-base.
+This package provides **TypeScript** ESLint configuration for Void Aurora, referred to eslint-config-airbnb-base.
 
 ## Usage
 

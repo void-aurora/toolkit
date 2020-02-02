@@ -1,5 +1,10 @@
 # @void-aurora/prettier-config
 
+[prettier-config-version]: https://img.shields.io/npm/v/@void-aurora/prettier-config
+[prettier-config-npm]: https://www.npmjs.com/package/@void-aurora/prettier-config
+
+[![prettier-config-version]][prettier-config-npm]
+
 > Category: Style Guide
 
 This package provides Prettier configuration for Void-Aurora.

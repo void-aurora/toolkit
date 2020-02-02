@@ -1,8 +1,13 @@
 # @void-aurora/stylelint-config
 
+[stylelint-config-version]: https://img.shields.io/npm/v/@void-aurora/stylelint-config
+[stylelint-config-npm]: https://www.npmjs.com/package/@void-aurora/stylelint-config
+
+[![stylelint-config-version]][stylelint-config-npm]
+
 > Category: Style Guide
 
-This package provides Stylelint configuration for Void-Aurora.
+This package provides **SCSS** StyleLint configuration for Void-Aurora.
 
 ## Usage
 
