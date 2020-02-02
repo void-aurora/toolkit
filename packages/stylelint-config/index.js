@@ -4,9 +4,8 @@ module.exports = {
     './rules/errors',
     './rules/language-features',
     './rules/stylistic',
+    './rules/scss',
+    './rules/prettier',
     'stylelint-config-prettier',
   ].map(require.resolve),
-  rules: {
-    'prettier/prettier': true,
-  },
 };
