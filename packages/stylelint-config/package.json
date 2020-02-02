@@ -27,6 +27,7 @@
   "keywords": [
     "styleguide",
     "stylelint",
-    "stylelint-config"
+    "stylelint-config",
+    "void-aurora"
   ]
 }

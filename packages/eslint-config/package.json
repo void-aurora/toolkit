@@ -30,6 +30,7 @@
   "keywords": [
     "eslint",
     "eslintconfig",
-    "styleguide"
+    "styleguide",
+    "void-aurora"
   ]
 }
