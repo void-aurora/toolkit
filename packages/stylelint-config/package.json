@@ -21,9 +21,6 @@
   "peerDependencies": {
     "stylelint": "^13.0.0"
   },
-  "devDependencies": {
-    "stylelint": "^13.0.0"
-  },
   "keywords": [
     "styleguide",
     "stylelint",

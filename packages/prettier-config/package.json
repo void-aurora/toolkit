@@ -16,10 +16,6 @@
   "peerDependencies": {
     "prettier": "^1.19.1"
   },
-  "devDependencies": {
-    "@types/prettier": "^1.19.0",
-    "prettier": "^1.19.1"
-  },
   "keywords": [
     "prettier",
     "prettierconfig",
