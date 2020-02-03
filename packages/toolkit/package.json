@@ -17,7 +17,6 @@
   "dependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/prompt-cli": "^8.3.5",
-    "@types/fs-extra": "^8.0.1",
     "@types/rimraf": "^2.0.3",
     "@void-aurora/commitlint-config": "^0.1.2",
     "@void-aurora/eslint-config": "^0.1.2",
