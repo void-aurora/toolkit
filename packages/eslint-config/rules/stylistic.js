@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 module.exports = {
   rules: {
     // enforce linebreaks after opening and before closing array brackets
@@ -414,11 +416,11 @@ module.exports = {
         message:
           'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
       },
-      {
-        selector: 'ForOfStatement',
-        message:
-          'iterators/generators require regenerator-runtime, which is too heavyweight for this guide to allow them. Separately, loops should be avoided in favor of array iterations.',
-      },
+      // {
+      //   selector: 'ForOfStatement',
+      //   message:
+      //     'iterators/generators require regenerator-runtime, which is too heavyweight for this guide to allow them. Separately, loops should be avoided in favor of array iterations.',
+      // },
       {
         selector: 'LabeledStatement',
         message:
