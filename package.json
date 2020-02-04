@@ -7,9 +7,9 @@
   ],
   "scripts": {
     "commit": "commit",
+    "lerna": "lerna",
     "lerna:publish": "lerna publish from-package --yes",
     "lerna:version": "lerna version --conventional-commits --create-release github --yes",
-    "tmp": "yarn ts scripts/tmp",
     "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json"
   },
   "devDependencies": {
