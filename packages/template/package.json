@@ -9,15 +9,35 @@
     "url": "git+https://github.com/void-aurora/toolkit.git"
   },
   "version": "1.0.1",
-  "main": "./dist/index.js",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.d.ts",
   "files": [
     "./dist",
     "./src"
   ],
   "scripts": {
-    "build": "tsc -p ./tsconfig.json",
+    "build": "yarn build:cjs && yarn build:esm",
+    "build:cjs": "tsc -p ./tsconfig.cjs.json",
+    "build:esm": "tsc -p ./tsconfig.esm.json",
+    "clean:dist": "rimraf ./dist",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
+    "prepare": "yarn clean:dist && yarn build",
+    "test": "jest",
     "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "jest": {
+    "collectCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
+  }
 }
