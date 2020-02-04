@@ -13,7 +13,8 @@
     "./rules"
   ],
   "scripts": {
-    "gen-ts": "node ./scripts/generate-typescript-rules.js"
+    "gen-ts": "node ./scripts/generate-typescript-rules.js",
+    "test": "jest"
   },
   "sideEffects": false,
   "dependencies": {
@@ -34,5 +35,16 @@
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    }
   }
 }
