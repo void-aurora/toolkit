@@ -3,8 +3,6 @@
     "target": "ESNext",
     "module": "ESNext",
     "lib": ["ESNext", "ScriptHost"],
-    "types": ["node", "jest"],
-    "typeRoots": ["./node_modules/@types"],
     "strict": true,
     "jsx": "preserve",
     "moduleResolution": "node",
