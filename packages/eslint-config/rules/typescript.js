@@ -522,7 +522,7 @@ const rules = {
   '@typescript-eslint/strict-boolean-expressions': [
     'error',
     {
-      allowNullable: false,
+      allowNullable: true,
       allowSafe: false,
       ignoreRhs: false,
     },
