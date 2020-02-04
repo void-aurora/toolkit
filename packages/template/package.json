@@ -20,7 +20,6 @@
     "build:cjs": "tsc -p ./tsconfig.cjs.json",
     "build:esm": "tsc -p ./tsconfig.esm.json",
     "clean:dist": "rimraf ./dist",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "prepare": "yarn clean:dist && yarn build",
     "test": "jest",
     "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
