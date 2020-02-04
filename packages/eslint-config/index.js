@@ -42,4 +42,14 @@ module.exports = {
     './rules/typescript',
     './rules/prettier',
   ].map(require.resolve),
+
+  overrides: [
+    {
+      files: ['**/scripts/**/*.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/no-require-imports': 'off',
+      },
+    },
+  ],
 };
