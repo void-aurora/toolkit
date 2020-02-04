@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/void-aurora/toolkit/compare/@void-aurora/prettier-config@0.1.2...@void-aurora/prettier-config@0.1.3) (2020-02-04)
+
+**Note:** Version bump only for package @void-aurora/prettier-config
+
 ## [0.1.2](https://github.com/void-aurora/toolkit/compare/@void-aurora/prettier-config@0.1.1...@void-aurora/prettier-config@0.1.2) (2020-02-02)
 
 **Note:** Version bump only for package @void-aurora/prettier-config
