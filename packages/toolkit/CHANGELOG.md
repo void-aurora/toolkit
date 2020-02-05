@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/toolkit@0.5.2...@void-aurora/toolkit@0.6.0) (2020-02-05)
+
+### Features
+
+- **toolkit:** add dependency execa ([5c296c2](https://github.com/void-aurora/toolkit/commit/5c296c200ae7c0a69663c93e5cc47f5ad68dd6df))
+
 ## [0.5.2](https://github.com/void-aurora/toolkit/compare/@void-aurora/toolkit@0.5.1...@void-aurora/toolkit@0.5.2) (2020-02-05)
 
 **Note:** Version bump only for package @void-aurora/toolkit
