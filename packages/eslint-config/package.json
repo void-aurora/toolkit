@@ -8,9 +8,8 @@
     "url": "git+https://github.com/void-aurora/toolkit.git"
   },
   "version": "0.2.1",
-  "main": "./index.js",
+  "main": "index.js",
   "files": [
-    "index.js",
     "rules"
   ],
   "scripts": {
