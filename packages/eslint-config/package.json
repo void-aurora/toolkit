@@ -10,7 +10,8 @@
   "version": "0.2.0",
   "main": "./index.js",
   "files": [
-    "./rules"
+    "index.js",
+    "rules"
   ],
   "scripts": {
     "gen-ts": "node ./scripts/generate-typescript-rules.js",
