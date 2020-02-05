@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/void-aurora/toolkit/compare/@void-aurora/toolkit@0.6.0...@void-aurora/toolkit@0.6.1) (2020-02-05)
+
+### Bug Fixes
+
+- **toolkit:** move dependencies to root ([d6e7be8](https://github.com/void-aurora/toolkit/commit/d6e7be839103a53a1143977e021a1b093cb4677a))
+
 # [0.6.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/toolkit@0.5.2...@void-aurora/toolkit@0.6.0) (2020-02-05)
 
 ### Features
