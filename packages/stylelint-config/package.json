@@ -9,9 +9,6 @@
   },
   "version": "0.1.5",
   "main": "index.js",
-  "files": [
-    "index.js"
-  ],
   "sideEffects": false,
   "dependencies": {
     "stylelint-config-prettier": "^8.0.1",

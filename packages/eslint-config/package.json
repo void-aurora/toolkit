@@ -9,9 +9,6 @@
   },
   "version": "0.2.2",
   "main": "index.js",
-  "files": [
-    "rules"
-  ],
   "scripts": {
     "gen-ts": "node ./scripts/generate-typescript-rules.js",
     "test": "jest"

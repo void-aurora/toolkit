@@ -9,9 +9,6 @@
   },
   "version": "0.1.5",
   "main": "index.js",
-  "files": [
-    "index.js"
-  ],
   "sideEffects": false,
   "peerDependencies": {
     "prettier": "^1.19.1"
