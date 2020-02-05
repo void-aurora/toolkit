@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/void-aurora/toolkit.git"
   },
-  "version": "0.5.1",
+  "version": "0.5.2",
   "scripts": {
     "build": "tsc -p ./tsconfig.json",
     "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
@@ -21,7 +21,7 @@
     "@void-aurora/commitlint-config": "^0.5.0",
     "@void-aurora/eslint-config": "^0.5.0",
     "@void-aurora/prettier-config": "^0.5.0",
-    "@void-aurora/stylelint-config": "^0.5.0",
+    "@void-aurora/stylelint-config": "^0.5.1",
     "chalk": "^3.0.0",
     "conventional-changelog-cli": "^2.0.31",
     "eslint": "^6.8.0",
