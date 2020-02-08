@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.6.1...@void-aurora/eslint-config@0.6.2) (2020-02-08)
+
+### Bug Fixes
+
+- **eslint-config:** ts/strict-boolean-expressions allowSafe ([43efa13](https://github.com/void-aurora/toolkit/commit/43efa13b857b8a4de2a0bd6500bdda2182a0b047))
+
 ## [0.6.1](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.6.0...@void-aurora/eslint-config@0.6.1) (2020-02-08)
 
 **Note:** Version bump only for package @void-aurora/eslint-config
