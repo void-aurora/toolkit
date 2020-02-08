@@ -1,4 +1,4 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["./rules", "./index.js"]
+  "include": ["rules", "index.js"]
 }
