@@ -523,7 +523,7 @@ const rules = {
     'error',
     {
       allowNullable: true,
-      allowSafe: false,
+      allowSafe: true,
       ignoreRhs: false,
     },
   ],
