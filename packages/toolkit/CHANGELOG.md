@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/toolkit@0.7.0...@void-aurora/toolkit@0.8.0) (2020-02-08)
+
+### Features
+
+- **toolkit:** add dep js-yaml ([2bc49a1](https://github.com/void-aurora/toolkit/commit/2bc49a13a9074e01ca95fa046ac813c4941aeadc))
+
 # [0.7.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/toolkit@0.6.1...@void-aurora/toolkit@0.7.0) (2020-02-05)
 
 ### Features

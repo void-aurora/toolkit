@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/void-aurora/toolkit/compare/@void-aurora/template@1.1.1...@void-aurora/template@1.1.2) (2020-02-08)
+
+**Note:** Version bump only for package @void-aurora/template
+
 ## [1.1.1](https://github.com/void-aurora/toolkit/compare/@void-aurora/template@1.1.0...@void-aurora/template@1.1.1) (2020-02-04)
 
 **Note:** Version bump only for package @void-aurora/template
