@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.4](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.6.3...@void-aurora/eslint-config@0.6.4) (2020-02-09)
+
+### Bug Fixes
+
+- **eslint-config:** ts/naming-convention allow typeParameter prefix T,K,U ([14e4a33](https://github.com/void-aurora/toolkit/commit/14e4a33060a0b0e3b5b28c81612ecc92e092c67e))
+
 ## [0.6.3](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.6.2...@void-aurora/eslint-config@0.6.3) (2020-02-08)
 
 ### Bug Fixes
