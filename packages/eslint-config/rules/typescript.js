@@ -168,7 +168,7 @@ const rules = {
     {
       selector: 'typeParameter',
       format: ['PascalCase'],
-      prefix: ['T'],
+      prefix: ['T', 'K', 'U'],
     },
     {
       selector: 'memberLike',
