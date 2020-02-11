@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://github.com/void-aurora/toolkit/compare/@void-aurora/stylelint-config@0.6.1...@void-aurora/stylelint-config@0.6.2) (2020-02-11)
+
+### Bug Fixes
+
+- **stylelint-config:** disabled uncessary rules ([ebc9bb1](https://github.com/void-aurora/toolkit/commit/ebc9bb1e480ab9576bbb887ce8dd907dc6073403))
+- **stylelint-config:** fix comment-empty-line-before to ignore otions ([ef6fb54](https://github.com/void-aurora/toolkit/commit/ef6fb5479c9fc9c48209c2e3cd47ab7219f18223))
+
 ## [0.6.1](https://github.com/void-aurora/toolkit/compare/@void-aurora/stylelint-config@0.6.0...@void-aurora/stylelint-config@0.6.1) (2020-02-08)
 
 **Note:** Version bump only for package @void-aurora/stylelint-config

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.6.4...@void-aurora/eslint-config@0.7.0) (2020-02-11)
+
+### Bug Fixes
+
+- **eslint-config:** fix import/no-unresolved options for amd modules ([a43893c](https://github.com/void-aurora/toolkit/commit/a43893cf2bc3019830f58d7b5b9b05a2204b2cf2))
+- **eslint-config:** fix ts rules which require type info emit error in js files ([0b9d243](https://github.com/void-aurora/toolkit/commit/0b9d243b931b37aa8a2ed5013cb5a241b8ad3a5b))
+
+### Features
+
+- **eslint-config:** more friendly for js config files ([373d7a2](https://github.com/void-aurora/toolkit/commit/373d7a2a44926393a029f7c60f13782b807fb169))
+
 ## [0.6.4](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.6.3...@void-aurora/eslint-config@0.6.4) (2020-02-09)
 
 ### Bug Fixes
