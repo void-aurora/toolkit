@@ -34,7 +34,7 @@ module.exports = {
 
     // Require named parameters in SCSS function call rule.
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/at-function-named-arguments/README.md
-    'scss/at-function-named-arguments': 'always',
+    'scss/at-function-named-arguments': null,
 
     // Require or disallow a space before `@function` parentheses (Autofixable).
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/at-function-parentheses-space-before/README.md
@@ -84,7 +84,7 @@ module.exports = {
 
     // Require named parameters in at-mixin call rule.
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/at-mixin-named-arguments/README.md
-    'scss/at-mixin-named-arguments': 'always',
+    'scss/at-mixin-named-arguments': null,
 
     // Require or disallow a space before `@mixin` parentheses (Autofixable).
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/at-mixin-parentheses-space-before/README.md
@@ -109,7 +109,7 @@ module.exports = {
 
     // Require a newline after the colon in `$`-variable declarations (Autofixable).
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-colon-newline-after/README.md
-    'scss/dollar-variable-colon-newline-after': 'always-multi-line',
+    'scss/dollar-variable-colon-newline-after': null,
 
     // Require or disallow whitespace after the colon in `$`-variable declarations (Autofixable).
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-colon-space-after/README.md
@@ -121,21 +121,11 @@ module.exports = {
 
     // Require `!default` flag for `$`-variable declarations.
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-default/README.md
-    'scss/dollar-variable-default': [
-      true,
-      {
-        ignore: 'local',
-      },
-    ],
+    'scss/dollar-variable-default': null,
 
     // Require a single empty line or disallow empty lines before `$`-variable declarations (Autofixable).
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-empty-line-before/README.md
-    'scss/dollar-variable-empty-line-before': [
-      'always',
-      {
-        except: ['first-nested', 'after-comment', 'after-dollar-variable'],
-      },
-    ],
+    'scss/dollar-variable-empty-line-before': null,
 
     // Disallow Sass variables that are used without interpolation with CSS features that use custom identifiers.
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-no-missing-interpolation/README.md
