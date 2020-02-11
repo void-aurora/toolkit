@@ -1,0 +1,102 @@
+@use '../cep' with (
+  $namespace: 'my',
+);
+
+// component
+@include cep.comp('button') {
+  cursor: pointer;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  color: #fff;
+
+  // multi elements;
+  @include cep.elem('icon', 'content') {
+    flex: none;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+
+  // single element
+  @include cep.elem('icon') {
+    width: 16px;
+    height: 16px;
+  }
+
+  // single property
+  @include cep.prop(
+    (
+      'color': 'red',
+    )
+  ) {
+    background-color: #f00;
+  }
+
+  // multi properties
+  @include cep.prop(
+    (
+      'size': 'large',
+      'shape': 'square',
+    )
+  ) {
+    width: 64px;
+    height: 64px;
+  }
+
+  // single property (boolean)
+  @include cep.when('disabled') {
+    cursor: not-allowed;
+  }
+
+  @include cep.all-of('active', 'focus') {
+    border: 1px solid #f00;
+  }
+
+  @include cep.one-of('active', 'focus') {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  }
+
+  // multi elements;
+  @include cep.elem('icon', 'content') {
+    --debug: test nest;
+
+    // single property
+    @include cep.prop(
+      (
+        'color': 'red',
+      )
+    ) {
+      background-color: #f00;
+    }
+
+    // multi properties
+    @include cep.prop(
+      (
+        'size': 'large',
+        'shape': 'square',
+      )
+    ) {
+      width: 64px;
+      height: 64px;
+    }
+
+    // single property (boolean)
+    @include cep.when('disabled') {
+      cursor: not-allowed;
+    }
+
+    @include cep.all-of('active', 'focus') {
+      border: 1px solid #f00;
+    }
+
+    @include cep.one-of('active', 'focus') {
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    }
+  }
+}

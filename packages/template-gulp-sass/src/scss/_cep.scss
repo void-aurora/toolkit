@@ -1,0 +1,189 @@
+// What is CEP?
+// Component, Element and Property
+// just like bem naming
+
+// stylelint-disable scss/no-duplicate-dollar-variables
+
+@use 'sass:list';
+@use 'sass:selector';
+@use 'sass:string';
+
+// Namespace as prefix
+$namespace: 'c' !default;
+$combinator-ns-comp: '-' !default;
+$combinator-comp-elem: '_' !default;
+$combinator-ns-prop: '_' !default;
+$combinator-prop-key-value: '_' !default;
+$state-prefix: 'is' !default;
+
+// Component
+@mixin comp($component) {
+  @if not $component {
+    @error 'Missing argument $component.';
+  }
+  @if $-component-flag or string.length('#{&}') > 0 {
+    @error "Nested comp mixin is forbidden. (parent: #{&})";
+  }
+
+  @at-root {
+    // init;
+    $-component-flag: true !global;
+    $-component-selector: '.#{$namespace}#{$combinator-ns-comp}#{$component}' !global;
+    $-properties-selector: $-component-selector !global;
+    $-elements-selector: null !global;
+
+    // wrap
+    #{$-component-selector} {
+      @content;
+    }
+
+    // recovery
+    $-component-flag: null !global;
+    $-component-selector: null !global;
+    $-properties-selector: null !global;
+  }
+}
+
+// Component Elements
+@mixin elem($elements...) {
+  @if list.length($elements) == 0 {
+    @error '$elements: At least one element must be passed.';
+  }
+  @if not $-component-selector {
+    @error 'Must nest elem mixin inside comp mixin.';
+  }
+  @if $-elements-flag {
+    @error 'Nests elem mixin is forbidden. (parent: #{&})';
+  }
+
+  // init
+  $-elements-flag: true !global;
+  $postfix: '';
+  @each $element in $elements {
+    $postfix: '#{$postfix}, #{$combinator-comp-elem}#{$element}';
+  }
+  $postfix: string.slice($postfix, 3);
+  $-elements-selector: selector.append($-component-selector, $postfix) !global;
+
+  // wrap
+  @at-root {
+    @if #{$-component-selector} == #{$-properties-selector} {
+      #{$-elements-selector} {
+        @content;
+      }
+    } @else {
+      #{selector.nest($-properties-selector, $-elements-selector)} {
+        @content;
+      }
+    }
+  }
+
+  // recovery
+  $-elements-flag: null !global;
+  $-elements-selector: null !global;
+}
+
+@mixin -prop-wrap() {
+  @at-root {
+    @if $-elements-selector {
+      #{selector.nest($-properties-selector, $-elements-selector)} {
+        @content;
+      }
+    } @else {
+      #{$-properties-selector} {
+        @content;
+      }
+    }
+  }
+}
+
+// Component Properties (key-value map)
+@mixin prop($properties) {
+  @if not $properties {
+    @error 'Missing argument $properties.';
+  }
+  @if not $-component-selector {
+    @error 'Must nest prop mixin inside comp mixin.';
+  }
+
+  // init
+  $-BAK: $-properties-selector;
+
+  @each $name, $value in $properties {
+    $-properties-selector: selector.append(
+      $-properties-selector,
+      '.#{$namespace}#{$combinator-ns-prop}#{$name}#{$combinator-prop-key-value}#{$value}'
+    ) !global;
+  }
+
+  // wrap
+  @include -prop-wrap() {
+    @content;
+  }
+
+  // recovery
+  $-properties-selector: $-BAK !global;
+}
+
+// Component Property (boolean)
+@mixin when($state) {
+  @include all-of($state) {
+    @content;
+  }
+}
+
+// Component Properties (boolean), met all of
+@mixin all-of($states...) {
+  @if not $states {
+    @error 'Missing argument $states.';
+  }
+  @if not $-component-selector {
+    @error 'Must nest prop mixin inside comp mixin.';
+  }
+
+  // init
+  $-BAK: $-properties-selector;
+
+  @each $name in $states {
+    $-properties-selector: selector.append(
+      $-properties-selector,
+      '.#{$namespace}#{$combinator-ns-prop}#{$state-prefix}#{$combinator-prop-key-value}#{$name}'
+    ) !global;
+  }
+
+  // wrap
+  @include -prop-wrap() {
+    @content;
+  }
+
+  // recovery
+  $-properties-selector: $-BAK !global;
+}
+
+// Component Properties (boolean), met one of
+@mixin one-of($states...) {
+  @if not $states {
+    @error 'Missing argument $states.';
+  }
+  @if not $-component-selector {
+    @error 'Must nest prop mixin inside comp mixin.';
+  }
+
+  // init
+  $-BAK: $-properties-selector;
+  $-properties-selector-list: '' !global;
+
+  @each $name in $states {
+    $-properties-selector-list: '#{$-properties-selector-list}, .#{$namespace}#{$combinator-ns-prop}#{$state-prefix}#{$combinator-prop-key-value}#{$name}' !global;
+  }
+  $-properties-selector-list: string.slice($-properties-selector-list, 3) !global;
+  $-properties-selector: selector.append($-properties-selector, $-properties-selector-list) !global;
+
+  // wrap
+  @include -prop-wrap() {
+    @content;
+  }
+
+  // recovery
+  $-properties-selector: $-BAK !global;
+}
