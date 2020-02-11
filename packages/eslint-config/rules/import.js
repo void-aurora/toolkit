@@ -10,6 +10,7 @@ module.exports = {
       'error',
       {
         commonjs: true,
+        amd: true,
         caseSensitive: true,
       },
     ],
