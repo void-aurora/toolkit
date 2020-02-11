@@ -9,6 +9,42 @@ const { rules: rulesNode } = require('./node');
 const { rules: rulesStylistic } = require('./stylistic');
 const { rules: rulesES6 } = require('./es6');
 
+/**
+ * rules which require type information
+ */
+const ruleNamesRequireTypeInfo = [
+  '@typescript-eslint/await-thenable',
+  '@typescript-eslint/naming-convention',
+  '@typescript-eslint/no-floating-promises',
+  '@typescript-eslint/no-for-in-array',
+  '@typescript-eslint/no-implied-eval',
+  '@typescript-eslint/no-misused-promises',
+  '@typescript-eslint/no-throw-literal',
+  '@typescript-eslint/no-unnecessary-boolean-literal-compare',
+  '@typescript-eslint/no-unnecessary-condition',
+  '@typescript-eslint/no-unnecessary-qualifier',
+  '@typescript-eslint/no-unnecessary-type-arguments',
+  '@typescript-eslint/no-unnecessary-type-assertion',
+  '@typescript-eslint/no-unused-vars-experimental',
+  '@typescript-eslint/prefer-includes',
+  '@typescript-eslint/prefer-nullish-coalescing',
+  '@typescript-eslint/prefer-readonly',
+  '@typescript-eslint/prefer-regexp-exec',
+  '@typescript-eslint/prefer-string-starts-ends-with',
+  '@typescript-eslint/promise-function-async',
+  '@typescript-eslint/require-array-sort-compare',
+  '@typescript-eslint/require-await',
+  '@typescript-eslint/restrict-plus-operands',
+  '@typescript-eslint/restrict-template-expressions',
+  '@typescript-eslint/return-await',
+  '@typescript-eslint/strict-boolean-expressions',
+  '@typescript-eslint/switch-exhaustiveness-check',
+  '@typescript-eslint/unbound-method',
+];
+
+/**
+ * rules from `@typescript-eslint/eslint-plugin`
+ */
 const rules = {
   // Require that member overloads be consecutive
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/adjacent-overload-signatures.md
@@ -254,6 +290,7 @@ const rules = {
   // Disallow the use of `eval()`-like methods
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-implied-eval.md
   // requires type information
+  // extends base rule
   'no-implied-eval': 'off',
   '@typescript-eslint/no-implied-eval': rulesBestPractices['no-implied-eval'],
 

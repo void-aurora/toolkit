@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 const { rules } = require('@typescript-eslint/eslint-plugin');
 
+const ruleNamesRequireTypeInfo = [];
 const lines = [];
 
 // eslint-disable-next-line @typescript-eslint/require-array-sort-compare
@@ -31,6 +32,7 @@ Object.keys(rules)
     lines.push(`  // ${url}`);
 
     if (requiresTypeChecking === true) {
+      ruleNamesRequireTypeInfo.push(`@typescript-eslint/${name}`);
       lines.push(`  // requires type information`);
     }
     if (deprecated === true) {
@@ -47,8 +49,14 @@ Object.keys(rules)
     lines.push('');
   });
 
-const content = `const rules = {
+const contentRuleNamesRequireTypeInfo = `const ruleNamesRequireTypeInfo = [
+${ruleNamesRequireTypeInfo.map(r => `  '${r}',`).join('\n')}
+]`;
+const contentRules = `const rules = {
 ${lines.join('\n')}
 }`;
 
-console.log(content);
+console.log('// rules which require type information');
+console.log(contentRuleNamesRequireTypeInfo);
+console.log('// rules from `@typescript-eslint/eslint-plugin`');
+console.log(contentRules);
