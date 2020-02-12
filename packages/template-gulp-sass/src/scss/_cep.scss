@@ -58,12 +58,12 @@ $state-prefix: 'is' !default;
 
   // init
   $-elements-flag: true !global;
-  $postfix: '';
+  $-postfix: '';
   @each $element in $elements {
-    $postfix: '#{$postfix}, #{$combinator-comp-elem}#{$element}';
+    $-postfix: '#{$-postfix}, #{$combinator-comp-elem}#{$element}';
   }
-  $postfix: string.slice($postfix, 3);
-  $-elements-selector: selector.append($-component-selector, $postfix) !global;
+  $-postfix: string.slice($-postfix, 3);
+  $-elements-selector: selector.append($-component-selector, $-postfix) !global;
 
   // wrap
   @at-root {
@@ -171,12 +171,11 @@ $state-prefix: 'is' !default;
 
   // init
   $-BAK: $-properties-selector;
-  $-properties-selector-list: '' !global;
-
+  $-properties-selector-list: '';
   @each $name in $states {
-    $-properties-selector-list: '#{$-properties-selector-list}, .#{$namespace}#{$combinator-ns-prop}#{$state-prefix}#{$combinator-prop-key-value}#{$name}' !global;
+    $-properties-selector-list: '#{$-properties-selector-list}, .#{$namespace}#{$combinator-ns-prop}#{$state-prefix}#{$combinator-prop-key-value}#{$name}';
   }
-  $-properties-selector-list: string.slice($-properties-selector-list, 3) !global;
+  $-properties-selector-list: string.slice($-properties-selector-list, 3);
   $-properties-selector: selector.append($-properties-selector, $-properties-selector-list) !global;
 
   // wrap
