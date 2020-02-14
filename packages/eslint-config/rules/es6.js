@@ -113,12 +113,12 @@ module.exports = {
       'error',
       {
         VariableDeclarator: {
-          array: true,
+          array: false,
           object: true,
         },
         AssignmentExpression: {
-          array: true,
-          object: true,
+          array: false,
+          object: false,
         },
       },
       {

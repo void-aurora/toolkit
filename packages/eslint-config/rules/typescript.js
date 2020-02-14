@@ -111,7 +111,14 @@ const rules = {
 
   // Require explicit return types on functions and class methods
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-function-return-type.md
-  '@typescript-eslint/explicit-function-return-type': 'error',
+  '@typescript-eslint/explicit-function-return-type': [
+    'error',
+    {
+      allowExpressions: true,
+      allowTypedFunctionExpressions: true,
+      allowHigherOrderFunctions: false,
+    },
+  ],
 
   // Require explicit accessibility modifiers on class properties and methods
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-member-accessibility.md
@@ -220,6 +227,10 @@ const rules = {
       selector: 'memberLike',
       modifiers: ['static', 'readonly'],
       format: ['UPPER_CASE'],
+    },
+    {
+      selector: 'property',
+      format: ['camelCase', 'PascalCase', 'snake_case', 'UPPER_CASE'],
     },
     {
       selector: 'enumMember',
