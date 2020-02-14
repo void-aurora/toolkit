@@ -81,9 +81,9 @@ module.exports = {
       'error',
       'always',
       {
-        avoidQuotes: false,
-        ignoreConstructors: false,
-        avoidExplicitReturnArrows: true,
+        avoidQuotes: true,
+        ignoreConstructors: true,
+        avoidExplicitReturnArrows: false,
       },
     ],
 
