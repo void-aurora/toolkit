@@ -33,3 +33,13 @@ A series of tools for Void Aurora projects
 [toolkit]: https://github.com/void-aurora/toolkit/tree/master/packages/toolkit
 [toolkit-version]: https://img.shields.io/npm/v/@void-aurora/toolkit
 [toolkit-npm]: https://www.npmjs.com/package/@void-aurora/toolkit
+
+## Templates for sub-packages
+
+| Package              | Description                                       |
+| -------------------- | ------------------------------------------------- |
+| [template]           | Pure typescript project.                          |
+| [template-gulp-sass] | Build sass to css bundle with gulp and dart-sass. |
+
+[template]: https://github.com/void-aurora/toolkit/tree/master/packages/template
+[template-gulp-sass]: https://github.com/void-aurora/toolkit/tree/master/packages/template-gulp-sass
