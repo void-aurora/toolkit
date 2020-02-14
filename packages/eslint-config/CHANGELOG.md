@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.7.1...@void-aurora/eslint-config@0.7.2) (2020-02-14)
+
+### Bug Fixes
+
+- **eslint-config:** fix rule es6/object-shorthand options ([323807c](https://github.com/void-aurora/toolkit/commit/323807c04b67452c7887d04cc9fd7aa9bd69b8a5))
+
 ## [0.7.1](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.7.0...@void-aurora/eslint-config@0.7.1) (2020-02-14)
 
 ### Bug Fixes
