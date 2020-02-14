@@ -7,7 +7,7 @@
 
 > Category: Style Guide
 
-This package provides **SCSS** StyleLint configuration for Void-Aurora.
+This package provides **SCSS** StyleLint configuration for Void Aurora.
 
 ## Usage
 

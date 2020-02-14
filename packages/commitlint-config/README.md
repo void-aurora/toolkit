@@ -7,7 +7,7 @@
 
 > Category: Style Guide
 
-This package provides CommitLint configuration for Void-Aurora.
+This package provides CommitLint configuration for Void Aurora.
 
 ## Usage
 

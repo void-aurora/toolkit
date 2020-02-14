@@ -5,7 +5,7 @@
 
 [![toolkit-version]][toolkit-npm]
 
-Packs tools for Void-Aurora.
+Packs tools related to style guideline for Void Aurora.
 
 ## Usage
 

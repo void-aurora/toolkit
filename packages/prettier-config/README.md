@@ -7,7 +7,7 @@
 
 > Category: Style Guide
 
-This package provides Prettier configuration for Void-Aurora.
+This package provides Prettier configuration for Void Aurora.
 
 ## Usage
 
