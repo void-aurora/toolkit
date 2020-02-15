@@ -421,7 +421,7 @@ module.exports = {
 
     // enforce using named capture group in regular expression
     // https://eslint.org/docs/rules/prefer-named-capture-group
-    'prefer-named-capture-group': 'error',
+    'prefer-named-capture-group': 'off',
 
     // require using Error objects as Promise rejection reasons
     // https://eslint.org/docs/rules/prefer-promise-reject-errors
