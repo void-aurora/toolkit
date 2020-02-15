@@ -48,6 +48,9 @@ module.exports = {
         vars: 'all',
         args: 'after-used',
         ignoreRestSiblings: true,
+        argsIgnorePattern: '^_',
+        caughtErrors: 'all',
+        caughtErrorsIgnorePattern: '^ignore',
       },
     ],
 
