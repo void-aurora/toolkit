@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.7.2...@void-aurora/eslint-config@0.7.3) (2020-02-15)
+
+### Bug Fixes
+
+- **eslint-config:** disable rule prefer-named-capture-group due to firefox not support ([5de8ce2](https://github.com/void-aurora/toolkit/commit/5de8ce24ee2f381bd3c5e022283f9ee4cfc8713d))
+- **eslint-config:** make rule no-unused-vars more friendly ([592aaea](https://github.com/void-aurora/toolkit/commit/592aaeadbc954ba89588b8536c007bb7defbae65))
+- **eslint-config:** make rule require-unicode-regexp friendly ([c6745a5](https://github.com/void-aurora/toolkit/commit/c6745a5ab58e1cca6f1f6246d1a41a957e875a4e))
+
 ## [0.7.2](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.7.1...@void-aurora/eslint-config@0.7.2) (2020-02-14)
 
 ### Bug Fixes
