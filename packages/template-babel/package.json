@@ -28,9 +28,6 @@
   },
   "sideEffects": false,
   "types": "dist/esm/index.d.ts",
-  "dependencies": {
-    "core-js": "^3.6.4"
-  },
   "jest": {
     "collectCoverage": true,
     "coverageThreshold": {
