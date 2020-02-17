@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@void-aurora/template-babel",
-  "description": "The sub package template for babel and typescript.",
+  "description": "The sub package template for typescript, builds with babel.",
   "license": "MIT",
   "author": "duduluu",
   "repository": {
