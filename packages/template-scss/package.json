@@ -19,7 +19,6 @@
     "build": "gulp",
     "clean:dist": "rimraf ./dist",
     "prepare": "yarn clean:dist && yarn build",
-    "test": "jest",
     "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
   },
   "sideEffects": false,
@@ -35,19 +34,5 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.0.2",
     "sass": "^1.25.0"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "coverageThreshold": {
-      "global": {
-        "statements": 100,
-        "branches": 100,
-        "functions": 100,
-        "lines": 100
-      }
-    },
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    }
   }
 }
