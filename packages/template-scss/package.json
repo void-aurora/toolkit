@@ -16,10 +16,7 @@
     "src"
   ],
   "scripts": {
-    "build": "yarn build:cjs && yarn build:esm && yarn build:scss",
-    "build:cjs": "tsc -p ./tsconfig.cjs.json",
-    "build:esm": "tsc -p ./tsconfig.esm.json",
-    "build:scss": "gulp",
+    "build": "gulp",
     "clean:dist": "rimraf ./dist",
     "prepare": "yarn clean:dist && yarn build",
     "test": "jest",
@@ -29,9 +26,13 @@
   "types": "dist/esm/index.d.ts",
   "devDependencies": {
     "@types/gulp": "^4.0.6",
-    "@types/gulp-sass": "^4.0.0",
-    "@types/sass": "^1.16.0",
+    "autoprefixer": "^9.7.4",
+    "cssnano": "^4.1.10",
     "gulp": "^4.0.2",
+    "gulp-header": "^2.0.9",
+    "gulp-postcss": "^8.0.0",
+    "gulp-prettier": "^2.3.0",
+    "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.0.2",
     "sass": "^1.25.0"
   },
