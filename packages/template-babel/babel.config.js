@@ -11,11 +11,6 @@ const options = {
       '@babel/preset-env',
       {
         modules,
-        targets: {
-          chrome: '80',
-          firefox: '70',
-          ie: '11', // fuck
-        },
         useBuiltIns: 'entry',
         corejs: {
           version: 3,
