@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "@void-aurora/template-gulp-sass",
-  "description": "The sub package template for gulp and scss(dart-sass).",
+  "name": "@void-aurora/template-scss",
+  "description": "The sub package template for scss, builds with gulp and dart-sass.",
   "license": "MIT",
   "author": "duduluu",
   "repository": {
