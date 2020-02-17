@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@void-aurora/template",
+  "name": "@void-aurora/template-typescript",
   "description": "The sub package template for typescript.",
   "license": "MIT",
   "author": "duduluu",
