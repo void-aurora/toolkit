@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2020-02-17)
+
+### Features
+
+- **template-babel:** add template for babel ([3f771c2](https://github.com/void-aurora/toolkit/commit/3f771c26e3bb0fa32669b5b225b79a9936227296))
+
 ## [1.1.4](https://github.com/void-aurora/toolkit/compare/@void-aurora/template@1.1.3...@void-aurora/template@1.1.4) (2020-02-14)
 
 ### Bug Fixes
