@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@void-aurora/template-gulp-sass",
-  "description": "The sub package template (gulp, sass) for monorepo.",
+  "description": "The sub package template for gulp and scss(dart-sass).",
   "license": "MIT",
   "author": "duduluu",
   "repository": {

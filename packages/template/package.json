@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@void-aurora/template",
-  "description": "The sub package template for monorepo.",
+  "description": "The sub package template for typescript.",
   "license": "MIT",
   "author": "duduluu",
   "repository": {
