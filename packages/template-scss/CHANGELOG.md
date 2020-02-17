@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-scss@1.0.3...@void-aurora/template-scss@1.1.0) (2020-02-17)
+
+### Features
+
+- **template-scss:** more gulp task ([b2e5b57](https://github.com/void-aurora/toolkit/commit/b2e5b575ec58ede88410cca4d4836685df8eba05))
+
 ## 1.0.3 (2020-02-17)
 
 **Note:** Version bump only for package @void-aurora/template-scss

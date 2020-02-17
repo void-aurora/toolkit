@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.5](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.7.4...@void-aurora/eslint-config@0.7.5) (2020-02-17)
+
+### Bug Fixes
+
+- **eslint-config:** disable rule ts/explicit-function-return-type for js files ([a4d13ea](https://github.com/void-aurora/toolkit/commit/a4d13eaad12ae794ac2ab62046a54e50f8fdd65f))
+
 ## [0.7.4](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.7.3...@void-aurora/eslint-config@0.7.4) (2020-02-17)
 
 **Note:** Version bump only for package @void-aurora/eslint-config
