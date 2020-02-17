@@ -1,0 +1,52 @@
+{
+  "private": true,
+  "name": "@void-aurora/template-babel",
+  "description": "The sub package template for babel and typescript.",
+  "license": "MIT",
+  "author": "duduluu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/void-aurora/toolkit.git"
+  },
+  "version": "1.0.0",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "yarn build:cjs && yarn build:types:cjs && yarn build:esm && yarn build:types:esm",
+    "build:cjs": "babel src --extensions \".ts\" -d dist/cjs -s --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",
+    "build:esm": "babel src --extensions \".ts\" -d dist/esm -s --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",
+    "build:types:cjs": "tsc -p ./tsconfig.cjs.json",
+    "build:types:esm": "tsc -p ./tsconfig.esm.json",
+    "clean:dist": "rimraf ./dist",
+    "prepare": "yarn clean:dist && yarn build",
+    "test": "jest",
+    "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
+  },
+  "sideEffects": false,
+  "types": "dist/esm/index.d.ts",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
+    "core-js": "^3.6.4"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
+  }
+}
