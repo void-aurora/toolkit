@@ -1,6 +1,6 @@
 # @void-aurora/eslint-config
 
-[eslint-config-version]: https://img.shields.io/npm/v/@void-aurora/eslint-config
+[eslint-config-version]: https://img.shields.io/npm/v/@void-aurora/eslint-config?style=flat-square
 [eslint-config-npm]: https://www.npmjs.com/package/@void-aurora/eslint-config
 
 [![eslint-config-version]][eslint-config-npm]

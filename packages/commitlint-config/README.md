@@ -1,6 +1,6 @@
 # @void-aurora/commitlint-config
 
-[commitlint-config-version]: https://img.shields.io/npm/v/@void-aurora/commitlint-config
+[commitlint-config-version]: https://img.shields.io/npm/v/@void-aurora/commitlint-config?style=flat-square
 [commitlint-config-npm]: https://www.npmjs.com/package/@void-aurora/commitlint-config
 
 [![commitlint-config-version]][commitlint-config-npm]

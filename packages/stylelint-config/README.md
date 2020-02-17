@@ -1,6 +1,6 @@
 # @void-aurora/stylelint-config
 
-[stylelint-config-version]: https://img.shields.io/npm/v/@void-aurora/stylelint-config
+[stylelint-config-version]: https://img.shields.io/npm/v/@void-aurora/stylelint-config?style=flat-square
 [stylelint-config-npm]: https://www.npmjs.com/package/@void-aurora/stylelint-config
 
 [![stylelint-config-version]][stylelint-config-npm]

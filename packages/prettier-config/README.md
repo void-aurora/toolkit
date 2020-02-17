@@ -1,6 +1,6 @@
 # @void-aurora/prettier-config
 
-[prettier-config-version]: https://img.shields.io/npm/v/@void-aurora/prettier-config
+[prettier-config-version]: https://img.shields.io/npm/v/@void-aurora/prettier-config?style=flat-square
 [prettier-config-npm]: https://www.npmjs.com/package/@void-aurora/prettier-config
 
 [![prettier-config-version]][prettier-config-npm]
