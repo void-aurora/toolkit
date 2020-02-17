@@ -37,10 +37,12 @@ A series of tools for Void Aurora projects
 
 ## Templates for sub-packages
 
-| Package              | Description                                       |
-| -------------------- | ------------------------------------------------- |
-| [template]           | Pure typescript project.                          |
-| [template-gulp-sass] | Build sass to css bundle with gulp and dart-sass. |
+| Package               | Description                               |
+| --------------------- | ----------------------------------------- |
+| [template-typescript] | For TypeScript                            |
+| [template-babel]      | For TypeScript, builds with babel.        |
+| [template-scss]       | For SCSS, builds with gulp and dart-sass. |
 
-[template]: https://github.com/void-aurora/toolkit/tree/master/packages/template
-[template-gulp-sass]: https://github.com/void-aurora/toolkit/tree/master/packages/template-gulp-sass
+[template-typescript]: https://github.com/void-aurora/toolkit/tree/master/packages/template-typescript
+[template-babel]: https://github.com/void-aurora/toolkit/tree/master/packages/template-babel
+[template-scss]: https://github.com/void-aurora/toolkit/tree/master/packages/template-scss
