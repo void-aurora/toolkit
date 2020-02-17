@@ -13,8 +13,13 @@
     "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
     "@types/jest": "^25.1.2",
     "@types/node": "^13.7.1",
+    "babel-jest": "^25.1.0",
     "jest": "^25.1.0",
     "lerna": "^3.20.2",
     "ts-jest": "^25.2.0",
