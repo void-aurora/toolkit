@@ -4,34 +4,13 @@ const prettierOptions = require('@void-aurora/prettier-config');
 const plugins = require('./plugins');
 const config = require('./config');
 
-const copyScss = () => {
+function baseStream() {
   return gulp
-    .src(config.globScss, { cwd: config.srcScss })
-    .pipe(
-      plugins.gulp.prettier({
-        ...prettierOptions,
-        parser: 'css',
-      }),
-    )
-    .pipe(gulp.dest(config.distScss));
-};
-
-const buildStyle = () => {
-  return gulp
-    .src(config.globScss, { cwd: config.srcScss })
-    .pipe(plugins.gulp.sass().on('error', plugins.gulp.sass.logError))
-    .pipe(plugins.gulp.postcss([plugins.postcss.autoprefixer()]))
-    .pipe(
-      plugins.gulp.prettier({
-        ...prettierOptions,
-        parser: 'css',
-      }),
-    )
-    .pipe(plugins.gulp.header(config.bannerTemplate, config.bannerData))
-    .pipe(gulp.dest(config.distStyle))
-    .pipe(plugins.gulp.rename({ suffix: '.min' }))
+    .src(config.globSass, { cwd: config.srcSass })
+    .pipe(plugins.gulp.sass(config.sassOptions).on('error', plugins.gulp.sass.logError))
     .pipe(
       plugins.gulp.postcss([
+        plugins.postcss.autoprefixer(),
         plugins.postcss.cssnano({
           preset: [
             'default',
@@ -44,8 +23,24 @@ const buildStyle = () => {
         }),
       ]),
     )
-    .pipe(plugins.gulp.header(config.bannerTemplate, config.bannerData))
-    .pipe(gulp.dest(config.distStyle));
-};
+    .pipe(plugins.gulp.header(config.bannerTemplate, config.bannerData));
+}
 
-module.exports = { copyScss, buildStyle };
+function buildStyleMinified() {
+  return baseStream()
+    .pipe(plugins.gulp.rename({ suffix: '.min' }))
+    .pipe(gulp.dest(config.distDir));
+}
+
+function buildStylePretty() {
+  return baseStream()
+    .pipe(
+      plugins.gulp.prettier({
+        ...prettierOptions,
+        parser: 'css',
+      }),
+    )
+    .pipe(gulp.dest(config.distDir));
+}
+
+module.exports.buildStyle = gulp.parallel(buildStyleMinified, buildStylePretty);

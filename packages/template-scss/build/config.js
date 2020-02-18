@@ -1,14 +1,21 @@
 const pkg = require('../package.json');
+const { resolve } = require('./plugins');
+
+/**
+ * @type {import('sass').Options}
+ */
+const sassOptions = {
+  includePaths: [resolve('node_modules'), resolve('../../node_modules')],
+};
 
 module.exports = {
   pkg,
 
-  globScss: '**/*.scss',
-  srcScss: 'src/scss',
-  distStyle: 'dist/style',
-  distScss: 'dist/scss',
+  sassOptions,
 
-  entries: ['style.scss'],
+  globSass: '**/*.scss',
+  srcSass: resolve('sass'),
+  distDir: resolve('dist'),
 
   bannerTemplate: [
     '/*!',

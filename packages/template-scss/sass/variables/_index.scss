@@ -1,5 +1,5 @@
 @use '../mixins';
-@use './semantic-colors' as *;
+@use 'semantic-colors' as *;
 
 :root {
   @include mixins.expand-to-css-variables($map: $semantic-color-map);

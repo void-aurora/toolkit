@@ -1,3 +1,5 @@
+const pth = require('path');
+
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
 sass.compiler = require('sass');
@@ -7,6 +9,14 @@ const prettier = require('gulp-prettier');
 
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+
+/**
+ * Resolve path based on the project directory.
+ * @param {string[]} paths
+ */
+function resolve(...paths) {
+  return pth.resolve(__dirname, '..', ...paths);
+}
 
 module.exports = {
   gulp: {
@@ -21,3 +31,5 @@ module.exports = {
     cssnano,
   },
 };
+
+module.exports.resolve = resolve;
