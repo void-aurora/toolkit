@@ -16,9 +16,9 @@
     "src"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "build:types:cjs": "tsc -p ./tsconfig.cjs.json",
-    "build:types:esm": "tsc -p ./tsconfig.esm.json",
+    "build": "yarn build:rollup && yarn build:dts",
+    "build:dts": "yarn ts build/dts",
+    "build:rollup": "rollup -c",
     "clean:dist": "rimraf ./dist",
     "prepare": "yarn clean:dist && yarn build",
     "test": "jest",
