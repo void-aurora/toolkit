@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-babel@1.1.1...@void-aurora/template-babel@1.2.0) (2020-02-18)
+
+### Features
+
+- **template-babel:** use .browserslistrc for babel preset-env targets ([fe283c5](https://github.com/void-aurora/toolkit/commit/fe283c544c17191dce97fbe7eba3c58cd8681a34))
+
 ## [1.1.1](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-babel@1.1.0...@void-aurora/template-babel@1.1.1) (2020-02-17)
 
 **Note:** Version bump only for package @void-aurora/template-babel
