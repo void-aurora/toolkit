@@ -1,0 +1,51 @@
+{
+  "private": true,
+  "name": "@void-aurora/template-rollup",
+  "description": "The sub package template for typescript, builds with rollup.",
+  "license": "MIT",
+  "author": "duduluu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/void-aurora/toolkit.git"
+  },
+  "version": "1.1.1",
+  "main": "dist/template-rollup.cjs.js",
+  "module": "dist/template-rollup.esm.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "build:types:cjs": "tsc -p ./tsconfig.cjs.json",
+    "build:types:esm": "tsc -p ./tsconfig.esm.json",
+    "clean:dist": "rimraf ./dist",
+    "prepare": "yarn clean:dist && yarn build",
+    "test": "jest",
+    "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
+  },
+  "sideEffects": false,
+  "types": "dist/esm/index.d.ts",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "rollup": "^1.31.1",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-terser": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.26.0"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    }
+  }
+}
