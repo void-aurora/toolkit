@@ -20,6 +20,8 @@ function buildDTS(): void {
       )}`,
     );
   }
+
+  fs.removeSync(resolve(__dirname, '..', 'dist', 'types'));
 }
 
 buildDTS();
