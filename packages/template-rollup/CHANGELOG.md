@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-rollup@1.2.0...@void-aurora/template-rollup@1.2.1) (2020-02-18)
+
+### Bug Fixes
+
+- **template-rollup:** remove raw decclaration files after rollup ([00f7909](https://github.com/void-aurora/toolkit/commit/00f7909287b631b3a255e1c67bc9212b9108edd1))
+
 # 1.2.0 (2020-02-18)
 
 ### Features
