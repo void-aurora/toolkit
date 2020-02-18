@@ -41,8 +41,10 @@ A series of tools for Void Aurora projects
 | --------------------- | ----------------------------------------- |
 | [template-typescript] | For TypeScript                            |
 | [template-babel]      | For TypeScript, builds with babel.        |
+| [template-rollup]     | For TypeScript, builds with rollup.       |
 | [template-scss]       | For SCSS, builds with gulp and dart-sass. |
 
 [template-typescript]: https://github.com/void-aurora/toolkit/tree/master/packages/template-typescript
 [template-babel]: https://github.com/void-aurora/toolkit/tree/master/packages/template-babel
+[template-rollup]: https://github.com/void-aurora/toolkit/tree/master/packages/template-rollup
 [template-scss]: https://github.com/void-aurora/toolkit/tree/master/packages/template-scss
