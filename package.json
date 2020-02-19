@@ -12,18 +12,9 @@
     "lerna:version": "lerna version --conventional-commits --create-release github --yes",
     "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json"
   },
-  "dependencies": {
-    "core-js": "^3.6.4"
-  },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
-    "@babel/preset-typescript": "^7.8.3",
-    "@microsoft/api-extractor": "^7.7.8",
     "@types/jest": "^25.1.2",
     "@types/node": "^13.7.1",
-    "babel-jest": "^25.1.0",
     "jest": "^25.1.0",
     "lerna": "^3.20.2",
     "ts-jest": "^25.2.0",

@@ -28,6 +28,16 @@
   },
   "sideEffects": false,
   "types": "dist/esm/index.d.ts",
+  "dependencies": {
+    "core-js": "^3.6.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
+    "babel-jest": "^25.1.0"
+  },
   "jest": {
     "collectCoverage": true,
     "coverageThreshold": {
