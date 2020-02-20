@@ -16,11 +16,11 @@
     "src"
   ],
   "scripts": {
-    "build": "yarn build:rollup && yarn build:dts",
-    "build:dts": "yarn ts build/dts",
+    "build": "pnpm run build:rollup && pnpm run build:dts",
+    "build:dts": "pnpm run ts build/dts",
     "build:rollup": "rollup -c",
     "clean:dist": "rimraf ./dist",
-    "prepare": "yarn clean:dist && yarn build",
+    "prepare": "pnpm run clean:dist && pnpm run build",
     "test": "jest",
     "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
   },

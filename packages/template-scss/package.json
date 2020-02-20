@@ -17,7 +17,7 @@
   "scripts": {
     "build": "gulp",
     "clean:dist": "rimraf ./dist",
-    "prepare": "yarn clean:dist && yarn build",
+    "prepare": "pnpm run clean:dist && pnpm run build",
     "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
   },
   "sideEffects": false,

@@ -14,9 +14,12 @@ This package provides **TypeScript** ESLint configuration for Void Aurora, refer
 ### Install
 
 ```sh
-yarn add -D @void-aurora/eslint-config
-# or use npm
+# use npm
 npm i --save-dev @void-aurora/eslint-config
+# use yarn
+yarn add -D @void-aurora/eslint-config
+# use pnpm
+pnpm add -D @void-aurora/eslint-config
 ```
 
 ### Config file

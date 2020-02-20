@@ -7,8 +7,8 @@
   ],
   "scripts": {
     "commit": "commit",
+    "preinstall": "node -e \"!process.env.npm_config_user_agent.startsWith('pnpm/') && !console.log('Use \\`pnpm install\\` to install dependencies in this repository\\n') && process.exit(1)\"",
     "lerna": "lerna",
-    "lerna:publish": "lerna publish from-package --yes",
     "lerna:version": "lerna version --conventional-commits --create-release github --yes",
     "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json"
   },
@@ -21,5 +21,9 @@
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.7.5"
+  },
+  "engines": {
+    "node": ">=12",
+    "pnpm": ">=4"
   }
 }

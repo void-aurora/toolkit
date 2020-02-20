@@ -14,9 +14,12 @@ This package provides CommitLint configuration for Void Aurora.
 ### Install
 
 ```sh
-yarn add -D @void-aurora/commitlint-config
-# or use npm
+# use npm
 npm i --save-dev @void-aurora/commitlint-config
+# use yarn
+yarn add -D @void-aurora/commitlint-config
+# use pnpm
+pnpm add -D @void-aurora/commitlint-config
 ```
 
 ### Config file

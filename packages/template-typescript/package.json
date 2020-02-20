@@ -16,11 +16,11 @@
     "src"
   ],
   "scripts": {
-    "build": "yarn build:cjs && yarn build:esm",
+    "build": "pnpm run build:cjs && pnpm run build:esm",
     "build:cjs": "tsc -p ./tsconfig.cjs.json",
     "build:esm": "tsc -p ./tsconfig.esm.json",
     "clean:dist": "rimraf ./dist",
-    "prepare": "yarn clean:dist && yarn build",
+    "prepare": "pnpm run clean:dist && pnpm run build",
     "test": "jest",
     "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
   },

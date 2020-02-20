@@ -14,9 +14,12 @@ This package provides **SCSS** StyleLint configuration for Void Aurora.
 ### Install
 
 ```sh
-yarn add -D @void-aurora/stylelint-config
-# or use npm
+# use npm
 npm i --save-dev @void-aurora/stylelint-config
+# use yarn
+yarn add -D @void-aurora/stylelint-config
+# use pnpm
+pnpm add -D @void-aurora/stylelint-config
 ```
 
 ### Config file

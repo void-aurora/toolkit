@@ -14,9 +14,12 @@ This package provides Prettier configuration for Void Aurora.
 ### Install
 
 ```sh
-yarn add -D @void-aurora/prettier-config
-# or use npm
+# use npm
 npm i --save-dev @void-aurora/prettier-config
+# use yarn
+yarn add -D @void-aurora/prettier-config
+# use pnpm
+pnpm add -D @void-aurora/prettier-config
 ```
 
 ### Config file
