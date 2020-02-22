@@ -6,18 +6,18 @@ importers:
       jest: 25.1.0
       lerna: 3.20.2
       ts-jest: 25.2.1_jest@25.1.0
-      ts-node: 8.6.2_typescript@3.7.5
+      ts-node: 8.6.2_typescript@3.8.2
       tsconfig-paths: 3.9.0
-      typescript: 3.7.5
+      typescript: 3.8.2
     specifiers:
-      '@types/jest': ^25.1.2
-      '@types/node': ^13.7.1
+      '@types/jest': ^25.1.3
+      '@types/node': ^13.7.4
       jest: ^25.1.0
       lerna: ^3.20.2
-      ts-jest: ^25.2.0
+      ts-jest: ^25.2.1
       ts-node: ^8.6.2
       tsconfig-paths: ^3.9.0
-      typescript: ^3.7.5
+      typescript: ^3.8.2
   packages/commitlint-config:
     specifiers: {}
   packages/eslint-config:
@@ -74,7 +74,7 @@ importers:
     specifiers:
       '@types/gulp': ^4.0.6
       '@types/gulp-sass': ^4.0.0
-      '@types/sass': 1.16.0
+      '@types/sass': ^1.16.0
       autoprefixer: ^9.7.4
       cssnano: ^4.1.10
       gulp: ^4.0.2
@@ -99,10 +99,10 @@ importers:
       '@types/rimraf': 2.0.3
       '@typescript-eslint/eslint-plugin': 2.20.0_d658d2d13808b24b820bd470a5a12b1c
       '@typescript-eslint/parser': 2.20.0_eslint@6.8.0
-      '@void-aurora/commitlint-config': 0.6.3_1d0f94691a33a378b24c242a1bb83c28
-      '@void-aurora/eslint-config': 0.7.6_905f893a51e2134cb468b99f1aa0e2e4
-      '@void-aurora/prettier-config': 0.5.3_prettier@1.19.1
-      '@void-aurora/stylelint-config': 0.6.4_0bc2a1bca863bbaa9e7e6515edc279bb
+      '@void-aurora/commitlint-config': 0.6.4_1d0f94691a33a378b24c242a1bb83c28
+      '@void-aurora/eslint-config': 0.7.7_905f893a51e2134cb468b99f1aa0e2e4
+      '@void-aurora/prettier-config': 0.5.4_prettier@1.19.1
+      '@void-aurora/stylelint-config': 0.6.5_0bc2a1bca863bbaa9e7e6515edc279bb
       chalk: 3.0.0
       confusing-browser-globals: 1.0.9
       conventional-changelog-cli: 2.0.31
@@ -128,17 +128,17 @@ importers:
       '@commitlint/config-lerna-scopes': ^8.3.4
       '@commitlint/prompt-cli': ^8.3.5
       '@types/eslint': ^6.1.8
-      '@types/fs-extra': ^8.0.1
-      '@types/js-yaml': 3.12.2
+      '@types/fs-extra': ^8.1.0
+      '@types/js-yaml': ^3.12.2
       '@types/prettier': ^1.19.0
       '@types/prettier-package-json': ^2.1.0
       '@types/rimraf': ^2.0.3
-      '@typescript-eslint/eslint-plugin': ^2.19.2
-      '@typescript-eslint/parser': ^2.19.2
-      '@void-aurora/commitlint-config': ^0.6.3
-      '@void-aurora/eslint-config': ^0.7.6
-      '@void-aurora/prettier-config': ^0.5.3
-      '@void-aurora/stylelint-config': ^0.6.4
+      '@typescript-eslint/eslint-plugin': ^2.20.0
+      '@typescript-eslint/parser': ^2.20.0
+      '@void-aurora/commitlint-config': ^0.6.4
+      '@void-aurora/eslint-config': ^0.7.7
+      '@void-aurora/prettier-config': ^0.5.4
+      '@void-aurora/stylelint-config': ^0.6.5
       chalk: ^3.0.0
       confusing-browser-globals: ^1.0.9
       conventional-changelog-cli: ^2.0.31
@@ -150,7 +150,7 @@ importers:
       fs-extra: ^8.1.0
       globby: ^11.0.0
       husky: ^4.2.3
-      js-yaml: 3.13.1
+      js-yaml: ^3.13.1
       lint-staged: ^10.0.7
       prettier: ^1.19.1
       prettier-package-json: ^2.1.3
@@ -2284,25 +2284,25 @@ packages:
       integrity: sha512-1V9XOY4rDW0rehzbrcqAmHnz8e7SKvX27gh8Gt2WgB0+pdzdiLV83p72kZPU+jvMbS1qU5mauP2iOvO8rhmurQ==
   /@octokit/auth-token/2.4.0:
     dependencies:
-      '@octokit/types': 2.1.1
+      '@octokit/types': 2.2.0
     dev: true
     resolution:
       integrity: sha512-eoOVMjILna7FVQf96iWc3+ZtE/ZT6y8ob8ZzcqKY1ibSQCnu4O/B7pJvzMx5cyZ/RjAff6DAdEb0O0Cjcxidkg==
-  /@octokit/endpoint/5.5.2:
+  /@octokit/endpoint/5.5.3:
     dependencies:
-      '@octokit/types': 2.1.1
+      '@octokit/types': 2.2.0
       is-plain-object: 3.0.0
-      universal-user-agent: 4.0.0
+      universal-user-agent: 5.0.0
     dev: true
     resolution:
-      integrity: sha512-ICDcRA0C2vtTZZGud1nXRrBLXZqFayodXAKZfo3dkdcLNqcHsgaz3YSTupbURusYeucSVRjjG+RTcQhx6HPPcg==
+      integrity: sha512-EzKwkwcxeegYYah5ukEeAI/gYRLv2Y9U5PpIsseGSFDk+G3RbipQGBs8GuYS1TLCtQaqoO66+aQGtITPalxsNQ==
   /@octokit/plugin-enterprise-rest/3.6.2:
     dev: true
     resolution:
       integrity: sha512-3wF5eueS5OHQYuAEudkpN+xVeUsg8vYEMMenEzLphUZ7PRZ8OJtDcsreL3ad9zxXmBbaFWzLmFcdob5CLyZftA==
   /@octokit/plugin-paginate-rest/1.1.2:
     dependencies:
-      '@octokit/types': 2.1.1
+      '@octokit/types': 2.2.0
     dev: true
     resolution:
       integrity: sha512-jbsSoi5Q1pj63sC16XIUboklNw+8tL9VOnJsWycWYR78TKss5PVpIPb1TUUcMQ+bBh7cY579cVAWmf5qG+dw+Q==
@@ -2312,39 +2312,39 @@ packages:
       integrity: sha512-ywoxP68aOT3zHCLgWZgwUJatiENeHE7xJzYjfz8WI0goynp96wETBF+d95b8g/uL4QmS6owPVlaxiz3wyMAzcw==
   /@octokit/plugin-rest-endpoint-methods/2.4.0:
     dependencies:
-      '@octokit/types': 2.1.1
+      '@octokit/types': 2.2.0
       deprecation: 2.3.1
     dev: true
     resolution:
       integrity: sha512-EZi/AWhtkdfAYi01obpX0DF7U6b1VRr30QNQ5xSFPITMdLSfhcBqjamE3F+sKcxPbD7eZuMHu3Qkk2V+JGxBDQ==
   /@octokit/request-error/1.2.1:
     dependencies:
-      '@octokit/types': 2.1.1
+      '@octokit/types': 2.2.0
       deprecation: 2.3.1
       once: 1.4.0
     dev: true
     resolution:
       integrity: sha512-+6yDyk1EES6WK+l3viRDElw96MvwfJxCt45GvmjDUKWjYIb3PJZQkq3i46TwGwoPD4h8NmTrENmtyA1FwbmhRA==
-  /@octokit/request/5.3.1:
+  /@octokit/request/5.3.2:
     dependencies:
-      '@octokit/endpoint': 5.5.2
+      '@octokit/endpoint': 5.5.3
       '@octokit/request-error': 1.2.1
-      '@octokit/types': 2.1.1
+      '@octokit/types': 2.2.0
       deprecation: 2.3.1
       is-plain-object: 3.0.0
       node-fetch: 2.6.0
       once: 1.4.0
-      universal-user-agent: 4.0.0
+      universal-user-agent: 5.0.0
     dev: true
     resolution:
-      integrity: sha512-5/X0AL1ZgoU32fAepTfEoggFinO3rxsMLtzhlUX+RctLrusn/CApJuGFCd0v7GMFhF+8UiCsTTfsu7Fh1HnEJg==
+      integrity: sha512-7NPJpg19wVQy1cs2xqXjjRq/RmtSomja/VSWnptfYwuBxLdbYh2UjhGi0Wx7B1v5Iw5GKhfFDQL7jM7SSp7K2g==
   /@octokit/rest/16.43.1:
     dependencies:
       '@octokit/auth-token': 2.4.0
       '@octokit/plugin-paginate-rest': 1.1.2
       '@octokit/plugin-request-log': 1.0.0
       '@octokit/plugin-rest-endpoint-methods': 2.4.0
-      '@octokit/request': 5.3.1
+      '@octokit/request': 5.3.2
       '@octokit/request-error': 1.2.1
       atob-lite: 2.0.0
       before-after-hook: 2.1.0
@@ -2355,16 +2355,16 @@ packages:
       lodash.uniq: 4.5.0
       octokit-pagination-methods: 1.1.0
       once: 1.4.0
-      universal-user-agent: 4.0.0
+      universal-user-agent: 4.0.1
     dev: true
     resolution:
       integrity: sha512-gfFKwRT/wFxq5qlNjnW2dh+qh74XgTQ2B179UX5K1HYCluioWj8Ndbgqw2PVqa1NnVJkGHp2ovMpVn/DImlmkw==
-  /@octokit/types/2.1.1:
+  /@octokit/types/2.2.0:
     dependencies:
       '@types/node': 13.7.4
     dev: true
     resolution:
-      integrity: sha512-89LOYH+d/vsbDX785NOfLxTW88GjNd0lWRz1DVPVsZgg9Yett5O+3MOvwo7iHgvUwbFz0mf/yPIjBkUbs4kxoQ==
+      integrity: sha512-iEeW3XlkxeM/CObeoYvbUv24Oe+DldGofY+3QyeJ5XKKA6B+V94ePk14EDCarseWdMs6afKZPv3dFq8C+SY5lw==
   /@rollup/plugin-commonjs/11.0.2_rollup@1.31.1:
     dependencies:
       '@rollup/pluginutils': 3.0.8_rollup@1.31.1
@@ -2424,16 +2424,16 @@ packages:
     dev: true
     resolution:
       integrity: sha512-VQgHxyPMTj3hIlq9SY1mctqx+Jj8kpQfoLvDlVSDNOyuYs8JYfkuY3OW/4+dO657yPmNhHpePRx0/Tje5ImNVQ==
-  /@types/babel__core/7.1.4:
+  /@types/babel__core/7.1.5:
     dependencies:
       '@babel/parser': 7.8.4
       '@babel/types': 7.8.3
       '@types/babel__generator': 7.6.1
       '@types/babel__template': 7.0.2
-      '@types/babel__traverse': 7.0.8
+      '@types/babel__traverse': 7.0.9
     dev: true
     resolution:
-      integrity: sha512-c/5MuRz5HM4aizqL5ViYfW4iEnmfPcfbH4Xa6GgLT21dMc1NGeNnuS6egHheOmP+kCJ9CAzC4pv4SDCWTnRkbg==
+      integrity: sha512-+ckxwNj892FWgvwrUWLOghQ2JDgOgeqTPwrcl+0t1pG59CP8qMJ6S/efmEd999vCFSJKOpyMakvU+w380rduUQ==
   /@types/babel__generator/7.6.1:
     dependencies:
       '@babel/types': 7.8.3
@@ -2447,12 +2447,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-/K6zCpeW7Imzgab2bLkLEbz0+1JlFSrUMdw7KoIIu+IUdu51GWaBZpd3y1VXGVXzynvGa4DaIaxNZHiON3GXUg==
-  /@types/babel__traverse/7.0.8:
+  /@types/babel__traverse/7.0.9:
     dependencies:
       '@babel/types': 7.8.3
     dev: true
     resolution:
-      integrity: sha512-yGeB2dHEdvxjP0y4UbRtQaSkXJ9649fYCmIdRoul5kfAoGCwxuCbMhag0k3RPfnuh9kPGm8x89btcfDEXdVWGw==
+      integrity: sha512-jEFQ8L1tuvPjOI8lnpaf73oCJe+aoxL6ygqSy6c8LcW98zaC+4mzWuQIRCEvKeCOu+lbqdXcg4Uqmm1S8AP1tw==
   /@types/color-name/1.1.1:
     resolution:
       integrity: sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
@@ -2740,7 +2740,7 @@ packages:
         optional: true
     resolution:
       integrity: sha512-WlFk8QtI8pPaE7JGQGxU7nGcnk1ccKAJkhbVookv94ZcAef3m6oCE/jEDL6dGte3JcD7reKrA0o55XhBRiVT3A==
-  /@void-aurora/commitlint-config/0.6.3_1d0f94691a33a378b24c242a1bb83c28:
+  /@void-aurora/commitlint-config/0.6.4_1d0f94691a33a378b24c242a1bb83c28:
     dependencies:
       '@commitlint/cli': 8.3.5
       '@commitlint/config-lerna-scopes': 8.3.4
@@ -2751,8 +2751,8 @@ packages:
       '@commitlint/config-lerna-scopes': ^8.3.4
       conventional-changelog-conventionalcommits: ^4.2.3
     resolution:
-      integrity: sha512-iGFV6uN/wVs8VANP5SAhXECiU9mQnHqCl5d78JFi7+PM0HKg6Ease3KtVCO3jB/IJ5HpU4Pq2feqhFizNVNoKg==
-  /@void-aurora/eslint-config/0.7.6_905f893a51e2134cb468b99f1aa0e2e4:
+      integrity: sha512-IS4Hy7mjEIn09Y3e4jcxHPpYaLjpk4+XhQArGmcjq26/y98o9mQTfx5OJ7XF+BtzhvU7hf4upsWwEBwRx4GAdg==
+  /@void-aurora/eslint-config/0.7.7_905f893a51e2134cb468b99f1aa0e2e4:
     dependencies:
       '@typescript-eslint/eslint-plugin': 2.20.0_d658d2d13808b24b820bd470a5a12b1c
       '@typescript-eslint/parser': 2.20.0_eslint@6.8.0
@@ -2769,16 +2769,16 @@ packages:
       eslint-config-prettier: ^6.10.0
       eslint-plugin-import: ^2.20.1
     resolution:
-      integrity: sha512-4l2lkdrWNURymlbKBBF1kBtgBO/v3iFOidtWKg1P5//v0QMRfarjoxpKnAX90Nl4ihIZwd/nf+22DQZAf9Jx3w==
-  /@void-aurora/prettier-config/0.5.3_prettier@1.19.1:
+      integrity: sha512-UcreMqO9cDsHCSFOIO01ujevP7mE/ZsXv8Ve2rLYyKcCrEdNdgjhsFDugYRtyxJ5kD+75yZsBSScSUEbQJwr9Q==
+  /@void-aurora/prettier-config/0.5.4_prettier@1.19.1:
     dependencies:
       prettier: 1.19.1
     dev: false
     peerDependencies:
       prettier: ^1.19.1
     resolution:
-      integrity: sha512-anruqIMKJUWILflL080IEbGghtPUAkHnOdq30Yhxac5K/1VJtgwqc587oHahPMA8OAOhUyUcpb4GSbi/oiOzlQ==
-  /@void-aurora/stylelint-config/0.6.4_0bc2a1bca863bbaa9e7e6515edc279bb:
+      integrity: sha512-5L9/9Z+E3hb9GbVRZhd61cSxCREpOdnPfZ2V2+DFSS9Yq8VpMAG8Ywo8HapPDwISiv4kO9hhGgD9Ory7a/Rn2g==
+  /@void-aurora/stylelint-config/0.6.5_0bc2a1bca863bbaa9e7e6515edc279bb:
     dependencies:
       stylelint: 13.2.0
       stylelint-config-prettier: 8.0.1_stylelint@13.2.0
@@ -2791,7 +2791,7 @@ packages:
       stylelint-prettier: ^1.1.2
       stylelint-scss: ^3.14.2
     resolution:
-      integrity: sha512-LGmZ0CwuYMXjXxTJjl+Tpf/UTUO0Ed98KjhZ2rV6iDQKRlWSsGFAoLUNjdxqj6m7YFcIJMdeSPgIjn8jD7PbQA==
+      integrity: sha512-2Ov+POkxZbtCMw4bwpORodwxQMLzYZL9pDCjpCdRu+rmfRkhuuN5ZmwhH9ecDPZy2URneYyiulxM6lm/XnFYzg==
   /@zkochan/cmd-shim/3.1.0:
     dependencies:
       is-windows: 1.0.2
@@ -3282,7 +3282,7 @@ packages:
       '@babel/core': 7.8.4
       '@jest/transform': 25.1.0
       '@jest/types': 25.1.0
-      '@types/babel__core': 7.1.4
+      '@types/babel__core': 7.1.5
       babel-plugin-istanbul: 6.0.0
       babel-preset-jest: 25.1.0_@babel+core@7.8.4
       chalk: 3.0.0
@@ -3314,7 +3314,7 @@ packages:
       integrity: sha512-AF55rZXpe7trmEylbaE1Gv54wn6rwU03aptvRoVIGP8YykoSxqdVLV1TfwflBCE/QtHmqtP8SWlTENqbK8GCSQ==
   /babel-plugin-jest-hoist/25.1.0:
     dependencies:
-      '@types/babel__traverse': 7.0.8
+      '@types/babel__traverse': 7.0.9
     dev: true
     engines:
       node: '>= 8.3'
@@ -3473,8 +3473,8 @@ packages:
   /browserslist/4.8.7:
     dependencies:
       caniuse-lite: 1.0.30001028
-      electron-to-chromium: 1.3.355
-      node-releases: 1.1.49
+      electron-to-chromium: 1.3.358
+      node-releases: 1.1.50
     hasBin: true
     resolution:
       integrity: sha512-gFOnZNYBHrEyUML0xr5NJ6edFaaKbTFX9S9kQHlYfCP0Rit/boRIz4G+Avq6/4haEKJXdGGUnoolx+5MWW2BoA==
@@ -4836,9 +4836,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-OoOpBOVDUyh4dMVkt1SThoSamMk=
-  /electron-to-chromium/1.3.355:
+  /electron-to-chromium/1.3.358:
     resolution:
-      integrity: sha512-zKO/wS+2ChI/jz9WAo647xSW8t2RmgRLFdbUb/77cORkUTargO+SCj4ctTHjBn2VeNFrsLgDT7IuDVrd3F8mLQ==
+      integrity: sha512-y9xvv+9PplXSUkOSxgtOfwNrqD/948VIScyWURnY27PXprg3PmRl7e8ekRJhnksDNjxLVyBYY6I2nQmNBzdi6g==
   /elegant-spinner/1.0.1:
     dev: false
     engines:
@@ -5354,18 +5354,19 @@ packages:
       node: '>=4.0.0'
     resolution:
       integrity: sha512-g1KuQwHOZAmOZMuBtHdxDtju+T2RT8jgCC9aANsbpdiDDTSnjgfuVsIBNKbUeJI3oKMRExcfNDtJl4OhbffMsw==
-  /fast-glob/3.1.1:
+  /fast-glob/3.2.2:
     dependencies:
       '@nodelib/fs.stat': 2.0.3
       '@nodelib/fs.walk': 1.2.4
       glob-parent: 5.1.0
       merge2: 1.3.0
       micromatch: 4.0.2
+      picomatch: 2.2.1
     dev: false
     engines:
       node: '>=8'
     resolution:
-      integrity: sha512-nTCREpBY8w8r+boyFYAx21iL6faSsQynliPHM4Uf56SbkyohCNxpVPEH9xrF5TXKy+IsjkPUHDKiUkzBVRXn9g==
+      integrity: sha512-UDV82o4uQyljznxwMxyVRJgZZt3O5wENYojjzbaGEGZgeOxkLFf+V4cnUD+krzb2F72E18RhamkMZ7AdeggF7A==
   /fast-json-stable-stringify/2.1.0:
     resolution:
       integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==
@@ -5985,7 +5986,7 @@ packages:
     dependencies:
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.1.1
+      fast-glob: 3.2.2
       ignore: 5.1.4
       merge2: 1.3.0
       slash: 3.0.0
@@ -8566,11 +8567,11 @@ packages:
     optional: true
     resolution:
       integrity: sha512-SVfQ/wMw+DesunOm5cKqr6yDcvUTDl/yc97ybGHMrteNEY6oekXpNpS3lZwgLlwz0FLgHoiW28ZpmBHUDg37cw==
-  /node-releases/1.1.49:
+  /node-releases/1.1.50:
     dependencies:
       semver: 6.3.0
     resolution:
-      integrity: sha512-xH8t0LS0disN0mtRCh+eByxFPie+msJUBL/lJDBuap53QGiYPa9joh83K4pCZgWJ+2L4b9h88vCVdXQ60NO2bg==
+      integrity: sha512-lgAmPv9eYZ0bGwUYAKlr8MG6K4CvWliWqnkcT2P8mMAgVrH3lqfBPorFlxiG1pHQnqmavJZ9vbMXUTNyMLbrgQ==
   /node-sass/4.13.1:
     dependencies:
       async-foreach: 0.1.3
@@ -10584,7 +10585,7 @@ packages:
       integrity: sha1-Gc5QLKVyZl87ZHsQk5+X/RYV8QI=
   /rxjs/6.5.4:
     dependencies:
-      tslib: 1.10.0
+      tslib: 1.11.0
     engines:
       npm: '>=2.0.0'
     resolution:
@@ -11746,13 +11747,13 @@ packages:
       jest: '>=25 <26'
     resolution:
       integrity: sha512-TnntkEEjuXq/Gxpw7xToarmHbAafgCaAzOpnajnFC6jI7oo1trMzAHA04eWpc3MhV6+yvhE8uUBAmN+teRJh0A==
-  /ts-node/8.6.2_typescript@3.7.5:
+  /ts-node/8.6.2_typescript@3.8.2:
     dependencies:
       arg: 4.1.3
       diff: 4.0.2
       make-error: 1.3.6
       source-map-support: 0.5.16
-      typescript: 3.7.5
+      typescript: 3.8.2
       yn: 3.1.1
     dev: true
     engines:
@@ -11772,11 +11773,15 @@ packages:
     resolution:
       integrity: sha512-dRcuzokWhajtZWkQsDVKbWyY+jgcLC5sqJhg2PSgf4ZkH2aHPvaOY8YWGhmjb68b5qqTfasSsDO9k7RUiEmZAw==
   /tslib/1.10.0:
+    dev: true
     resolution:
       integrity: sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
+  /tslib/1.11.0:
+    resolution:
+      integrity: sha512-BmndXUtiTn/VDDrJzQE7Mm22Ix3PxgLltW9bSNLoeCY31gnG2OPx0QqJnuc9oMIKioYrz487i6K9o4Pdn0j+Kg==
   /tsutils/3.17.1:
     dependencies:
-      tslib: 1.10.0
+      tslib: 1.11.0
     dev: false
     engines:
       node: '>= 6'
@@ -11848,6 +11853,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==
+  /typescript/3.8.2:
+    dev: true
+    engines:
+      node: '>=4.2.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-EgOVgL/4xfVrCMbhYKUQTdF37SQn4Iw73H5BgCrF1Abdun7Kwy/QZsE/ssAy0y4LxBbvua3PIbFsbRczWWnDdQ==
   /uglify-js/3.8.0:
     dependencies:
       commander: 2.20.3
@@ -12016,12 +12028,18 @@ packages:
     dev: false
     resolution:
       integrity: sha512-AvGNk7Bb//EmJZyhtRUnNMEpId/AZ5Ph/KUpTI09WHQuDZHKovQ1oEv3mfmKpWKtoMzyMC4GLBm1Zy5k12fjIw==
-  /universal-user-agent/4.0.0:
+  /universal-user-agent/4.0.1:
     dependencies:
       os-name: 3.1.0
     dev: true
     resolution:
-      integrity: sha512-eM8knLpev67iBDizr/YtqkJsF3GK8gzDc6st/WKzrTuPtcsOKW/0IdL4cnMBsU69pOx0otavLWBDGTwg+dB0aA==
+      integrity: sha512-LnST3ebHwVL2aNe4mejI9IQh2HfZ1RLo8Io2HugSif8ekzD1TlWpHpColOB/eh8JHMLkGH3Akqf040I+4ylNxg==
+  /universal-user-agent/5.0.0:
+    dependencies:
+      os-name: 3.1.0
+    dev: true
+    resolution:
+      integrity: sha512-B5TPtzZleXyPrUMKCpEHFmVhMN6EhmJYjG5PQna9s7mXeSqGTLap4OpqLl5FCEFUI3UBmllkETwKf/db66Y54Q==
   /universalify/0.1.2:
     engines:
       node: '>= 4.0.0'
