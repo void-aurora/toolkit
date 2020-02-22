@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.6](https://github.com/void-aurora/toolkit/compare/@void-aurora/stylelint-config@0.6.5...@void-aurora/stylelint-config@0.6.6) (2020-02-22)
+
+### Bug Fixes
+
+- **stylelint-config:** fix rule font-family-name-quotes for prettier compability ([d63816c](https://github.com/void-aurora/toolkit/commit/d63816c199424e54397b100e93c4b5cd33ef800b))
+
 ## [0.6.5](https://github.com/void-aurora/toolkit/compare/@void-aurora/stylelint-config@0.6.4...@void-aurora/stylelint-config@0.6.5) (2020-02-20)
 
 **Note:** Version bump only for package @void-aurora/stylelint-config

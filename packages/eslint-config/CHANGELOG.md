@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.8](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.7.7...@void-aurora/eslint-config@0.7.8) (2020-02-22)
+
+**Note:** Version bump only for package @void-aurora/eslint-config
+
 ## [0.7.7](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.7.6...@void-aurora/eslint-config@0.7.7) (2020-02-20)
 
 **Note:** Version bump only for package @void-aurora/eslint-config
