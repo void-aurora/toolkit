@@ -27,7 +27,9 @@
     "packages/*/__tests__/**/*",
     "packages/*/lib/**/*",
     "packages/*/src/**/*",
-    "packages/*/*.js"
+    "packages/*/*.js",
+    "src/**/*",
+    "*.js"
   ],
   "exclude": [
     "node_modules",
