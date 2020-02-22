@@ -28,6 +28,7 @@
     "packages/*/lib/**/*",
     "packages/*/src/**/*",
     "packages/*/*.js",
+    "lib/**/*",
     "src/**/*",
     "*.js"
   ],
