@@ -14,7 +14,7 @@ module.exports = {
 
     // Specify whether or not quotation marks should be used around font family names.
     // https://stylelint.io/user-guide/rules/font-family-name-quotes
-    'font-family-name-quotes': 'always-where-required',
+    'font-family-name-quotes': 'always-where-recommended',
 
     // ==== Font weight ====
 
