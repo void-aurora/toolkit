@@ -47,6 +47,7 @@ importers:
       '@microsoft/api-extractor': 7.7.8
       '@rollup/plugin-commonjs': 11.0.2_rollup@1.31.1
       '@rollup/plugin-node-resolve': 7.1.1_rollup@1.31.1
+      '@rollup/plugin-replace': 2.3.1_rollup@1.31.1
       rollup: 1.31.1
       rollup-plugin-terser: 5.2.0_rollup@1.31.1
       rollup-plugin-typescript2: 0.26.0_rollup@1.31.1
@@ -54,6 +55,7 @@ importers:
       '@microsoft/api-extractor': ^7.7.8
       '@rollup/plugin-commonjs': ^11.0.2
       '@rollup/plugin-node-resolve': ^7.1.1
+      '@rollup/plugin-replace': ^2.3.1
       rollup: ^1.31.1
       rollup-plugin-terser: ^5.2.0
       rollup-plugin-typescript2: ^0.26.0
@@ -2395,6 +2397,16 @@ packages:
       rollup: ^1.20.0
     resolution:
       integrity: sha512-14ddhD7TnemeHE97a4rLOhobfYvUVcaYuqTnL8Ti7Jxi9V9Jr5LY7Gko4HZ5k4h4vqQM0gBQt6tsp9xXW94WPA==
+  /@rollup/plugin-replace/2.3.1_rollup@1.31.1:
+    dependencies:
+      '@rollup/pluginutils': 3.0.8_rollup@1.31.1
+      magic-string: 0.25.6
+      rollup: 1.31.1
+    dev: true
+    peerDependencies:
+      rollup: ^1.20.0
+    resolution:
+      integrity: sha512-qDcXj2VOa5+j0iudjb+LiwZHvBRRgWbHPhRmo1qde2KItTjuxDVQO21rp9/jOlzKR5YO0EsgRQoyox7fnL7y/A==
   /@rollup/pluginutils/3.0.8_rollup@1.31.1:
     dependencies:
       estree-walker: 1.0.1

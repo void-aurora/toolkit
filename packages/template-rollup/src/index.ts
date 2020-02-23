@@ -1,3 +1,4 @@
+export const version = __VERSION__;
 export const helloWorld = 'Hello World!';
 
 export * from './modules/foo';

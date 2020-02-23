@@ -1,6 +1,22 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import Rollup from 'rollup';
+import replace from '@rollup/plugin-replace';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
+import pkg from './package.json';
+
+const {
+  version,
+  buildConfig: { outputName, exportName },
+} = pkg;
+
+/* eslint-disable @typescript-eslint/naming-convention */
+const values = {
+  __VERSION__: `"${version}"`,
+};
+/* eslint-enable @typescript-eslint/naming-convention */
 
 /**
  * @type {Record<string, Rollup.ModuleFormat>}
@@ -31,12 +47,12 @@ function createConfig(format, output, plugins = []) {
     input: 'src/index.ts',
     output: {
       format,
-      name: format === 'iife' ? 'Template' : undefined,
+      name: format === 'iife' ? exportName : undefined,
       ...output,
       sourcemap: true,
       externalLiveBindings: false,
     },
-    plugins: [ts, ...plugins],
+    plugins: [replace({ values }), resolve(), commonjs(), ts, ...plugins],
     external: ['axios'],
   };
 }
@@ -46,24 +62,25 @@ function createConfig(format, output, plugins = []) {
  */
 const configs = [];
 
-Object.entries(presetMap).forEach(([name, format]) => {
+Object.entries(presetMap).forEach(([preset, format]) => {
   configs.push(
     createConfig(format, {
-      file: `dist/template-rollup.${name}.js`,
+      file: `dist/${outputName}.${preset}.js`,
     }),
   );
   configs.push(
     createConfig(
       format,
       {
-        file: `dist/template-rollup.${name}.min.js`,
-        globals: name === 'esm-bundler' || name === 'global' ? { axios: 'Axios' } : undefined,
+        file: `dist/${outputName}.${preset}.min.js`,
+        globals: preset === 'esm-bundler' || preset === 'global' ? { axios: 'Axios' } : undefined,
       },
       [
         terser({
           module: format === 'esm',
           compress: {
             ecma: 2015,
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             pure_getters: true,
           },
         }),
