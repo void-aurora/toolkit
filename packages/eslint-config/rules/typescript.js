@@ -230,7 +230,7 @@ const rules = {
     },
     {
       selector: 'property',
-      format: ['camelCase', 'PascalCase', 'snake_case', 'UPPER_CASE'],
+      format: ['camelCase', 'UPPER_CASE'],
     },
     {
       selector: 'enumMember',
@@ -624,6 +624,12 @@ module.exports = {
         // https://github.com/iamturns/eslint-config-airbnb-typescript/issues/50
         // This will be caught by TypeScript compiler if `strictNullChecks` (or `strict`) is enabled
         'no-undef': 'off',
+      },
+    },
+    {
+      files: ['*.d.ts'],
+      rules: {
+        'init-declarations': 'off',
       },
     },
     {
