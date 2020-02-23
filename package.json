@@ -11,7 +11,9 @@
     "lerna": "echo 'use pnpm to run script'",
     "lerna:version": "lerna version --conventional-commits --create-release github --yes",
     "lint-staged": "lint-staged",
-    "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json"
+    "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json",
+    "version": "pnpm i -r && git add ./pnpm-lock.yaml",
+    "z": "echo 'empty script'"
   },
   "devDependencies": {
     "@types/jest": "^25.1.3",
