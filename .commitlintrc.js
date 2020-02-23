@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['@void-aurora/commitlint-config'],
+  extends: ['./packages/commitlint-config/index.js'],
 };

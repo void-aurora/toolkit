@@ -1,3 +1,3 @@
 module.exports = {
-  extends: '@void-aurora/stylelint-config',
+  extends: './packages/stylelint-config/index.js',
 };

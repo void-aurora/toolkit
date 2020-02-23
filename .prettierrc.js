@@ -1,3 +1,3 @@
-const config = require('@void-aurora/prettier-config');
+const config = require('./packages/prettier-config/index.js');
 
 module.exports = config;

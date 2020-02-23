@@ -1,6 +1,3 @@
 module.exports = {
-  extends: ['@void-aurora'],
-  // parserOptions: {
-  //   project: ['./tsconfig.json', './packages/*/tsconfig.json'],
-  // },
+  extends: ['./packages/eslint-config/index.js'],
 };
