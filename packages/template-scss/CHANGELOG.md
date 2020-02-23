@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-scss@1.1.3...@void-aurora/template-scss@1.1.4) (2020-02-23)
+
+### Bug Fixes
+
+- **template-scss:** fix pnpm compability ([5cfe98d](https://github.com/void-aurora/toolkit/commit/5cfe98d51ad28cd96fc8cad5e6f06fe40201d1ea))
+
 ## [1.1.3](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-scss@1.1.2...@void-aurora/template-scss@1.1.3) (2020-02-22)
 
 **Note:** Version bump only for package @void-aurora/template-scss

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.9](https://github.com/void-aurora/toolkit/compare/@void-aurora/toolkit@0.9.8...@void-aurora/toolkit@0.9.9) (2020-02-23)
+
+**Note:** Version bump only for package @void-aurora/toolkit
+
 ## [0.9.8](https://github.com/void-aurora/toolkit/compare/@void-aurora/toolkit@0.9.7...@void-aurora/toolkit@0.9.8) (2020-02-22)
 
 **Note:** Version bump only for package @void-aurora/toolkit
