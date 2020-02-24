@@ -22,7 +22,7 @@ jobs:
         run: pnpm -r i
       - name: Publish
         run: |
-          echo echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> .npmrc
+          echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> .npmrc
           pnpm -r publish
         env:
           NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
