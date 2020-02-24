@@ -17,9 +17,11 @@ jobs:
         with:
           node-version: 12
       - uses: znck/pnpm@v0.1.0-alpha.1
-      - name: Install pnpm
-        run: npm add -g pnpm
       - name: Install dependencies
         run: pnpm -r i
       - name: Publish
-        run: pnpm -r publish
+        run: |
+          echo echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> .npmrc
+          pnpm -r publish
+        env:
+          NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

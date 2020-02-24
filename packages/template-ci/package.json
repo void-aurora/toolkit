@@ -10,5 +10,8 @@
   "version": "0.1.1",
   "main": "index.js",
   "module": "dist/esm/index.ts",
-  "sideEffects": false
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  }
 }
