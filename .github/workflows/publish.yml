@@ -1,8 +1,10 @@
 name: publish
 
 on:
-  release:
-    types: [created]
+  push:
+    paths:
+      - 'package.json'
+      - 'packages/*/package.json'
 
 jobs:
   publish:
