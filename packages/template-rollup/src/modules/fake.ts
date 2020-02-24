@@ -1,3 +1,3 @@
-export function fake(): void {
-  console.log('fake function');
+export function fake(): string {
+  return 'this is a fake function';
 }
