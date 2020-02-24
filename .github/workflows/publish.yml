@@ -1,0 +1,25 @@
+name: publish
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - name: Install pnpm
+        run: npm add -g pnpm
+      - name: Install dependencies
+        run: pnpm -r i
+      - name: Build
+        run: pnpm -r run prepare
+      - name: Publish
+        run: pnpm -r publish
