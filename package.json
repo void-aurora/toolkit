@@ -9,7 +9,7 @@
     "commit": "commit",
     "preinstall": "node -e \"!process.env.npm_config_user_agent.startsWith('pnpm/') && !console.log('Use \\`pnpm install\\` to install dependencies in this repository\\n') && process.exit(1)\"",
     "lerna": "echo 'use pnpm to run script'",
-    "lerna:version": "lerna version --conventional-commits --create-release github --yes",
+    "lerna:version": "lerna version --conventional-commits --create-release github",
     "lint-staged": "lint-staged",
     "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json",
     "version": "pnpm i -r && git add ./pnpm-lock.yaml",
