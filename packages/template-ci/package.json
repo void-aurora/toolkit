@@ -1,0 +1,14 @@
+{
+  "name": "@void-aurora/template-ci",
+  "description": "Empty package for test ci",
+  "license": "MIT",
+  "author": "duduluu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/void-aurora/toolkit.git"
+  },
+  "version": "0.0.0",
+  "main": "index.js",
+  "module": "dist/esm/index.ts",
+  "sideEffects": false
+}
