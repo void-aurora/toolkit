@@ -2,6 +2,8 @@ name: publish
 
 on:
   push:
+    branches:
+      - master
     paths:
       - 'package.json'
       - 'packages/*/package.json'
@@ -14,11 +16,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - uses: znck/pnpm@v0.1.0-alpha.1
       - name: Install pnpm
         run: npm add -g pnpm
       - name: Install dependencies
         run: pnpm -r i
-      - name: Build
-        run: pnpm -r run prepare
       - name: Publish
         run: pnpm -r publish
