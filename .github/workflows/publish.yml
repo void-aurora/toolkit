@@ -20,3 +20,5 @@ jobs:
         run: pnpm -r run prepare
       - name: Publish
         run: pnpm -r publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_author_token}}
