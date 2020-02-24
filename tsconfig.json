@@ -9,7 +9,7 @@
     "jsx": "preserve",
     "moduleResolution": "node",
     "allowJs": false,
-    "resolveJsonModule": false,
+    "resolveJsonModule": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
