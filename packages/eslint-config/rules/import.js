@@ -12,6 +12,10 @@ module.exports = {
         commonjs: true,
         amd: true,
         caseSensitive: true,
+        ignore: [
+          // json
+          '.json$',
+        ],
       },
     ],
 
