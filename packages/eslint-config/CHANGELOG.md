@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.7.9...@void-aurora/eslint-config@0.8.0) (2020-02-24)
+
+### Bug Fixes
+
+- **eslint-config:** fix rule import/no-unresolved ignore json ([dbfcdcc](https://github.com/void-aurora/toolkit/commit/dbfcdccc39e4e1826ede8503fb36243878509e07))
+
+### Features
+
+- **eslint-config:** disable ts requires rules for scripts and tests ([e126520](https://github.com/void-aurora/toolkit/commit/e126520d118734e575ab041510aa809b4c4c7086))
+
 ## [0.7.9](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.7.8...@void-aurora/eslint-config@0.7.9) (2020-02-23)
 
 ### Bug Fixes

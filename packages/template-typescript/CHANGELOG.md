@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-typescript@1.1.6...@void-aurora/template-typescript@1.2.0) (2020-02-24)
+
+### Features
+
+- **template-typescript:** tsconfig resolveJsonModule=true ([5bf100d](https://github.com/void-aurora/toolkit/commit/5bf100dd8d8ddd44a3f2f5774a7c1b5e2b07c38e))
+
 ## [1.1.6](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-typescript@1.1.5...@void-aurora/template-typescript@1.1.6) (2020-02-20)
 
 **Note:** Version bump only for package @void-aurora/template-typescript
