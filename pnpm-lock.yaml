@@ -140,7 +140,7 @@ importers:
       '@typescript-eslint/eslint-plugin': ^2.21.0
       '@typescript-eslint/parser': ^2.21.0
       '@void-aurora/commitlint-config': ^0.6.4
-      '@void-aurora/eslint-config': ^0.8.0
+      '@void-aurora/eslint-config': ^0.8.1
       '@void-aurora/prettier-config': ^0.5.4
       '@void-aurora/stylelint-config': ^0.6.6
       chalk: ^3.0.0
