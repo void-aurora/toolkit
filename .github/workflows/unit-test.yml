@@ -1,15 +1,20 @@
-name: publish
+name: unit-test
 
 on:
   push:
     branches:
+      - dev
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches:
       - master
-    paths:
-      - 'package.json'
-      - 'packages/*/package.json'
+      - dev
+    paths-ignore:
+      - '**.md'
 
 jobs:
-  publish:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,12 +22,10 @@ jobs:
         with:
           node-version: 12
       - name: Install pnpm
-        run: npm i -g pnpm
+        run: npm add -g pnpm
       - name: Install dependencies
         run: pnpm -r i
-      - name: Publish
-        run: |
-          echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> .npmrc
-          pnpm -r publish
-        env:
-          NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - name: Test
+        run: pnpm -r --workspace-concurrency=1 test
+      - name: Build
+        run: pnpm -r --workspace-concurrency=1 run prepare
