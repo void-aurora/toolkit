@@ -22,10 +22,10 @@ module.exports = {
     },
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.json'],
+        extensions: ['.js', '.jsx', '.cjs', '.mjs', '.ts', '.tsx', '.d.ts', '.json'],
       },
     },
-    'import/extensions': ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
+    'import/extensions': ['.js', '.jsx', '.cjs', '.mjs', '.ts', '.tsx', '.d.ts'],
     'import/core-modules': [],
     'import/ignore': ['node_modules', '\\.(coffee|scss|css|less|hbs|svg|json)$'],
   },

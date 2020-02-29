@@ -630,6 +630,7 @@ module.exports = {
       files: ['*.d.ts'],
       rules: {
         'init-declarations': 'off',
+        '@typescript-eslint/explicit-member-accessibility': 'off',
       },
     },
     {
