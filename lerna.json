@@ -6,7 +6,6 @@
   "ignoreChanges": [],
   "command": {
     "version": {
-      "allowBranch": "master",
       "message": "release: publish"
     }
   }
