@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.7](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-scss@1.1.6...@void-aurora/template-scss@1.1.7) (2020-03-07)
+
+**Note:** Version bump only for package @void-aurora/template-scss
+
 ## [1.1.6](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-scss@1.1.5...@void-aurora/template-scss@1.1.6) (2020-02-29)
 
 **Note:** Version bump only for package @void-aurora/template-scss
