@@ -21,6 +21,13 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
       - name: Install pnpm
         run: npm add -g pnpm
       - name: Install dependencies
