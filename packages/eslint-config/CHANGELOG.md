@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.2](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.10.1...@void-aurora/eslint-config@0.10.2) (2020-03-14)
+
+### Bug Fixes
+
+- **eslint-config:** disable typedef related for js ([924c538](https://github.com/void-aurora/toolkit/commit/924c53810142aaa0813d9a20f804eefde9e30c92))
+
 ## [0.10.1](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.10.0...@void-aurora/eslint-config@0.10.1) (2020-03-14)
 
 ### Bug Fixes
