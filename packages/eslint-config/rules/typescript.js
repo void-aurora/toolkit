@@ -15,6 +15,7 @@ const { rules: rulesES6 } = require('./es6');
 const ruleNamesRequireTypeInfo = [
   '@typescript-eslint/await-thenable',
   '@typescript-eslint/naming-convention',
+  '@typescript-eslint/no-base-to-string',
   '@typescript-eslint/no-floating-promises',
   '@typescript-eslint/no-for-in-array',
   '@typescript-eslint/no-implied-eval',
@@ -25,10 +26,14 @@ const ruleNamesRequireTypeInfo = [
   '@typescript-eslint/no-unnecessary-qualifier',
   '@typescript-eslint/no-unnecessary-type-arguments',
   '@typescript-eslint/no-unnecessary-type-assertion',
+  '@typescript-eslint/no-unsafe-call',
+  '@typescript-eslint/no-unsafe-member-access',
+  '@typescript-eslint/no-unsafe-return',
   '@typescript-eslint/no-unused-vars-experimental',
   '@typescript-eslint/prefer-includes',
   '@typescript-eslint/prefer-nullish-coalescing',
   '@typescript-eslint/prefer-readonly',
+  '@typescript-eslint/prefer-readonly-parameter-types',
   '@typescript-eslint/prefer-regexp-exec',
   '@typescript-eslint/prefer-string-starts-ends-with',
   '@typescript-eslint/promise-function-async',
@@ -244,6 +249,11 @@ const rules = {
   'no-array-constructor': 'off',
   '@typescript-eslint/no-array-constructor': rulesStylistic['no-array-constructor'],
 
+  // Requires that `.toString()` is only called on objects which provide useful information when stringified
+  // https://github.com/typescript-eslint/typescript-eslint/blob/v2.23.0/packages/eslint-plugin/docs/rules/no-base-to-string.md
+  // requires type information
+  '@typescript-eslint/no-base-to-string': 'error',
+
   // Disallow duplicate class members
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-dupe-class-members.md
   // extends base rule
@@ -402,6 +412,21 @@ const rules = {
   // requires type information
   '@typescript-eslint/no-unnecessary-type-assertion': 'off',
 
+  // Disallows calling an any type value
+  // https://github.com/typescript-eslint/typescript-eslint/blob/v2.23.0/packages/eslint-plugin/docs/rules/no-unsafe-call.md
+  // requires type information
+  '@typescript-eslint/no-unsafe-call': 'error',
+
+  // Disallows member access on any typed variables
+  // https://github.com/typescript-eslint/typescript-eslint/blob/v2.23.0/packages/eslint-plugin/docs/rules/no-unsafe-member-access.md
+  // requires type information
+  '@typescript-eslint/no-unsafe-member-access': 'error',
+
+  // Disallows returning any from a function
+  // https://github.com/typescript-eslint/typescript-eslint/blob/v2.23.0/packages/eslint-plugin/docs/rules/no-unsafe-return.md
+  // requires type information
+  '@typescript-eslint/no-unsafe-return': 'error',
+
   // Disallow untyped public methods
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-untyped-public-signature.md
   // deprecated, replace by: `['explicit-module-boundary-types']`
@@ -488,6 +513,11 @@ const rules = {
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-readonly.md
   // requires type information
   '@typescript-eslint/prefer-readonly': 'error',
+
+  // Requires that function parameters are typed as readonly to prevent accidental mutation of inputs
+  // https://github.com/typescript-eslint/typescript-eslint/blob/v2.23.0/packages/eslint-plugin/docs/rules/prefer-readonly-parameter-types.md
+  // requires type information
+  '@typescript-eslint/prefer-readonly-parameter-types': 'error',
 
   // Enforce that `RegExp#exec` is used instead of `String#match` if no global flag is provided
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-regexp-exec.md
@@ -601,6 +631,7 @@ const rules = {
       parameter: true,
       propertyDeclaration: true,
       variableDeclaration: false,
+      variableDeclarationIgnoreFunction: true,
     },
   ],
 

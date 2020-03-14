@@ -8,7 +8,7 @@
     "type": "git",
     "url": "git+https://github.com/void-aurora/toolkit.git"
   },
-  "version": "1.1.7",
+  "version": "1.1.8",
   "main": "dist/template-scss.min.css",
   "files": [
     "dist",
@@ -21,7 +21,6 @@
     "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
   },
   "sideEffects": false,
-  "types": "dist/esm/index.d.ts",
   "devDependencies": {
     "@types/gulp": "^4.0.6",
     "@types/gulp-sass": "^4.0.0",
@@ -34,7 +33,7 @@
     "gulp-prettier": "^2.3.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.0.2",
-    "sass": "^1.26.2"
+    "sass": "^1.26.3"
   },
   "sass": "sass/template-scss.scss",
   "style": "dist/template-scss.min.css"

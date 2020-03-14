@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-scss@1.1.7...@void-aurora/template-scss@1.1.8) (2020-03-14)
+
+### Bug Fixes
+
+- **template-scss:** remove useless pkg field types in package.json ([7b8a9c1](https://github.com/void-aurora/toolkit/commit/7b8a9c17e305fd85cafea4637baf1073a2e0dab7))
+
 ## [1.1.7](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-scss@1.1.6...@void-aurora/template-scss@1.1.7) (2020-03-07)
 
 **Note:** Version bump only for package @void-aurora/template-scss

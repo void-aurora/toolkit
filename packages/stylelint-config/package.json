@@ -7,14 +7,14 @@
     "type": "git",
     "url": "git+https://github.com/void-aurora/toolkit.git"
   },
-  "version": "0.6.6",
+  "version": "0.6.7",
   "main": "index.js",
   "files": [
     "rules"
   ],
   "sideEffects": false,
   "peerDependencies": {
-    "stylelint": "^13.2.0",
+    "stylelint": "^13.2.1",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.14.2"

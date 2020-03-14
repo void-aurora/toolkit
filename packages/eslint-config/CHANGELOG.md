@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.9.1...@void-aurora/eslint-config@0.10.0) (2020-03-14)
+
+### Features
+
+- **eslint-config:** add rules due to [@typescript-eslint](https://github.com/typescript-eslint) update ([0c0802c](https://github.com/void-aurora/toolkit/commit/0c0802c1bcdb2f0da7ace15f62636a42f5a00fec))
+
 ## [0.9.1](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.9.0...@void-aurora/eslint-config@0.9.1) (2020-03-07)
 
 **Note:** Version bump only for package @void-aurora/eslint-config
