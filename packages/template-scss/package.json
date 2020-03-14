@@ -33,7 +33,7 @@
     "gulp-prettier": "^2.3.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.0.2",
-    "sass": "^1.26.2"
+    "sass": "^1.26.3"
   },
   "sass": "sass/template-scss.scss",
   "style": "dist/template-scss.min.css"

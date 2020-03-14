@@ -14,7 +14,7 @@
   ],
   "sideEffects": false,
   "peerDependencies": {
-    "stylelint": "^13.2.0",
+    "stylelint": "^13.2.1",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.14.2"
