@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.3](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-rollup@1.3.2...@void-aurora/template-rollup@1.3.3) (2020-03-14)
+
+### Bug Fixes
+
+- **template-rollup:** fix pkg field types path in package.json ([c525278](https://github.com/void-aurora/toolkit/commit/c525278942bebd84ba679dfd6fa51697bd622af0))
+
 ## [1.3.2](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-rollup@1.3.1...@void-aurora/template-rollup@1.3.2) (2020-03-07)
 
 **Note:** Version bump only for package @void-aurora/template-rollup
