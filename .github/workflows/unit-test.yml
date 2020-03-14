@@ -29,7 +29,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-
       - name: Install pnpm
-        run: npm add -g pnpm
+        run: curl -L https://unpkg.com/@pnpm/self-installer | node
       - name: Install dependencies
         run: pnpm -r i
       - name: Test
