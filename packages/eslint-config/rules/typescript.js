@@ -667,8 +667,11 @@ module.exports = {
     {
       files: ['*.js', '*.jsx'],
       rules: {
-        '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/typedef': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
+        '@typescript-eslint/no-unsafe-return': 'off',
         '@typescript-eslint/prefer-readonly-parameter-types': 'off',
       },
     },
