@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.10.0...@void-aurora/eslint-config@0.10.1) (2020-03-14)
+
+### Bug Fixes
+
+- **eslint-config:** disable ts/prefer-readonly-parameter-types for js ([7735d38](https://github.com/void-aurora/toolkit/commit/7735d3817d39f83e5c6fe006f3b2b0b62016fcde))
+
 # [0.10.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.9.1...@void-aurora/eslint-config@0.10.0) (2020-03-14)
 
 ### Features
