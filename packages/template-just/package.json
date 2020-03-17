@@ -9,15 +9,13 @@
     "url": "git+https://github.com/void-aurora/toolkit.git"
   },
   "version": "0.1.0",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.ts",
+  "main": "dist/style/template-just.css",
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
     "build": "just build",
-    "test": "jest",
     "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
   },
   "sideEffects": false,
@@ -29,5 +27,7 @@
     "just-scripts": "^0.36.1",
     "postcss": "^7.0.27",
     "sass": "^1.26.3"
-  }
+  },
+  "sass": "sass/template-just.scss",
+  "style": "dist/style/template-just.css"
 }
