@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "name": "@void-aurora/template-just",
+  "description": "The sub package template for just-scripts.",
+  "license": "MIT",
+  "author": "duduluu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/void-aurora/toolkit.git"
+  },
+  "version": "0.0.1",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "just build",
+    "test": "jest",
+    "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
+  },
+  "sideEffects": false,
+  "types": "dist/esm/index.d.ts",
+  "devDependencies": {
+    "@types/autoprefixer": "^9.7.1",
+    "@types/sass": "^1.16.0",
+    "autoprefixer": "^9.7.4",
+    "just-scripts": "^0.36.1",
+    "postcss": "^7.0.27",
+    "sass": "^1.26.3"
+  }
+}
