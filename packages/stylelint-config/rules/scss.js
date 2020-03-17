@@ -201,7 +201,12 @@ module.exports = {
 
     // Require a media feature value be a `$`-variable or disallow `$`-variables in media feature values.
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/media-feature-value-dollar-variable/README.md
-    'scss/media-feature-value-dollar-variable': null,
+    'scss/media-feature-value-dollar-variable': [
+      'always',
+      {
+        ignore: ['keywords'],
+      },
+    ],
 
     // ==== Operator ====
 
