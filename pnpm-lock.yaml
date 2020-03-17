@@ -155,9 +155,9 @@ importers:
       '@typescript-eslint/eslint-plugin': ^2.24.0
       '@typescript-eslint/parser': ^2.24.0
       '@void-aurora/commitlint-config': ^0.6.4
-      '@void-aurora/eslint-config': ^0.10.2
+      '@void-aurora/eslint-config': ^0.10.3
       '@void-aurora/prettier-config': ^0.5.4
-      '@void-aurora/stylelint-config': ^0.6.7
+      '@void-aurora/stylelint-config': ^0.7.0
       chalk: ^3.0.0
       confusing-browser-globals: ^1.0.9
       conventional-changelog-cli: ^2.0.31

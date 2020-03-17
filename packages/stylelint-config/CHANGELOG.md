@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/stylelint-config@0.6.7...@void-aurora/stylelint-config@0.7.0) (2020-03-17)
+
+### Features
+
+- **stylelint-config:** enable scss/media-feature-value-dollar-variable ([3e377a9](https://github.com/void-aurora/toolkit/commit/3e377a9a82ca359a96a8ce3c30f3d994c3b791c7))
+
 ## [0.6.7](https://github.com/void-aurora/toolkit/compare/@void-aurora/stylelint-config@0.6.6...@void-aurora/stylelint-config@0.6.7) (2020-03-14)
 
 **Note:** Version bump only for package @void-aurora/stylelint-config
