@@ -250,7 +250,7 @@ const rules = {
   '@typescript-eslint/no-array-constructor': rulesStylistic['no-array-constructor'],
 
   // Requires that `.toString()` is only called on objects which provide useful information when stringified
-  // https://github.com/typescript-eslint/typescript-eslint/blob/v2.23.0/packages/eslint-plugin/docs/rules/no-base-to-string.md
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-base-to-string.md
   // requires type information
   '@typescript-eslint/no-base-to-string': 'error',
 
@@ -413,17 +413,17 @@ const rules = {
   '@typescript-eslint/no-unnecessary-type-assertion': 'off',
 
   // Disallows calling an any type value
-  // https://github.com/typescript-eslint/typescript-eslint/blob/v2.23.0/packages/eslint-plugin/docs/rules/no-unsafe-call.md
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unsafe-call.md
   // requires type information
   '@typescript-eslint/no-unsafe-call': 'error',
 
   // Disallows member access on any typed variables
-  // https://github.com/typescript-eslint/typescript-eslint/blob/v2.23.0/packages/eslint-plugin/docs/rules/no-unsafe-member-access.md
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unsafe-member-access.md
   // requires type information
   '@typescript-eslint/no-unsafe-member-access': 'error',
 
   // Disallows returning any from a function
-  // https://github.com/typescript-eslint/typescript-eslint/blob/v2.23.0/packages/eslint-plugin/docs/rules/no-unsafe-return.md
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unsafe-return.md
   // requires type information
   '@typescript-eslint/no-unsafe-return': 'error',
 
@@ -515,7 +515,7 @@ const rules = {
   '@typescript-eslint/prefer-readonly': 'error',
 
   // Requires that function parameters are typed as readonly to prevent accidental mutation of inputs
-  // https://github.com/typescript-eslint/typescript-eslint/blob/v2.23.0/packages/eslint-plugin/docs/rules/prefer-readonly-parameter-types.md
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-readonly-parameter-types.md
   // requires type information
   '@typescript-eslint/prefer-readonly-parameter-types': 'error',
 

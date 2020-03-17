@@ -39,7 +39,7 @@ Object.keys(rules)
 
     // lines.push(`  // ${category}`);
     lines.push(`  // ${description}`);
-    lines.push(`  // ${url}`);
+    lines.push(`  // ${url.replace(/\/blob\/v\d+\.\d+\.\d+\//, '/blob/master/')}`);
 
     if (requiresTypeChecking === true) {
       ruleNamesRequireTypeInfo.push(ruleName);
