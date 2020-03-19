@@ -96,6 +96,7 @@ module.exports = {
       'error',
       {
         devDependencies: [
+          'build/**',
           'script/**',
           'scripts/**',
           'test/**', // tape, common npm pattern
@@ -116,6 +117,7 @@ module.exports = {
           '**/gulpfile.js', // gulp config
           '**/gulpfile.*.js', // gulp config
           '**/Gruntfile{,.js}', // grunt config
+          '**/just.config.{js,ts}', // just-task config
           '**/protractor.conf.js', // protractor config
           '**/protractor.conf.*.js', // protractor config
           '**/karma.conf.js', // karma config
