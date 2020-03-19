@@ -96,12 +96,12 @@ module.exports = {
       'error',
       {
         devDependencies: [
-          'build/**',
-          'script/**',
-          'scripts/**',
-          'test/**', // tape, common npm pattern
-          'tests/**', // also common npm pattern
-          'spec/**', // mocha, rspec-like pattern
+          '**/build/**',
+          '**/script/**',
+          '**/scripts/**',
+          '**/test/**', // tape, common npm pattern
+          '**/tests/**', // also common npm pattern
+          '**/spec/**', // mocha, rspec-like pattern
           '**/__tests__/**', // jest pattern
           '**/__mocks__/**', // jest pattern
           'test.{js,jsx}', // repos with a single test file
