@@ -19,18 +19,18 @@
     "baseUrl": "."
   },
   "include": [
-    "build/**/*",
-    "scripts/**/*",
-    "__tests__/**/*",
     "packages/*/build/**/*",
     "packages/*/scripts/**/*",
     "packages/*/__tests__/**/*",
     "packages/*/lib/**/*",
     "packages/*/src/**/*",
-    "packages/*/*.js",
+    "packages/*/*",
+    "build/**/*",
+    "scripts/**/*",
+    "__tests__/**/*",
     "lib/**/*",
     "src/**/*",
-    "*.js"
+    "*"
   ],
   "exclude": [
     "node_modules",
