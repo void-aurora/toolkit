@@ -527,7 +527,12 @@ const rules = {
   // Requires that function parameters are typed as readonly to prevent accidental mutation of inputs
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-readonly-parameter-types.md
   // requires type information
-  '@typescript-eslint/prefer-readonly-parameter-types': 'error',
+  '@typescript-eslint/prefer-readonly-parameter-types': [
+    'off',
+    {
+      checkParameterProperties: false,
+    },
+  ],
 
   // Enforce that `RegExp#exec` is used instead of `String#match` if no global flag is provided
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-regexp-exec.md
