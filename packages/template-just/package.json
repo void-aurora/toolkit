@@ -16,6 +16,7 @@
   ],
   "scripts": {
     "build": "just build",
+    "just": "just",
     "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
   },
   "sideEffects": false,
@@ -23,8 +24,8 @@
   "devDependencies": {
     "@types/autoprefixer": "^9.7.1",
     "@types/sass": "^1.16.0",
+    "@void-aurora/just": "*",
     "autoprefixer": "^9.7.4",
-    "just-scripts": "^0.36.1",
     "postcss": "^7.0.27",
     "sass": "^1.26.3"
   },
