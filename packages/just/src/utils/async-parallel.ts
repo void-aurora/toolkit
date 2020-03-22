@@ -7,32 +7,42 @@ export async function asyncParallel<T>(
   actions: readonly (() => Promise<T>)[],
   limit: number = 5,
 ): Promise<T[]> {
+  if (actions.length === 0) {
+    return [];
+  }
+
+  if (limit === 0 || limit >= actions.length) {
+    return Promise.all(actions.map(async a => a()));
+  }
+
   return new Promise<T[]>((resolve, reject) => {
-    let count = 0;
-    const max = Math.min(actions.length, limit);
+    const { length } = actions;
+    const pool = [...actions];
     const result: T[] = [];
-
-    const invoke = async (index: number): Promise<void> => {
-      count += 1;
-      try {
-        result[index] = await actions[index]();
-      } catch (error) {
-        reject(error);
-        return;
+    let activeCount = 0;
+    let finishCount = 0;
+    const invoke = async (): Promise<void> => {
+      const index = activeCount;
+      activeCount += 1;
+      const { [index]: action } = pool;
+      if (action) {
+        try {
+          result[index] = await action();
+          finishCount += 1;
+          if (finishCount === length) {
+            resolve(result);
+            return;
+          }
+        } catch (error) {
+          reject(error);
+          return;
+        }
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        invoke();
       }
-
-      if (count === actions.length) {
-        resolve(result);
-        return;
-      }
-
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      invoke(count);
     };
 
-    for (let index = 0; index < max; index++) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      invoke(index);
-    }
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    Promise.all(pool.slice(0, limit).map(async () => invoke()));
   });
 }
