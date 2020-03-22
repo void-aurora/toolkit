@@ -9,6 +9,9 @@
   },
   "version": "0.0.1",
   "main": "dist/index.js",
+  "bin": {
+    "just": "bin/just.js"
+  },
   "files": [
     "dist",
     "src"
