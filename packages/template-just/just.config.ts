@@ -1,13 +1,13 @@
-import { task, series, parallel, cleanTask, sassTask } from '@void-aurora/just';
+import { task, series, parallel, cleanTask, sassTask, minifyCssTask } from '@void-aurora/just';
 
 task('clean', cleanTask());
 
-task(
-  'sass',
-  sassTask({
-    input: 'sass',
-    output: 'dist/style',
-  }),
-);
+task('compile:sass', sassTask());
 
-task('build', series('clean', parallel('sass')));
+task('minify:css', minifyCssTask());
+
+task('build:style', series('compile:sass', 'minify:css'));
+
+task('build', parallel('build:style'));
+
+task('prepare', series('clean', 'build'));
