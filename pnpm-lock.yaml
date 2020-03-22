@@ -35,8 +35,10 @@ importers:
       '@rollup/plugin-node-resolve': 7.1.1_rollup@2.1.0
       '@rollup/plugin-replace': 2.3.1_rollup@2.1.0
       '@types/autoprefixer': 9.7.1
+      '@types/clean-css': 4.2.1
       '@types/sass': 1.16.0
       autoprefixer: 9.7.4
+      clean-css: 4.2.3
       postcss: 7.0.27
       rollup: 2.1.0
       rollup-plugin-terser: 5.3.0_rollup@2.1.0
@@ -49,9 +51,11 @@ importers:
       '@rollup/plugin-node-resolve': ^7.1.1
       '@rollup/plugin-replace': ^2.3.1
       '@types/autoprefixer': ^9.7.1
+      '@types/clean-css': ^4.2.1
       '@types/fs-extra': ^8.1.0
       '@types/sass': ^1.16.0
       autoprefixer: ^9.7.4
+      clean-css: ^4.2.3
       fs-extra: ^8.1.0
       globby: ^11.0.0
       just-task: ^0.14.3
@@ -2639,6 +2643,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-4PyO9OM08APvxxo1NmQyQKlJdowPCOQIy5D/NLO3aO0vGC57wsMptvGp3b8IbYnupFZr92l1dlVief1JvS6STQ==
+  /@types/clean-css/4.2.1:
+    dependencies:
+      '@types/node': 13.9.3
+    dev: true
+    resolution:
+      integrity: sha512-A1HQhQ0hkvqqByJMgg+Wiv9p9XdoYEzuwm11SVo1mX2/4PSdhjcrUlilJQoqLscIheC51t1D5g+EFWCXZ2VTQQ==
   /@types/color-name/1.1.1:
     resolution:
       integrity: sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
@@ -2761,6 +2771,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-bnoqK579sAYrQbp73wwglccjJ4sfRdKU7WNEZ5FW4K2U6Kc0/eZ5kvXG0JKsEKFB50zrFmfFt52/cvBbZa7eXg==
+  /@types/node/13.9.3:
+    dev: true
+    resolution:
+      integrity: sha512-01s+ac4qerwd6RHD+mVbOEsraDHSgUaefQlEdBbUolnQFjKwCr7luvAlEwW1RFojh67u0z4OUTjPn9LEl4zIkA==
   /@types/normalize-package-data/2.4.0:
     dev: false
     resolution:
@@ -3904,6 +3918,14 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-qOhPa/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsSR56XOZOJmpeurnLMeg==
+  /clean-css/4.2.3:
+    dependencies:
+      source-map: 0.6.1
+    dev: true
+    engines:
+      node: '>= 4.0'
+    resolution:
+      integrity: sha512-VcMWDN54ZN/DS+g58HYL5/n4Zrqe8vHJpGA8KdgUXFU4fuP/aHNw8eld9SyEIyabIMJX/0RaY/fplOo5hYLSFA==
   /cli-cursor/1.0.2:
     dependencies:
       restore-cursor: 1.0.1

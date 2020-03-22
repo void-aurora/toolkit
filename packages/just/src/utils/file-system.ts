@@ -37,6 +37,12 @@ export function pathsToString(paths: string | string[], from?: string): string {
   return `'${array[0]}'`;
 }
 
+const REG_TO_TRIM_DOTS = /^\.+|\.+$/g;
+
+export function trimDots(text: string): string {
+  return text.replace(REG_TO_TRIM_DOTS, '');
+}
+
 /**
  * Replace the extension name of the `path` with `ext`.
  * @param path the file path
@@ -45,6 +51,31 @@ export function pathsToString(paths: string | string[], from?: string): string {
 export function replaceExtName(path: string, ext: string): string {
   const dirName = pth.dirname(path);
   const baseName = pth.basename(path, pth.extname(path));
-  const fileName = `${baseName}${ext.startsWith('.') ? '' : '.'}${ext}`;
-  return pth.join(dirName, fileName);
+  return pth.join(dirName, `${baseName}.${trimDots(ext)}`);
+}
+
+/**
+ * Insert postfix to the filename of a path.
+ * @param path the file path
+ * @param postfix the postfix text, e.g. 'min'
+ * @param separator the separator to combine original filename and prefix, default `'.'`
+ */
+export function applyPostfix(path: string, postfix: string, separator: string = '.'): string {
+  const dirName = pth.dirname(path);
+  const extName = pth.extname(path);
+  const baseName = pth.basename(path, extName);
+  return pth.join(dirName, `${baseName}${separator}${postfix}${extName}`);
+}
+
+/**
+ * Insert prefix to the filename of a path.
+ * @param path the file path
+ * @param prefix the prefix text
+ * @param separator the separator to combine original filename and the prefix, default `'.'`
+ */
+export function applyPrefix(path: string, prefix: string, separator: string = '.'): string {
+  const dirName = pth.dirname(path);
+  const extName = pth.extname(path);
+  const baseName = pth.basename(path, extName);
+  return pth.join(dirName, `${prefix}${separator}${baseName}${extName}`);
 }

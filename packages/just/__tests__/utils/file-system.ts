@@ -1,5 +1,13 @@
 import pth from 'path';
-import { isDirectory, isFile, pathsToString, replaceExtName } from '../../src/utils/file-system';
+import {
+  isDirectory,
+  isFile,
+  pathsToString,
+  trimDots,
+  replaceExtName,
+  applyPostfix,
+  applyPrefix,
+} from '../../src/utils/file-system';
 
 function sep(path: string): string {
   return path.replace(/\\|\//g, pth.sep);
@@ -50,6 +58,22 @@ describe('utils/file-system.ts', () => {
     );
   });
 
+  test('trimDots', () => {
+    expect(trimDots('.min')).toEqual('min');
+    expect(trimDots('min.')).toEqual('min');
+    expect(trimDots('.min.')).toEqual('min');
+    expect(trimDots('...min')).toEqual('min');
+    expect(trimDots('min...')).toEqual('min');
+    expect(trimDots('...min...')).toEqual('min');
+
+    expect(trimDots('.foo.bar')).toEqual('foo.bar');
+    expect(trimDots('foo.bar.')).toEqual('foo.bar');
+    expect(trimDots('.foo.bar.')).toEqual('foo.bar');
+    expect(trimDots('...foo.bar')).toEqual('foo.bar');
+    expect(trimDots('foo.bar...')).toEqual('foo.bar');
+    expect(trimDots('...foo.bar...')).toEqual('foo.bar');
+  });
+
   test('replaceExtName', () => {
     expect(replaceExtName('foobar.foo', 'bar')).toEqual(sep('foobar.bar'));
     expect(replaceExtName('foobar.foo', '.bar')).toEqual(sep('foobar.bar'));
@@ -68,5 +92,19 @@ describe('utils/file-system.ts', () => {
     );
     expect(replaceExtName('../foo/foobar.foo', 'min.bar')).toEqual(sep('../foo/foobar.min.bar'));
     expect(replaceExtName('../bar/foobar.foo', '.min.bar')).toEqual(sep('../bar/foobar.min.bar'));
+  });
+
+  test('applyPostfix', () => {
+    expect(applyPostfix('foobar.txt', 'min')).toEqual(sep('foobar.min.txt'));
+    expect(applyPostfix('foobar.txt', 'min', '-')).toEqual(sep('foobar-min.txt'));
+    expect(applyPostfix('/foo/bar.txt', 'min')).toEqual(sep('/foo/bar.min.txt'));
+    expect(applyPostfix('/foo/bar.txt', 'min', '-')).toEqual(sep('/foo/bar-min.txt'));
+  });
+
+  test('applyPrefix', () => {
+    expect(applyPrefix('foobar.txt', 'global')).toEqual(sep('global.foobar.txt'));
+    expect(applyPrefix('foobar.txt', 'global', '-')).toEqual(sep('global-foobar.txt'));
+    expect(applyPrefix('/foo/bar.txt', 'global')).toEqual(sep('/foo/global.bar.txt'));
+    expect(applyPrefix('/foo/bar.txt', 'global', '-')).toEqual(sep('/foo/global-bar.txt'));
   });
 });

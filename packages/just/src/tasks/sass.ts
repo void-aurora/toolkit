@@ -9,7 +9,7 @@ import { default as _sass, Options as SassRenderOptions, Result as SassRenderRes
 import { default as _postcss } from 'postcss';
 import { default as _autoprefixer } from 'autoprefixer';
 
-import { tryRequire, pathsToString, replaceExtName, normalizeArray, asyncParallel } from '../utils';
+import { tryRequire, pathsToString, replaceExtName, asyncParallel } from '../utils';
 
 function defaultSassRenderOptions(cwd: string): SassRenderOptions {
   return {
@@ -35,7 +35,7 @@ async function sassAsyncRender(
 export interface SassTaskOptions {
   /**
    * Glob patterns to search files.
-   * @default ['**\/*.scss']
+   * @default '**\/*.scss'
    */
   patterns?: string | string[];
 
@@ -63,11 +63,6 @@ export interface SassTaskOptions {
    * By default, the task will resolve `node_modules` in `cwd` for `includePaths` automatically.
    */
   sassRenderOptions?: SassRenderOptions;
-
-  /**
-   *
-   */
-  minify?: boolean;
 
   /**
    * Automatically uses `autoprefixer` in postcss or not.
@@ -102,7 +97,7 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
     }
 
     const {
-      patterns: patternsRaw = ['**/*.scss'],
+      patterns = '**/*.scss',
       input = 'sass',
       output = 'dist',
       cwd = process.cwd(),
@@ -111,7 +106,6 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
       useAutoprefixer = true,
       postcssPlugins = [],
     } = options;
-    const patterns = normalizeArray(patternsRaw);
     const sassRenderOptions = {
       ...defaultSassRenderOptions(cwd),
       ...sassRenderOptionsRaw,
@@ -123,9 +117,9 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
 
     {
       const textPatterns = pathsToString(patterns);
-      const textFrom = pathsToString(input, cwd);
-      const textTo = pathsToString(output, cwd);
-      logger.info(`Compiling ${textPatterns} from ${textFrom} to ${textTo}`);
+      const textFrom = pathsToString(input);
+      const textTo = pathsToString(output);
+      logger.info(`Compiling Sass ${textPatterns} from ${textFrom} to ${textTo}.`);
     }
 
     const paths = await globby(patterns, { cwd: pth.resolve(cwd, input), onlyFiles: true });
