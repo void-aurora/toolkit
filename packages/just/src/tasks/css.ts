@@ -1,13 +1,25 @@
 import pth from 'path';
 import fse from 'fs-extra';
 import globby from 'globby';
+import chalk from 'chalk';
 import { TaskFunction, logger } from 'just-task';
 
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-named-default */
-import { default as _CleanCss, Options as CleanCSSOptions } from 'clean-css';
+import {
+  default as _CleanCSS,
+  Options as CleanCSSOptions,
+  Output as CleanCSSOutput,
+} from 'clean-css';
 
-import { tryRequire, pathsToString, trimDots, applyPostfix, asyncParallel } from '../utils';
+import {
+  tryRequire,
+  pathsToString,
+  trimDots,
+  applyPostfix,
+  asyncParallel,
+  VerbosePool,
+} from '../utils';
 
 export interface MinifyCSSTaskOptions {
   /**
@@ -50,10 +62,11 @@ export interface MinifyCSSTaskOptions {
 export const minifyCssTask = (options: MinifyCSSTaskOptions = {}): TaskFunction => {
   return async function minifyCssTaskFunction(): Promise<void> {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    const CleanCss: typeof _CleanCss = tryRequire('clean-css');
+    const CleanCSS: typeof _CleanCSS = tryRequire('clean-css');
 
-    if (!CleanCss) {
-      logger.warn('clean-css is not installed, so this task has no effect');
+    if (!CleanCSS) {
+      logger.warn('clean-css is not installed, so this task has no effect.');
+      return;
     }
 
     const {
@@ -67,7 +80,7 @@ export const minifyCssTask = (options: MinifyCSSTaskOptions = {}): TaskFunction 
     } = options;
     const postfix = trimDots(postfixRaw);
 
-    const cleanCss = new CleanCss({ ...cleanCssOptions, returnPromise: true });
+    const cleanCSS = new CleanCSS({ ...cleanCssOptions, returnPromise: true });
 
     if ((postfix === undefined || postfix === '') && input === output) {
       throw new Error(
@@ -75,27 +88,26 @@ export const minifyCssTask = (options: MinifyCSSTaskOptions = {}): TaskFunction 
       );
     }
 
-    {
-      const patternsText = pathsToString(patterns);
-      const inputText = pathsToString(input);
-      const outputText = pathsToString(output);
-      if (input === output) {
-        logger.info(`Minifying CSS ${patternsText} in ${inputText}.`);
-      } else {
-        logger.info(`Minifying CSS ${patternsText} from ${inputText} to ${outputText}.`);
-      }
-    }
+    const pool = new VerbosePool({ action: 'Minifying CSS', patterns, input, output, cwd });
+    pool.logHeader();
 
     const paths = await globby(patterns, { cwd: pth.resolve(cwd, input), onlyFiles: true });
-    const actions = paths.map(path => async () => {
-      const inputFile = pth.resolve(cwd, input, path);
-      const outputFile = pth.resolve(cwd, output, applyPostfix(path, postfix));
+    const actions = paths
+      .filter(path => !pth.basename(path, pth.extname(path)).endsWith(postfix))
+      .map(path => async () => {
+        const inputFile = pth.resolve(cwd, input, path);
+        const outputFile = pth.resolve(cwd, output, applyPostfix(path, postfix));
 
-      const src = await fse.readFile(inputFile, 'utf-8');
-      const result = await cleanCss.minify(src);
+        const src = await fse.readFile(inputFile, 'utf-8');
+        const { styles, stats } = await cleanCSS.minify(src);
 
-      await fse.outputFile(outputFile, result.styles);
-    });
+        await fse.outputFile(outputFile, styles);
+        pool.addVerbose({
+          inputFile,
+          outputFile,
+          stats: VerbosePool.renderStatsCleanCSS(stats),
+        });
+      });
 
     await asyncParallel(actions, limit);
   };

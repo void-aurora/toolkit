@@ -9,7 +9,7 @@ import { default as _sass, Options as SassRenderOptions, Result as SassRenderRes
 import { default as _postcss } from 'postcss';
 import { default as _autoprefixer } from 'autoprefixer';
 
-import { tryRequire, pathsToString, replaceExtName, asyncParallel } from '../utils';
+import { tryRequire, pathsToString, replaceExtName, asyncParallel, VerbosePool } from '../utils';
 
 function defaultSassRenderOptions(cwd: string): SassRenderOptions {
   return {
@@ -91,7 +91,7 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
 
     if (!sass || !postcss || !autoprefixer) {
       logger.warn(
-        'One of packages [sass(dart-sass), postcss, autoprefixer] is not installed, so this task has no effect',
+        'One of packages [sass(dart-sass), postcss, autoprefixer] is not installed, so this task has no effect.',
       );
       return;
     }
@@ -115,15 +115,10 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
       ...postcssPlugins,
     ]);
 
-    {
-      const textPatterns = pathsToString(patterns);
-      const textFrom = pathsToString(input);
-      const textTo = pathsToString(output);
-      logger.info(`Compiling Sass ${textPatterns} from ${textFrom} to ${textTo}.`);
-    }
+    const pool = new VerbosePool({ action: 'Compiling Sass', patterns, input, output, cwd });
+    pool.logHeader();
 
     const paths = await globby(patterns, { cwd: pth.resolve(cwd, input), onlyFiles: true });
-
     const actions = paths
       .filter(path => !pth.basename(path).startsWith('_'))
       .map(path => async () => {
@@ -138,6 +133,7 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
         const postcssResult = await postcssProcessor.process(css, { from: inputFile });
 
         await fse.outputFile(outputFile, postcssResult.css);
+        pool.addVerbose({ inputFile, outputFile });
       });
 
     await asyncParallel(actions, limit);

@@ -18,7 +18,7 @@ export async function isFile(path: string): Promise<boolean> {
  * @param from solve path relative from
  */
 export function pathsToString(paths: string | string[], from?: string): string {
-  const array = normalizeArray(paths);
+  const array = normalizeArray(paths).map(p => p.trim());
 
   if (array.length === 0) {
     return "''";

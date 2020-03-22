@@ -1,8 +1,8 @@
 import pth from 'path';
 import fse from 'fs-extra';
 import globby from 'globby';
-import { TaskFunction, logger } from 'just-task';
-import { asyncParallel, pathsToString } from '../utils';
+import { TaskFunction, logger, clearCache } from 'just-task';
+import { asyncParallel, VerbosePool } from '../utils';
 
 export interface CopyTaskOptions {
   /**
@@ -39,17 +39,21 @@ export const copyTask = (options: CopyTaskOptions): TaskFunction => {
   return async function copyTaskFunction(): Promise<void> {
     const { patterns = '*', from, to, cwd = process.cwd(), limit } = options;
 
-    {
-      const textPatterns = pathsToString(patterns);
-      const textFrom = pathsToString(from, cwd);
-      const textTo = pathsToString(to, cwd);
-      logger.info(`Copying ${textPatterns} from ${textFrom} to ${textTo}`);
+    if (pth.resolve(cwd, from) === pth.resolve(cwd, to)) {
+      logger.warn(`Same path between \`from\` and \`to\`, so this task has no effect.`);
+      return;
     }
 
+    const pool = new VerbosePool({ action: 'Copying', patterns, input: from, output: to, cwd });
+    pool.logHeader();
+
     const paths = await globby(patterns, { cwd: pth.resolve(cwd, from) });
-    const actions = paths.map(path => async () =>
-      fse.copyFile(pth.resolve(cwd, from, path), pth.resolve(cwd, to, path)),
-    );
+    const actions = paths.map(path => async () => {
+      const src = pth.resolve(cwd, from, path);
+      const dest = pth.resolve(cwd, to, path);
+      await fse.copyFile(src, dest);
+      pool.addVerbose({ inputFile: src, outputFile: dest });
+    });
 
     await asyncParallel(actions, limit);
   };
@@ -80,11 +84,15 @@ export const cleanTask = (options: CleanTaskOptions = {}): TaskFunction => {
   return async function cleanTaskFunction(): Promise<void> {
     const { patterns = ['temp', 'dist'], cwd = process.cwd(), limit } = options;
 
-    logger.info(`Cleaning ${pathsToString(patterns, cwd)}`);
+    const pool = new VerbosePool({ action: 'Cleaning', patterns, cwd });
+    pool.logHeader();
 
-    const paths = await globby(patterns, { cwd });
-    const actions = paths.map(path => async () => fse.remove(path));
+    const paths = await globby(patterns, { cwd, onlyDirectories: false, onlyFiles: false });
+    const actions = paths.map(path => async () => {
+      await fse.remove(pth.resolve(cwd, path));
+    });
 
     await asyncParallel(actions, limit);
+    clearCache();
   };
 };
