@@ -21,6 +21,10 @@ jobs:
         node-version: [10, 12, 13]
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Powershell set-executionPolicy unrestricted
+        if: runner.os == 'windows'
+        run: set-executionPolicy unrestricted
+        shell: pwsh
       - uses: actions/checkout@v2
       - name: Cache node modules
         uses: actions/cache@v1
@@ -33,9 +37,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Powershell set-executionPolicy unrestricted
-        run: set-executionPolicy unrestricted
-        shell: pwsh
       - name: Install pnpm
         run: curl -L https://unpkg.com/@pnpm/self-installer | node
       - name: Install dependencies
