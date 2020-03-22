@@ -19,12 +19,16 @@
     "baseUrl": "."
   },
   "include": [
+    // workspaces
+    "packages/*/bin/**/*",
     "packages/*/build/**/*",
     "packages/*/scripts/**/*",
     "packages/*/__tests__/**/*",
     "packages/*/lib/**/*",
     "packages/*/src/**/*",
     "packages/*/*",
+    // root
+    "bin/**/*",
     "build/**/*",
     "scripts/**/*",
     "__tests__/**/*",
