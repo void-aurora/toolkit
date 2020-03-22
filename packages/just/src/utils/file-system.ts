@@ -1,5 +1,6 @@
 import pth from 'path';
 import fse from 'fs-extra';
+import { normalizeArray } from './helpers';
 
 export async function isDirectory(path: string): Promise<boolean> {
   const stats = await fse.stat(path);
@@ -11,16 +12,24 @@ export async function isFile(path: string): Promise<boolean> {
   return stats.isFile();
 }
 
-/**
- * Converts paths to relative paths.
- * The result string will be wrapped as `'<path>'` or `'['<path1>', '<path2>']'` automatically
- */
-export function toRelativePathString(basePath: string, paths: string | string[]): string {
-  if (Array.isArray(paths)) {
-    return `['${paths.map(p => pth.relative(basePath, p)).join(`', '`)}']`;
+export function pathsToString(paths: string | string[], from?: string): string {
+  const array = normalizeArray(paths);
+
+  if (array.length === 0) {
+    return "''";
   }
 
-  return `'${pth.relative(basePath, paths)}'`;
+  if (array.length > 1) {
+    if (typeof from === 'string') {
+      return `['${array.map(to => pth.relative(from, to)).join(`', '`)}']`;
+    }
+    return `['${array.join(`', '`)}']`;
+  }
+
+  if (typeof from === 'string') {
+    return `'${pth.relative(from, array[0])}'`;
+  }
+  return `'${array[0]}'`;
 }
 
 /**

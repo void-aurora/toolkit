@@ -9,17 +9,11 @@ import { default as _sass, Options as SassRenderOptions, Result as SassRenderRes
 import { default as _postcss } from 'postcss';
 import { default as _autoprefixer } from 'autoprefixer';
 
-import {
-  tryRequire,
-  toRelativePathString,
-  replaceExtName,
-  normalizeArray,
-  asyncParallel,
-} from '../utils';
+import { tryRequire, pathsToString, replaceExtName, normalizeArray, asyncParallel } from '../utils';
 
-function defaultSassRenderOptions(): SassRenderOptions {
+function defaultSassRenderOptions(cwd: string): SassRenderOptions {
   return {
-    includePaths: [pth.resolve(process.cwd(), 'node_modules')],
+    includePaths: [pth.resolve(cwd, 'node_modules')],
   };
 }
 
@@ -57,13 +51,35 @@ export interface SassTaskOptions {
    */
   output?: string;
 
+  /**
+   * The current working directory in which to search.
+   */
+  cwd?: string;
+
   limit?: number;
 
   /**
    * The options for sass.render(), note that the property `file` will be ignore.\
-   * Task will resolve `node_modules` for `includePaths` automatically.
+   * By default, the task will resolve `node_modules` in `cwd` for `includePaths` automatically.
    */
   sassRenderOptions?: SassRenderOptions;
+
+  /**
+   *
+   */
+  minify?: boolean;
+
+  /**
+   * Automatically uses `autoprefixer` in postcss or not.
+   * @default true
+   */
+  useAutoprefixer?: boolean;
+
+  /**
+   * Extra plugins of `postcss`.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  postcssPlugins?: any[];
 }
 
 /**
@@ -85,27 +101,33 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
       return;
     }
 
-    const cwd = process.cwd();
     const {
       patterns: patternsRaw = ['**/*.scss', '!**/_*.scss'],
       input: inputRaw = ['src', 'sass'],
       output = 'dist',
+      cwd = process.cwd(),
       limit,
       sassRenderOptions: sassRenderOptionsRaw = {},
+      useAutoprefixer = true,
+      postcssPlugins = [],
     } = options;
     const patterns = normalizeArray(patternsRaw);
     const input = normalizeArray(inputRaw);
     const sassRenderOptions = {
-      ...defaultSassRenderOptions(),
+      ...defaultSassRenderOptions(cwd),
       ...sassRenderOptionsRaw,
     };
+    const postcssProcessor = postcss([
+      ...(useAutoprefixer ? [autoprefixer] : []),
+      ...postcssPlugins,
+    ]);
 
-    logger.info(
-      `Compiling ['${patterns.join(`', '`)}'] from ${toRelativePathString(
-        cwd,
-        inputRaw,
-      )} to ${toRelativePathString(cwd, output)}`,
-    );
+    {
+      const textPatterns = pathsToString(patterns);
+      const textFrom = pathsToString(inputRaw, cwd);
+      const textTo = pathsToString(output, cwd);
+      logger.info(`Compiling ${textPatterns} from ${textFrom} to ${textTo}`);
+    }
 
     const matchedPathsSets = await Promise.all(
       input.map(async dir => globby(patterns, { cwd: dir, onlyFiles: true })),
@@ -129,9 +151,7 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
     Object.entries(map).forEach(([path, dirs]) => {
       if (dirs.length > 1) {
         duplicated = true;
-        logger.error(
-          `Duplicated file '${path}' between directories ${toRelativePathString(cwd, dirs)}`,
-        );
+        logger.error(`Duplicated file '${path}' between directories ${pathsToString(dirs, cwd)}`);
       }
     });
     if (duplicated) {
@@ -144,7 +164,7 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
         file: inputFile,
       });
       const css = sassResult.css.toString();
-      const postcssResult = await postcss([autoprefixer]).process(css, { from: inputFile });
+      const postcssResult = await postcssProcessor.process(css, { from: inputFile });
       await fse.outputFile(outputFile, postcssResult.css);
     });
     await asyncParallel(actions, limit);

@@ -1,24 +1,30 @@
 import pth from 'path';
 import fse from 'fs-extra';
 import globby from 'globby';
-import { TaskFunction, logger, clearCache } from 'just-task';
-import { asyncParallel, isFile, toRelativePathString, normalizeArray } from '../utils';
+import { TaskFunction, logger } from 'just-task';
+import { asyncParallel, pathsToString } from '../utils';
 
 export interface CopyTaskOptions {
   /**
-   * Paths to directories or files to copy from.
-   * If the path is a directory, the task will copy all of files inside the directory to `dest`.
-   * If the path is a file, the task will copy the file into the dest directory.
-   * Can be glob patterns.
-   * @default 'public'
+   * Glob patterns to search directories or files to copy.
+   * @default '*'
    */
-  paths?: string | string[];
+  patterns?: string | string[];
 
   /**
-   * The path to a directory as destination.
-   * @default 'dist'
+   * Paths to a directory where to copy files from.
    */
-  dest?: string;
+  from: string;
+
+  /**
+   * Paths to a directory as destination.
+   */
+  to: string;
+
+  /**
+   * The current working directory in which to search.
+   */
+  cwd?: string;
 
   /**
    * Specify number of actions can be run at the same time.
@@ -26,40 +32,40 @@ export interface CopyTaskOptions {
   limit?: number;
 }
 
-export const copyTask = (options: CopyTaskOptions = {}): TaskFunction => {
+/**
+ * Creates a just task to copy files.
+ */
+export const copyTask = (options: CopyTaskOptions): TaskFunction => {
   return async function copyTaskFunction(): Promise<void> {
-    const cwd = process.cwd();
-    const { paths: pathsRaw = 'public', dest = 'dist', limit } = options;
-    const paths = normalizeArray(pathsRaw);
+    const { patterns = '*', from, to, cwd = process.cwd(), limit } = options;
 
-    logger.info(
-      `Copying ${toRelativePathString(cwd, pathsRaw)} to ${toRelativePathString(cwd, dest)}`,
+    {
+      const textPatterns = pathsToString(patterns);
+      const textFrom = pathsToString(from, cwd);
+      const textTo = pathsToString(to, cwd);
+      logger.info(`Copying ${textPatterns} from ${textFrom} to ${textTo}`);
+    }
+
+    const paths = await globby(patterns, { cwd: pth.resolve(cwd, from) });
+    const actions = paths.map(path => async () =>
+      fse.copyFile(pth.resolve(cwd, from, path), pth.resolve(cwd, to, path)),
     );
 
-    await fse.mkdirp(dest);
-
-    const srcPaths = await globby(paths);
-
-    await asyncParallel(
-      srcPaths.map(src => async () => {
-        if (await isFile(src)) {
-          await fse.copy(src, pth.join(dest, pth.basename(src)));
-          return;
-        }
-        await fse.copy(src, dest);
-      }),
-      limit,
-    );
+    await asyncParallel(actions, limit);
   };
 };
 
 export interface CleanTaskOptions {
   /**
-   * Paths to directories or files to remove.
-   * Can be glob patterns.
+   * Glob patterns to search directories or files to remove.
    * @default ['temp','dist']
    */
-  paths?: string | string[];
+  patterns?: string | string[];
+
+  /**
+   * The current working directory in which to search.
+   */
+  cwd?: string;
 
   /**
    * Specify number of actions can be run at the same time.
@@ -67,19 +73,18 @@ export interface CleanTaskOptions {
   limit?: number;
 }
 
+/**
+ * Creates a just task to remove files.
+ */
 export const cleanTask = (options: CleanTaskOptions = {}): TaskFunction => {
   return async function cleanTaskFunction(): Promise<void> {
-    const cwd = process.cwd();
-    const { paths: pathsRaw = ['temp', 'dist'], limit } = options;
-    const paths = normalizeArray(pathsRaw);
+    const { patterns = ['temp', 'dist'], cwd = process.cwd(), limit } = options;
 
-    logger.info(`Cleaning ${toRelativePathString(cwd, paths)}`);
+    logger.info(`Cleaning ${pathsToString(patterns, cwd)}`);
 
-    const dirPaths = await globby(paths);
+    const paths = await globby(patterns, { cwd });
+    const actions = paths.map(path => async () => fse.remove(path));
 
-    await asyncParallel(
-      dirPaths.map(dir => async () => fse.remove(dir)),
-      limit,
-    );
+    await asyncParallel(actions, limit);
   };
 };
