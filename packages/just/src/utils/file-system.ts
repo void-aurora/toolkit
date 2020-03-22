@@ -12,6 +12,11 @@ export async function isFile(path: string): Promise<boolean> {
   return stats.isFile();
 }
 
+/**
+ * Wrap paths as print text.
+ * @param paths the paths
+ * @param from solve path relative from
+ */
 export function pathsToString(paths: string | string[], from?: string): string {
   const array = normalizeArray(paths);
 

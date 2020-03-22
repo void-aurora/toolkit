@@ -35,15 +35,15 @@ async function sassAsyncRender(
 export interface SassTaskOptions {
   /**
    * Glob patterns to search files.
-   * @default ['**\/*.scss','!**\/_*.scss']
+   * @default ['**\/*.scss']
    */
   patterns?: string | string[];
 
   /**
-   * Input directories.
-   * @default ['src','sass']
+   * Input directory.
+   * @default 'sass'
    */
-  input?: string | string[];
+  input?: string;
 
   /**
    * Output directory.
@@ -102,8 +102,8 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
     }
 
     const {
-      patterns: patternsRaw = ['**/*.scss', '!**/_*.scss'],
-      input: inputRaw = ['src', 'sass'],
+      patterns: patternsRaw = ['**/*.scss'],
+      input = 'sass',
       output = 'dist',
       cwd = process.cwd(),
       limit,
@@ -112,7 +112,6 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
       postcssPlugins = [],
     } = options;
     const patterns = normalizeArray(patternsRaw);
-    const input = normalizeArray(inputRaw);
     const sassRenderOptions = {
       ...defaultSassRenderOptions(cwd),
       ...sassRenderOptionsRaw,
@@ -124,49 +123,29 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
 
     {
       const textPatterns = pathsToString(patterns);
-      const textFrom = pathsToString(inputRaw, cwd);
+      const textFrom = pathsToString(input, cwd);
       const textTo = pathsToString(output, cwd);
       logger.info(`Compiling ${textPatterns} from ${textFrom} to ${textTo}`);
     }
 
-    const matchedPathsSets = await Promise.all(
-      input.map(async dir => globby(patterns, { cwd: dir, onlyFiles: true })),
-    );
+    const paths = await globby(patterns, { cwd: pth.resolve(cwd, input), onlyFiles: true });
 
-    const pairs: [string, string][] = [];
-    const map: Record<string, string[]> = {};
-    matchedPathsSets.forEach((matchedPaths, index) => {
-      matchedPaths.forEach(path => {
-        const { [index]: dir } = input;
-        map[path] = map[path] ?? [];
-        map[path].push(dir);
+    const actions = paths
+      .filter(path => !pth.basename(path).startsWith('_'))
+      .map(path => async () => {
+        const inputFile = pth.resolve(cwd, input, path);
+        const outputFile = pth.resolve(cwd, output, replaceExtName(path, '.css'));
 
-        const inputFile = pth.resolve(dir, path);
-        const outputFile = pth.resolve(output, replaceExtName(path, 'css'));
-        pairs.push([inputFile, outputFile]);
+        const sassResult = await sassAsyncRender(sass, {
+          ...sassRenderOptions,
+          file: inputFile,
+        });
+        const css = sassResult.css.toString();
+        const postcssResult = await postcssProcessor.process(css, { from: inputFile });
+
+        await fse.outputFile(outputFile, postcssResult.css);
       });
-    });
 
-    let duplicated = false;
-    Object.entries(map).forEach(([path, dirs]) => {
-      if (dirs.length > 1) {
-        duplicated = true;
-        logger.error(`Duplicated file '${path}' between directories ${pathsToString(dirs, cwd)}`);
-      }
-    });
-    if (duplicated) {
-      throw new Error('Conflict: duplicated files between multi input directories.');
-    }
-
-    const actions = pairs.map(([inputFile, outputFile]) => async () => {
-      const sassResult = await sassAsyncRender(sass, {
-        ...sassRenderOptions,
-        file: inputFile,
-      });
-      const css = sassResult.css.toString();
-      const postcssResult = await postcssProcessor.process(css, { from: inputFile });
-      await fse.outputFile(outputFile, postcssResult.css);
-    });
     await asyncParallel(actions, limit);
   };
 };
