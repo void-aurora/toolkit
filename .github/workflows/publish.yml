@@ -26,14 +26,11 @@ jobs:
           node-version: 12
       - name: Install pnpm
         run: curl -L https://unpkg.com/@pnpm/self-installer | node
-        shell: bash
       - name: Install dependencies
         run: pnpm -r i
-        shell: bash
       - name: Publish
         run: |
           echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> .npmrc
           pnpm -r publish
-        shell: bash
         env:
           NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

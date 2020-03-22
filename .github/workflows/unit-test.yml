@@ -33,15 +33,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Powershell set-executionPolicy unrestricted
+        run: set-executionPolicy unrestricted
+        shell: pwsh
       - name: Install pnpm
         run: curl -L https://unpkg.com/@pnpm/self-installer | node
-        shell: bash
       - name: Install dependencies
         run: pnpm -r i
-        shell: bash
       - name: Test
         run: pnpm -r --workspace-concurrency=1 test
-        shell: bash
       - name: Build
         run: pnpm -r --workspace-concurrency=1 run prepare
-        shell: bash
