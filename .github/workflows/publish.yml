@@ -13,9 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
       - name: Cache node modules
         uses: actions/cache@v1
         with:
@@ -23,6 +20,10 @@ jobs:
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
       - name: Install pnpm
         run: curl -L https://unpkg.com/@pnpm/self-installer | node
       - name: Install dependencies
