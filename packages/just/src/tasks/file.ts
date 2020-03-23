@@ -66,7 +66,7 @@ export const copyTask = (options: CopyTaskOptions): TaskFunction => {
 export interface CleanTaskOptions {
   /**
    * Glob patterns to search directories or files to remove.
-   * @default ['temp','dist']
+   * @default ['temp','dist','coverage']
    */
   patterns?: string | string[];
 
@@ -86,7 +86,7 @@ export interface CleanTaskOptions {
  */
 export const cleanTask = (options: CleanTaskOptions = {}): TaskFunction => {
   return async function cleanTaskFunction(): Promise<void> {
-    const { patterns = ['temp', 'dist'], cwd = process.cwd(), limit } = options;
+    const { patterns = ['temp', 'dist', 'coverage'], cwd = process.cwd(), limit } = options;
 
     const pool = new VerbosePool({ action: 'Cleaning', patterns, cwd });
     pool.logHeader();
