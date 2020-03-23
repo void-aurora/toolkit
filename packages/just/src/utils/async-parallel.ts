@@ -5,7 +5,7 @@
  */
 export async function asyncParallel<T>(
   actions: readonly (() => Promise<T>)[],
-  limit: number = 5,
+  limit: number = 8,
 ): Promise<T[]> {
   if (actions.length === 0) {
     return [];

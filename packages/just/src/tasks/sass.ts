@@ -9,7 +9,7 @@ import { default as _sass, Options as SassRenderOptions, Result as SassRenderRes
 import { default as _postcss } from 'postcss';
 import { default as _autoprefixer } from 'autoprefixer';
 
-import { tryRequire, pathsToString, replaceExtName, asyncParallel, VerbosePool } from '../utils';
+import { tryRequire, replaceExtName, asyncParallel, VerbosePool, pathsToString } from '../utils';
 
 function defaultSassRenderOptions(cwd: string): SassRenderOptions {
   return {
@@ -85,14 +85,13 @@ export interface SassTaskOptions {
  */
 export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
   return async function sassTaskFunction(): Promise<void> {
-    const sass: typeof _sass = tryRequire('sass');
-    const postcss: typeof _postcss = tryRequire('postcss');
-    const autoprefixer: typeof _autoprefixer = tryRequire('autoprefixer');
+    const sass = tryRequire<typeof _sass>('sass');
+    const postcss = tryRequire<typeof _postcss>('postcss');
+    const autoprefixer = tryRequire<typeof _autoprefixer>('autoprefixer');
 
     if (!sass || !postcss || !autoprefixer) {
-      logger.warn(
-        'One of packages [sass(dart-sass), postcss, autoprefixer] is not installed, so this task has no effect.',
-      );
+      const packages = pathsToString(['sass', 'postcss', 'autoprefixer']);
+      logger.warn(`One of packages ${packages} is not installed, so this task has no effect.`);
       return;
     }
 

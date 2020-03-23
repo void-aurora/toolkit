@@ -1,7 +1,8 @@
 import { resolve } from 'just-task';
 
+export function tryRequire<T>(specifier: string): T | null;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function tryRequire(specifier: string): any | null {
+export function tryRequire(specifier: string): any {
   const resolved = resolve(specifier);
 
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions

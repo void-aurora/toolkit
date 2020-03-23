@@ -62,7 +62,7 @@ export interface MinifyCSSTaskOptions {
 export const minifyCssTask = (options: MinifyCSSTaskOptions = {}): TaskFunction => {
   return async function minifyCssTaskFunction(): Promise<void> {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    const CleanCSS: typeof _CleanCSS = tryRequire('clean-css');
+    const CleanCSS = tryRequire<typeof _CleanCSS>('clean-css');
 
     if (!CleanCSS) {
       logger.warn('clean-css is not installed, so this task has no effect.');

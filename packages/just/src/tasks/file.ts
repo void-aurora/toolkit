@@ -2,7 +2,7 @@ import pth from 'path';
 import fse from 'fs-extra';
 import globby from 'globby';
 import { TaskFunction, logger, clearCache } from 'just-task';
-import { asyncParallel, VerbosePool } from '../utils';
+import { asyncParallel, VerbosePool, pathsToString } from '../utils';
 
 export interface CopyTaskOptions {
   /**
@@ -40,7 +40,10 @@ export const copyTask = (options: CopyTaskOptions): TaskFunction => {
     const { patterns = '*', from, to, cwd = process.cwd(), limit } = options;
 
     if (pth.resolve(cwd, from) === pth.resolve(cwd, to)) {
-      logger.warn(`Same path between \`from\` and \`to\`, so this task has no effect.`);
+      const pathText = pathsToString(from);
+      logger.warn(
+        `Options \`from\` and \`to\` have the same path ${pathText}, so this task has no effect.`,
+      );
       return;
     }
 
