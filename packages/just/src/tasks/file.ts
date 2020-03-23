@@ -47,7 +47,11 @@ export const copyTask = (options: CopyTaskOptions): TaskFunction => {
     const pool = new VerbosePool({ action: 'Copying', patterns, input: from, output: to, cwd });
     pool.logHeader();
 
-    const paths = await globby(patterns, { cwd: pth.resolve(cwd, from) });
+    const paths = await globby(patterns, {
+      cwd: pth.resolve(cwd, from),
+      expandDirectories: false,
+      onlyFiles: false,
+    });
     const actions = paths.map(path => async () => {
       const src = pth.resolve(cwd, from, path);
       const dest = pth.resolve(cwd, to, path);
@@ -87,7 +91,11 @@ export const cleanTask = (options: CleanTaskOptions = {}): TaskFunction => {
     const pool = new VerbosePool({ action: 'Cleaning', patterns, cwd });
     pool.logHeader();
 
-    const paths = await globby(patterns, { cwd, onlyDirectories: false, onlyFiles: false });
+    const paths = await globby(patterns, {
+      cwd,
+      expandDirectories: false,
+      onlyFiles: false,
+    });
     const actions = paths.map(path => async () => {
       await fse.remove(pth.resolve(cwd, path));
     });
