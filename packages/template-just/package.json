@@ -9,7 +9,8 @@
     "url": "git+https://github.com/void-aurora/toolkit.git"
   },
   "version": "0.1.0",
-  "main": "dist/style/template-just.css",
+  "main": "index.js",
+  "module": "dist/template-just.esm",
   "files": [
     "dist",
     "src"
@@ -23,14 +24,12 @@
   },
   "sideEffects": false,
   "types": "dist/esm/index.d.ts",
+  "dependencies": {
+    "axios": "^0.19.2"
+  },
   "devDependencies": {
-    "@types/autoprefixer": "^9.7.1",
-    "@types/sass": "^1.16.0",
-    "@void-aurora/just": "*",
-    "autoprefixer": "^9.7.4",
-    "postcss": "^7.0.27",
-    "sass": "^1.26.3"
+    "@void-aurora/just": "*"
   },
   "sass": "sass/template-just.scss",
-  "style": "dist/style/template-just.css"
+  "style": "dist/template-just.css"
 }

@@ -1,0 +1,6 @@
+{
+  "names": ["Alice", "Bob"],
+  "foo": "bar",
+  "flag": true,
+  "amount": 1024
+}
