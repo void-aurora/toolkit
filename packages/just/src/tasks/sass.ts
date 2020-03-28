@@ -1,7 +1,7 @@
 import pth from 'path';
 import fse from 'fs-extra';
 import globby from 'globby';
-import { TaskFunction, logger } from 'just-task';
+import { TaskFunction } from 'just-task';
 
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-named-default */
@@ -9,7 +9,13 @@ import { default as _sass, Options as SassRenderOptions, Result as SassRenderRes
 import { default as _postcss } from 'postcss';
 import { default as _autoprefixer } from 'autoprefixer';
 
-import { tryRequire, replaceExtName, asyncParallel, VerbosePool, pathsToString } from '../utils';
+import {
+  tryRequireMulti,
+  logMissingPackages,
+  replaceExtName,
+  asyncParallel,
+  VerbosePool,
+} from '../utils';
 
 function defaultSassRenderOptions(cwd: string): SassRenderOptions {
   return {
@@ -85,13 +91,21 @@ export interface SassTaskOptions {
  */
 export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
   return async function sassTaskFunction(): Promise<void> {
-    const sass = tryRequire<typeof _sass>('sass');
-    const postcss = tryRequire<typeof _postcss>('postcss');
-    const autoprefixer = tryRequire<typeof _autoprefixer>('autoprefixer');
+    const {
+      missing,
+      packages: { sass, postcss, autoprefixer },
+    } = tryRequireMulti<{
+      sass: typeof _sass;
+      postcss: typeof _postcss;
+      autoprefixer: typeof _autoprefixer;
+    }>({
+      sass: 'sass',
+      postcss: 'postcss',
+      autoprefixer: 'autoprefixer',
+    });
 
-    if (!sass || !postcss || !autoprefixer) {
-      const packages = pathsToString(['sass', 'postcss', 'autoprefixer']);
-      logger.warn(`One of packages ${packages} is not installed, so this task has no effect.`);
+    if (missing.length > 0) {
+      logMissingPackages(missing);
       return;
     }
 

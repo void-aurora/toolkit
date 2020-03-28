@@ -1,20 +1,16 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import pth from 'path';
 import fse from 'fs-extra';
 import globby from 'globby';
-import chalk from 'chalk';
-import { TaskFunction, logger } from 'just-task';
+import { TaskFunction } from 'just-task';
 
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-named-default */
-import {
-  default as _CleanCSS,
-  Options as CleanCSSOptions,
-  Output as CleanCSSOutput,
-} from 'clean-css';
+import { default as _CleanCSS, Options as CleanCSSOptions } from 'clean-css';
 
 import {
-  tryRequire,
-  pathsToString,
+  tryRequireMulti,
+  logMissingPackages,
   trimDots,
   applyPostfix,
   asyncParallel,
@@ -62,10 +58,13 @@ export interface MinifyCSSTaskOptions {
 export const minifyCssTask = (options: MinifyCSSTaskOptions = {}): TaskFunction => {
   return async function minifyCssTaskFunction(): Promise<void> {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    const CleanCSS = tryRequire<typeof _CleanCSS>('clean-css');
+    const {
+      missing,
+      packages: { CleanCSS },
+    } = tryRequireMulti<{ CleanCSS: typeof _CleanCSS }>({ CleanCSS: 'clean-css' });
 
-    if (!CleanCSS) {
-      logger.warn('clean-css is not installed, so this task has no effect.');
+    if (missing.length > 0) {
+      logMissingPackages(missing);
       return;
     }
 
