@@ -35,7 +35,7 @@ export function pathsToString(
 
   switch (typeof paths) {
     case 'undefined':
-      return "''";
+      return `''`;
 
     case 'string':
       array.push(paths.trim());
@@ -50,11 +50,13 @@ export function pathsToString(
       break;
 
     default:
-      break;
+      throw new Error(
+        `Invalid value ${Object.prototype.toString.call(paths)} of the param 'paths'`,
+      );
   }
 
   if (array.length === 0) {
-    return "''";
+    return `''`;
   }
 
   if (array.length > 1) {

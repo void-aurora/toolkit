@@ -9,10 +9,6 @@ import {
   applyPrefix,
 } from '../../src/utils/file-system';
 
-function sep(path: string): string {
-  return path.replace(/\\|\//g, pth.sep);
-}
-
 describe('utils/file-system.ts', () => {
   test('isDirectory', async () => {
     expect(await isDirectory(__dirname)).toEqual(true);
@@ -43,19 +39,52 @@ describe('utils/file-system.ts', () => {
   test('pathsToString', () => {
     expect(pathsToString('')).toEqual(`''`);
     expect(pathsToString([])).toEqual(`''`);
+    expect(pathsToString({})).toEqual(`''`);
+    expect(pathsToString(undefined)).toEqual(`''`);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect(() => pathsToString(0 as any)).toThrow(
+      `Invalid value [object Number] of the param 'paths'`,
+    );
 
     expect(pathsToString('/foo/bar')).toEqual("'/foo/bar'");
+
     expect(pathsToString(['/foo/bar'])).toEqual("'/foo/bar'");
     expect(pathsToString(['/foo/bar', '/bar/foo'])).toEqual("['/foo/bar', '/bar/foo']");
 
-    expect(pathsToString('/foo/bar', '/foo')).toEqual(sep("'bar'"));
-    expect(pathsToString('/bar/bar', '/foo')).toEqual(sep("'../bar/bar'"));
+    expect(pathsToString({ foobar: '/foo/bar' })).toEqual("'/foo/bar'");
+    expect(pathsToString({ foo: '/foo/bar', bar: '/bar/foo' })).toEqual("['/foo/bar', '/bar/foo']");
+
+    expect(pathsToString('/foo/bar', '/foo')).toEqual("'bar'");
+    expect(pathsToString('/bar/bar', '/foo')).toEqual("'../bar/bar'");
+
     expect(pathsToString(['/foo/bar', '/foo/barbar', '/foo/foo'], '/foo')).toEqual(
       "['bar', 'barbar', 'foo']",
     );
     expect(pathsToString(['/foo/bar', '/foo/barbar', '/foo/foo', '/bar/foo'], '/foo')).toEqual(
-      sep("['bar', 'barbar', 'foo', '../bar/foo']"),
+      "['bar', 'barbar', 'foo', '../bar/foo']",
     );
+
+    expect(
+      pathsToString(
+        {
+          foobar: '/foo/bar',
+          foobarbar: '/foo/barbar',
+          foofoo: '/foo/foo',
+        },
+        '/foo',
+      ),
+    ).toEqual("['bar', 'barbar', 'foo']");
+    expect(
+      pathsToString(
+        {
+          foobar: '/foo/bar',
+          foobarbar: '/foo/barbar',
+          foofoo: '/foo/foo',
+          barfoo: '/bar/foo',
+        },
+        '/foo',
+      ),
+    ).toEqual("['bar', 'barbar', 'foo', '../bar/foo']");
   });
 
   test('trimDots', () => {
@@ -75,36 +104,32 @@ describe('utils/file-system.ts', () => {
   });
 
   test('replaceExtName', () => {
-    expect(replaceExtName('foobar.foo', 'bar')).toEqual(sep('foobar.bar'));
-    expect(replaceExtName('foobar.foo', '.bar')).toEqual(sep('foobar.bar'));
-    expect(replaceExtName('/foo/bar/foobar.foo', 'bar')).toEqual(sep('/foo/bar/foobar.bar'));
-    expect(replaceExtName('/foo/bar/foobar.foo', '.bar')).toEqual(sep('/foo/bar/foobar.bar'));
-    expect(replaceExtName('../foo/foobar.foo', 'bar')).toEqual(sep('../foo/foobar.bar'));
-    expect(replaceExtName('../bar/foobar.foo', '.bar')).toEqual(sep('../bar/foobar.bar'));
+    expect(replaceExtName('foobar.foo', 'bar')).toEqual('foobar.bar');
+    expect(replaceExtName('foobar.foo', '.bar')).toEqual('foobar.bar');
+    expect(replaceExtName('/foo/bar/foobar.foo', 'bar')).toEqual('/foo/bar/foobar.bar');
+    expect(replaceExtName('/foo/bar/foobar.foo', '.bar')).toEqual('/foo/bar/foobar.bar');
+    expect(replaceExtName('../foo/foobar.foo', 'bar')).toEqual('../foo/foobar.bar');
+    expect(replaceExtName('../bar/foobar.foo', '.bar')).toEqual('../bar/foobar.bar');
 
-    expect(replaceExtName('foobar.foo', 'min.bar')).toEqual(sep('foobar.min.bar'));
-    expect(replaceExtName('foobar.foo', '.min.bar')).toEqual(sep('foobar.min.bar'));
-    expect(replaceExtName('/foo/bar/foobar.foo', 'min.bar')).toEqual(
-      sep('/foo/bar/foobar.min.bar'),
-    );
-    expect(replaceExtName('/foo/bar/foobar.foo', '.min.bar')).toEqual(
-      sep('/foo/bar/foobar.min.bar'),
-    );
-    expect(replaceExtName('../foo/foobar.foo', 'min.bar')).toEqual(sep('../foo/foobar.min.bar'));
-    expect(replaceExtName('../bar/foobar.foo', '.min.bar')).toEqual(sep('../bar/foobar.min.bar'));
+    expect(replaceExtName('foobar.foo', 'min.bar')).toEqual('foobar.min.bar');
+    expect(replaceExtName('foobar.foo', '.min.bar')).toEqual('foobar.min.bar');
+    expect(replaceExtName('/foo/bar/foobar.foo', 'min.bar')).toEqual('/foo/bar/foobar.min.bar');
+    expect(replaceExtName('/foo/bar/foobar.foo', '.min.bar')).toEqual('/foo/bar/foobar.min.bar');
+    expect(replaceExtName('../foo/foobar.foo', 'min.bar')).toEqual('../foo/foobar.min.bar');
+    expect(replaceExtName('../bar/foobar.foo', '.min.bar')).toEqual('../bar/foobar.min.bar');
   });
 
   test('applyPostfix', () => {
-    expect(applyPostfix('foobar.txt', 'min')).toEqual(sep('foobar.min.txt'));
-    expect(applyPostfix('foobar.txt', 'min', '-')).toEqual(sep('foobar-min.txt'));
-    expect(applyPostfix('/foo/bar.txt', 'min')).toEqual(sep('/foo/bar.min.txt'));
-    expect(applyPostfix('/foo/bar.txt', 'min', '-')).toEqual(sep('/foo/bar-min.txt'));
+    expect(applyPostfix('foobar.txt', 'min')).toEqual('foobar.min.txt');
+    expect(applyPostfix('foobar.txt', 'min', '-')).toEqual('foobar-min.txt');
+    expect(applyPostfix('/foo/bar.txt', 'min')).toEqual('/foo/bar.min.txt');
+    expect(applyPostfix('/foo/bar.txt', 'min', '-')).toEqual('/foo/bar-min.txt');
   });
 
   test('applyPrefix', () => {
-    expect(applyPrefix('foobar.txt', 'global')).toEqual(sep('global.foobar.txt'));
-    expect(applyPrefix('foobar.txt', 'global', '-')).toEqual(sep('global-foobar.txt'));
-    expect(applyPrefix('/foo/bar.txt', 'global')).toEqual(sep('/foo/global.bar.txt'));
-    expect(applyPrefix('/foo/bar.txt', 'global', '-')).toEqual(sep('/foo/global-bar.txt'));
+    expect(applyPrefix('foobar.txt', 'global')).toEqual('global.foobar.txt');
+    expect(applyPrefix('foobar.txt', 'global', '-')).toEqual('global-foobar.txt');
+    expect(applyPrefix('/foo/bar.txt', 'global')).toEqual('/foo/global.bar.txt');
+    expect(applyPrefix('/foo/bar.txt', 'global', '-')).toEqual('/foo/global-bar.txt');
   });
 });
