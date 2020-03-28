@@ -21,7 +21,9 @@ jobs:
           - ubuntu-latest
           - macos-latest
           - windows-latest
-        node-version: [10, 12, 13]
+        node-version:
+          - 12.x
+          - 13.x
     runs-on: ${{ matrix.os }}
     steps:
       # - name: Powershell set-executionPolicy unrestricted
