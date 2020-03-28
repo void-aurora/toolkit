@@ -1,8 +1,9 @@
 import pth from 'path';
 import fse from 'fs-extra';
 import globby from 'globby';
+import chalk from 'chalk';
 import { TaskFunction, logger, clearCache } from 'just-task';
-import { asyncParallel, VerbosePool, pathsToString } from '../utils';
+import { asyncParallel, pathsToString } from '../utils';
 
 export interface CopyTaskOptions {
   /**
@@ -37,9 +38,11 @@ export interface CopyTaskOptions {
  */
 export const copyTask = (options: CopyTaskOptions): TaskFunction => {
   return async function copyTaskFunction(): Promise<void> {
-    const { patterns = '*', from, to, cwd = process.cwd(), limit } = options;
+    const { patterns = '*', from: fromRaw, to: toRaw, cwd = process.cwd(), limit } = options;
+    const from = pth.resolve(cwd, fromRaw);
+    const to = pth.resolve(cwd, toRaw);
 
-    if (pth.resolve(cwd, from) === pth.resolve(cwd, to)) {
+    if (from === to) {
       const pathText = pathsToString(from);
       logger.warn(
         `Options \`from\` and \`to\` have the same path ${pathText}, so this task has no effect.`,
@@ -47,19 +50,24 @@ export const copyTask = (options: CopyTaskOptions): TaskFunction => {
       return;
     }
 
-    const pool = new VerbosePool({ action: 'Copying', patterns, input: from, output: to, cwd });
-    pool.logHeader();
+    logger.verbose(
+      '[copy]',
+      chalk.cyanBright(patterns),
+      chalk.greenBright(from),
+      '→',
+      chalk.greenBright(to),
+    );
 
     const paths = await globby(patterns, {
-      cwd: pth.resolve(cwd, from),
+      cwd: from,
       expandDirectories: false,
       onlyFiles: false,
     });
     const actions = paths.map(path => async () => {
-      const src = pth.resolve(cwd, from, path);
-      const dest = pth.resolve(cwd, to, path);
+      const src = pth.resolve(from, path);
+      const dest = pth.resolve(to, path);
       await fse.copyFile(src, dest);
-      pool.addVerbose({ inputFile: src, outputFile: dest });
+      logger.verbose('[copy]', 'created', chalk.greenBright(dest));
     });
 
     await asyncParallel(actions, limit);
@@ -91,8 +99,7 @@ export const cleanTask = (options: CleanTaskOptions = {}): TaskFunction => {
   return async function cleanTaskFunction(): Promise<void> {
     const { patterns = ['temp', 'dist', 'coverage'], cwd = process.cwd(), limit } = options;
 
-    const pool = new VerbosePool({ action: 'Cleaning', patterns, cwd });
-    pool.logHeader();
+    logger.verbose('[clean]', chalk.cyanBright(patterns), 'in', chalk.greenBright(cwd));
 
     const paths = await globby(patterns, {
       cwd,

@@ -1,7 +1,8 @@
 import pth from 'path';
 import fse from 'fs-extra';
 import globby from 'globby';
-import { TaskFunction } from 'just-task';
+import chalk from 'chalk';
+import { TaskFunction, logger } from 'just-task';
 
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-named-default */
@@ -9,19 +10,7 @@ import { default as _sass, Options as SassRenderOptions, Result as SassRenderRes
 import { default as _postcss } from 'postcss';
 import { default as _autoprefixer } from 'autoprefixer';
 
-import {
-  tryRequireMulti,
-  logMissingPackages,
-  replaceExtName,
-  asyncParallel,
-  VerbosePool,
-} from '../utils';
-
-function defaultSassRenderOptions(cwd: string): SassRenderOptions {
-  return {
-    includePaths: [pth.resolve(cwd, 'node_modules')],
-  };
-}
+import { tryRequireMulti, logMissingPackages, replaceExtName, asyncParallel } from '../utils';
 
 async function sassAsyncRender(
   sass: typeof _sass,
@@ -111,16 +100,18 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
 
     const {
       patterns = '**/*.scss',
-      input = 'sass',
-      output = 'dist',
+      input: inputRaw = 'sass',
+      output: outputRaw = 'dist',
       cwd = process.cwd(),
       limit,
       sassRenderOptions: sassRenderOptionsRaw = {},
       useAutoprefixer = true,
       postcssPlugins = [],
     } = options;
+    const input = pth.resolve(cwd, inputRaw);
+    const output = pth.resolve(cwd, outputRaw);
     const sassRenderOptions = {
-      ...defaultSassRenderOptions(cwd),
+      includePaths: [pth.resolve(cwd, 'node_modules')],
       ...sassRenderOptionsRaw,
     };
     const postcssProcessor = postcss([
@@ -128,15 +119,20 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
       ...postcssPlugins,
     ]);
 
-    const pool = new VerbosePool({ action: 'Compiling Sass', patterns, input, output, cwd });
-    pool.logHeader();
+    logger.verbose(
+      '[sass]',
+      chalk.cyanBright(patterns),
+      chalk.greenBright(input),
+      '→',
+      chalk.greenBright(output),
+    );
 
-    const paths = await globby(patterns, { cwd: pth.resolve(cwd, input), onlyFiles: true });
+    const paths = await globby(patterns, { cwd: input, onlyFiles: true });
     const actions = paths
       .filter(path => !pth.basename(path).startsWith('_'))
       .map(path => async () => {
-        const inputFile = pth.resolve(cwd, input, path);
-        const outputFile = pth.resolve(cwd, output, replaceExtName(path, '.css'));
+        const inputFile = pth.resolve(input, path);
+        const outputFile = pth.resolve(output, replaceExtName(path, '.css'));
 
         const sassResult = await sassAsyncRender(sass, {
           ...sassRenderOptions,
@@ -146,7 +142,7 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
         const postcssResult = await postcssProcessor.process(css, { from: inputFile });
 
         await fse.outputFile(outputFile, postcssResult.css);
-        pool.addVerbose({ inputFile, outputFile });
+        logger.verbose('[sass]', 'created', chalk.greenBright(outputFile));
       });
 
     await asyncParallel(actions, limit);

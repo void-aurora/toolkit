@@ -2,7 +2,8 @@
 import pth from 'path';
 import fse from 'fs-extra';
 import globby from 'globby';
-import { TaskFunction } from 'just-task';
+import chalk from 'chalk';
+import { TaskFunction, logger } from 'just-task';
 
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-named-default */
@@ -14,7 +15,6 @@ import {
   trimDots,
   applyPostfix,
   asyncParallel,
-  VerbosePool,
 } from '../utils';
 
 export interface MinifyCSSTaskOptions {
@@ -70,42 +70,45 @@ export const minifyCssTask = (options: MinifyCSSTaskOptions = {}): TaskFunction 
 
     const {
       patterns = '**/*.css',
-      input = 'dist',
-      output = 'dist',
+      input: inputRaw = 'dist',
+      output: outputRaw = 'dist',
       cwd = process.cwd(),
       limit,
       postfix: postfixRaw = 'min',
       cleanCssOptions = {},
     } = options;
+    const input = pth.resolve(cwd, inputRaw);
+    const output = pth.resolve(cwd, outputRaw);
     const postfix = trimDots(postfixRaw);
 
-    const cleanCSS = new CleanCSS({ ...cleanCssOptions, returnPromise: true });
-
-    if ((postfix === undefined || postfix === '') && input === output) {
+    if (postfix === '' && inputRaw === outputRaw) {
       throw new Error(
         `The option 'postfix' can't be empty while 'input' and 'output' is the same directory.`,
       );
     }
 
-    const pool = new VerbosePool({ action: 'Minifying CSS', patterns, input, output, cwd });
-    pool.logHeader();
+    logger.verbose(
+      '[clean-css]',
+      chalk.cyanBright(patterns),
+      chalk.greenBright(input),
+      '→',
+      chalk.greenBright(output),
+    );
 
-    const paths = await globby(patterns, { cwd: pth.resolve(cwd, input), onlyFiles: true });
+    const cleanCSS = new CleanCSS({ ...cleanCssOptions, returnPromise: true });
+
+    const paths = await globby(patterns, { cwd: input, onlyFiles: true });
     const actions = paths
       .filter(path => !pth.basename(path, pth.extname(path)).endsWith(postfix))
       .map(path => async () => {
-        const inputFile = pth.resolve(cwd, input, path);
-        const outputFile = pth.resolve(cwd, output, applyPostfix(path, postfix));
+        const inputFile = pth.resolve(input, path);
+        const outputFile = pth.resolve(output, applyPostfix(path, postfix));
 
         const src = await fse.readFile(inputFile, 'utf-8');
-        const { styles, stats } = await cleanCSS.minify(src);
+        const { styles } = await cleanCSS.minify(src);
 
         await fse.outputFile(outputFile, styles);
-        pool.addVerbose({
-          inputFile,
-          outputFile,
-          stats: VerbosePool.renderStatsCleanCSS(stats),
-        });
+        logger.verbose('[clean-css]', 'created', chalk.greenBright(outputFile));
       });
 
     await asyncParallel(actions, limit);
