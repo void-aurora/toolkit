@@ -17,7 +17,7 @@ import {
   asyncParallel,
 } from '../utils';
 
-export interface MinifyCSSTaskOptions {
+export interface CleanCssTaskOptions {
   /**
    * Glob patterns to search files.
    * @default '**\/*.css'
@@ -55,7 +55,7 @@ export interface MinifyCSSTaskOptions {
 /**
  * Minify CSS with `clean-css`.
  */
-export const minifyCssTask = (options: MinifyCSSTaskOptions = {}): TaskFunction => {
+export const cleanCssTask = (options: CleanCssTaskOptions = {}): TaskFunction => {
   return async function minifyCssTaskFunction(): Promise<void> {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     const {

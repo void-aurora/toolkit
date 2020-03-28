@@ -16,10 +16,10 @@
     "src"
   ],
   "scripts": {
-    "build": "just build --verbose",
-    "clean": "just clean --verbose",
+    "build": "just build",
+    "clean": "just clean",
     "just": "just",
-    "prepare": "just prepare --verbose",
+    "prepare": "just prepare",
     "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
   },
   "sideEffects": false,

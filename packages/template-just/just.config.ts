@@ -5,7 +5,7 @@ import {
   parallel,
   cleanTask,
   sassTask,
-  minifyCssTask,
+  cleanCssTask,
   RollupTypeScriptTaskPreset,
   RollupTypeScriptTaskEnv,
   rollupTypeScriptTask,
@@ -29,7 +29,7 @@ task('clean', cleanTask());
 
 task('compile:sass', sassTask());
 
-task('minify:css', minifyCssTask());
+task('minify:css', cleanCssTask());
 
 task('build:style', series('compile:sass', 'minify:css'));
 
