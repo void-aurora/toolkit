@@ -9,6 +9,7 @@ import {
   RollupTypeScriptTaskPreset,
   RollupTypeScriptTaskEnv,
   rollupTypeScriptTask,
+  checkSizeTask,
 } from '@void-aurora/just';
 
 import pkg from './package.json';
@@ -68,6 +69,8 @@ task('build:modules', parallel(...rollupTasks));
 // ================
 // Build
 
+task('check-size', checkSizeTask());
+
 task('build', parallel('build:styles', 'build:modules'));
 
-task('prepare', series('clean', 'build'));
+task('prepare', series('clean', 'build', 'check-size'));
