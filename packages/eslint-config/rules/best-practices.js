@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 module.exports = {
   rules: {
     // enforce getter and setter pairs in objects and classes
@@ -18,7 +19,7 @@ module.exports = {
 
     // enforce a maximum cyclomatic complexity allowed in a program
     // https://eslint.org/docs/rules/complexity
-    complexity: ['error', { max: 11 }],
+    complexity: ['error', { max: 16 }],
 
     // require `return` statements to either always or never specify values
     // https://eslint.org/docs/rules/consistent-return
