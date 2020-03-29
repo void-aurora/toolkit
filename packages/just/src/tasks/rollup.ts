@@ -26,6 +26,28 @@ import {
   pathsToString,
 } from '../utils';
 
+async function rollupBuild(
+  rollup: typeof _rollup,
+  inputOptions: _rollup.InputOptions,
+  outputOptions: _rollup.OutputOptions[],
+): Promise<_rollup.RollupBuild> {
+  logger.verbose(
+    '[rollup]',
+    chalk.greenBright(pathsToString(inputOptions.input)),
+    '→',
+    chalk.greenBright(pathsToString(outputOptions.map(opts => opts.file as string))),
+  );
+
+  const bundle = await rollup.rollup(inputOptions);
+  await Promise.all(
+    outputOptions.map(async output => {
+      await bundle.write(output);
+      logger.verbose('[rollup]', 'created', chalk.greenBright(output.file));
+    }),
+  );
+  return bundle;
+}
+
 export interface RollupTaskOptions {
   inputOptions: _rollup.InputOptions;
   outputOptions: _rollup.OutputOptions | _rollup.OutputOptions[];
@@ -50,48 +72,67 @@ export const rollupTask = (options: RollupTaskOptions): TaskFunction => {
     const { inputOptions, outputOptions: outputOptionsRaw } = options;
     const outputOptions = normalizeArray(outputOptionsRaw);
 
-    logger.verbose(
-      '[rollup]',
-      chalk.greenBright(pathsToString(inputOptions.input)),
-      '→',
-      chalk.greenBright(pathsToString(outputOptions.map(opts => opts.file as string))),
-    );
-
-    const bundle = await rollup.rollup(inputOptions);
-    await Promise.all(
-      outputOptions.map(async output => {
-        await bundle.write(output);
-        logger.verbose('[rollup]', 'created', chalk.greenBright(output.file));
-      }),
-    );
+    await rollupBuild(rollup, inputOptions, outputOptions);
   };
 };
 
-const presetFormatMap = {
+export type RollupTypeScriptTaskPreset = 'cjs' | 'esm' | 'esm-browser' | 'global';
+
+const presetFormatMap: Record<RollupTypeScriptTaskPreset, _rollup.ModuleFormat> = {
   cjs: 'cjs',
   esm: 'es',
   'esm-browser': 'es',
   global: 'iife',
-} as const;
+};
 
-type PresetFormatMap = typeof presetFormatMap;
-
-export type RollupTypeScriptTaskPreset = keyof PresetFormatMap;
-
-export type RollupTypeScriptTaskEnv = 'dev' | 'prod';
+export type RollupTypeScriptTaskEnv = 'dev' | 'prod' | 'development' | 'production';
 
 export interface RollupTypeScriptTaskOptions {
+  /**
+   * The path to the input fil.
+   * @default 'src/index.ts'
+   */
   input: string;
+
+  /**
+   * Tha path to the output file.
+   * @default 'dist/index.js'
+   */
   output: string;
+
+  /**
+   * The current working directory in which to search.
+   */
   cwd?: string;
 
+  /**
+   * Preset name.
+   *
+   * - `cjs`: output CommonJS modules for node.js
+   * - `esm`: output ES modules for bundler tools (like webpack, rollup and parcel), excludes all external modules automatically.
+   * - `esm-browser`: output ES modules for browser, inline all external modules automatically.
+   * - `global`: output **iife** modules for browser, need to provide the option `exportsName` for rollup output `name`, inline all external modules automatically.
+   *
+   * The external detector could be override by the option `inputOptionsOverride`.
+   */
   preset: RollupTypeScriptTaskPreset;
+
+  /**
+   * Specify output for development or production.
+   *
+   * - `dev`: output with source map.
+   * - `prod`: the output will be minified via `terser`.
+   *
+   * `__DEV__` and `__PROD__` will be automatically replaced with boolean value,
+   * could be override with `rollupReplaceOptions.values`
+   */
   env: RollupTypeScriptTaskEnv;
 
   /**
-   *
+   * Postfix append to basename of files, default value is the options `${preset}.${env}`
+   * Set to `false` to disable postfix.
    */
-  postfix?: string;
+  postfix?: string | false;
 
   /**
    * Global exports name.
@@ -99,9 +140,14 @@ export interface RollupTypeScriptTaskOptions {
   exportsName?: string;
 
   /**
-   * Specify packages witch excludes to rollup.
+   * Overrides rollup options except `input` and `plugins`.
    */
-  external?: _rollup.ExternalOption;
+  inputOptionsOverride?: _rollup.InputOptions;
+
+  /**
+   * Overrides rollup options except `file`.
+   */
+  outputOptionsOverride?: _rollup.OutputOptions;
 
   /**
    * Extra rollup plugins to append.
@@ -114,16 +160,17 @@ export interface RollupTypeScriptTaskOptions {
   rollupReplaceOptions?: _rollupReplace.RollupReplaceOptions;
   rollupTypeScript2Options?: TsPartial<TsIOptions>;
   rollupTerserOptions?: _rollupTerser.Options;
-
-  inputOptionsOverride?: _rollup.InputOptions;
-  outputOptionsOverride?: _rollup.OutputOptions;
 }
 
+/**
+ * Creates a just task with the specified preset.
+ */
 export const rollupTypeScriptTask = (options: RollupTypeScriptTaskOptions): TaskFunction => {
   return async function rollupTypeScriptTaskFunction(): Promise<void> {
     const {
       missing,
       packages: {
+        rollup,
         rollupNodeResolve,
         rollupCommonJS,
         rollupJson,
@@ -163,8 +210,9 @@ export const rollupTypeScriptTask = (options: RollupTypeScriptTaskOptions): Task
       postfix,
 
       exportsName,
-      external,
 
+      inputOptionsOverride,
+      outputOptionsOverride,
       extraPlugins = [],
 
       rollupNodeResolveOptions,
@@ -173,72 +221,94 @@ export const rollupTypeScriptTask = (options: RollupTypeScriptTaskOptions): Task
       rollupReplaceOptions,
       rollupTypeScript2Options,
       rollupTerserOptions,
-
-      inputOptionsOverride,
-      outputOptionsOverride,
     } = options;
 
+    const isProd = env === 'prod' || env === 'production';
+    const isDev = !isProd;
+    const preferConst = true;
+
     const input = pth.resolve(cwd, inputRaw);
-    const output = pth.resolve(cwd, applyPostfix(outputRaw, `${preset}.${postfix ?? env}`));
+    const output = pth.resolve(
+      cwd,
+      postfix === false
+        ? outputRaw
+        : applyPostfix(
+            outputRaw,
+            postfix === undefined || postfix === '' ? `${preset}.${env}` : postfix,
+          ),
+    );
 
-    const task = rollupTask({
-      inputOptions: {
-        input,
-        external:
-          external ??
-          (preset === 'cjs' || preset === 'esm'
-            ? id => !id.startsWith('.') && !pth.isAbsolute(id)
-            : undefined),
-        ...inputOptionsOverride,
-        plugins: [
-          rollupNodeResolve({
-            preferBuiltins: true,
-            browser: true,
-            ...rollupNodeResolveOptions,
-          }),
-          rollupCommonJS(rollupCommonJSOptions),
+    const inputOptions: _rollup.InputOptions = {
+      external:
+        preset === 'cjs' || preset === 'esm'
+          ? id => !id.startsWith('.') && !pth.isAbsolute(id)
+          : undefined,
 
-          rollupJson({
-            preferConst: outputOptionsOverride?.preferConst ?? true,
-            ...rollupJsonOptions,
-          }),
+      ...inputOptionsOverride,
 
-          rollupTypeScript2({
-            cacheRoot: `node_modules/.rts2.cache/${inputRaw}/${preset}/${env}`,
-            ...rollupTypeScript2Options,
+      input,
 
-            tsconfigOverride: {
-              ...rollupTypeScript2Options?.tsconfigOverride,
-              compilerOptions: {
-                sourceMap: env === 'dev',
-                noEmit: false,
-                declaration: false,
-                declarationMap: false,
-                emitDeclarationOnly: false,
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                ...rollupTypeScript2Options?.tsconfigOverride?.compilerOptions,
-              },
+      plugins: [
+        rollupNodeResolve({
+          preferBuiltins: true,
+          browser: true,
+          ...rollupNodeResolveOptions,
+        }),
+
+        rollupCommonJS(rollupCommonJSOptions),
+
+        rollupJson({
+          preferConst: outputOptionsOverride?.preferConst ?? preferConst,
+          ...rollupJsonOptions,
+        }),
+
+        rollupTypeScript2({
+          cacheRoot: `node_modules/.rts2.cache/${inputRaw}/${preset}/${env}`,
+          ...rollupTypeScript2Options,
+
+          tsconfigOverride: {
+            ...rollupTypeScript2Options?.tsconfigOverride,
+            compilerOptions: {
+              sourceMap: env === 'dev',
+              noEmit: false,
+              declaration: false,
+              declarationMap: false,
+              emitDeclarationOnly: false,
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+              ...rollupTypeScript2Options?.tsconfigOverride?.compilerOptions,
             },
-          }),
+          },
+        }),
 
-          rollupReplace(rollupReplaceOptions),
+        rollupReplace({
+          ...rollupReplaceOptions,
+          values: {
+            /* eslint-disable */
+            __DEV__: `${isDev}`,
+            __PROD__: `${isProd}`,
+            /* eslint-enable  */
+            ...rollupReplaceOptions?.values,
+          },
+        }),
 
-          ...(preset !== 'cjs' && env === 'prod' ? [rollupTerser(rollupTerserOptions)] : []),
+        ...(preset !== 'cjs' && isProd ? [rollupTerser(rollupTerserOptions)] : []),
 
-          ...extraPlugins,
-        ],
-      },
-      outputOptions: {
-        file: output,
-        format: presetFormatMap[preset],
-        name: exportsName,
-        preferConst: true,
-        externalLiveBindings: false,
-        sourcemap: env === 'dev',
-        ...outputOptionsOverride,
-      },
-    });
+        ...extraPlugins,
+      ],
+    };
 
-    await (task as () => Promise<void>)();
+    const outputOptions: _rollup.OutputOptions = {
+      format: presetFormatMap[preset],
+      name: exportsName,
+      preferConst,
+      externalLiveBindings: false,
+      sourcemap: env === 'dev',
+
+      ...outputOptionsOverride,
+
+      file: output,
+    };
+
+    await rollupBuild(rollup, inputOptions, [outputOptions]);
   };
 };
