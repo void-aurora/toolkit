@@ -13,7 +13,7 @@ import {
 
 import pkg from './package.json';
 
-const unscopedName = pkg.name.replace(/^@[a-z0-9-]+\//, '');
+const unScopedName = pkg.name.replace(/^@[a-z0-9-]+\//, '');
 const exportsName = 'TemplateJust';
 const values = {
   __VERSION__: `'${pkg.version}'`,
@@ -25,16 +25,15 @@ const values = {
 task('clean', cleanTask());
 
 // ================
-// Style
+// Styles
 
-task('compile:sass', sassTask());
+task('sass:dev', sassTask({ env: 'dev' }));
+task('sass:prod', sassTask({ env: 'prod' }));
 
-task('minify:css', cleanCssTask());
-
-task('build:style', series('compile:sass', 'minify:css'));
+task('build:styles', parallel('sass:dev', 'sass:prod'));
 
 // ================
-// Module
+// Modules
 
 const rollupTasks = [] as string[];
 
@@ -46,7 +45,7 @@ for (const preset of ['cjs', 'esm', 'esm-browser', 'global'] as RollupTypeScript
       name,
       rollupTypeScriptTask({
         input: 'src/index.ts',
-        output: `dist/${unscopedName}.js`,
+        output: `dist/${unScopedName}.js`,
         exportsName,
         preset,
         env,
@@ -69,6 +68,6 @@ task('build:modules', parallel(...rollupTasks));
 // ================
 // Build
 
-task('build', parallel('build:style', 'build:modules'));
+task('build', parallel('build:styles', 'build:modules'));
 
 task('prepare', series('clean', 'build'));

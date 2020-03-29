@@ -7,7 +7,7 @@ import { TaskFunction, logger } from 'just-task';
 
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-named-default */
-import { default as _CleanCSS, Options as CleanCSSOptions } from 'clean-css';
+import { default as _CleanCSS } from 'clean-css';
 
 import {
   tryRequireMulti,
@@ -49,7 +49,10 @@ export interface CleanCssTaskOptions {
    */
   postfix?: string;
 
-  cleanCssOptions?: CleanCSSOptions;
+  /**
+   * Options for `clean-css`
+   */
+  cleanCssOptions?: _CleanCSS.Options;
 }
 
 /**
@@ -87,6 +90,8 @@ export const cleanCssTask = (options: CleanCssTaskOptions = {}): TaskFunction =>
       );
     }
 
+    const cleanCSS = new CleanCSS({ ...cleanCssOptions, returnPromise: true });
+
     logger.verbose(
       '[clean-css]',
       chalk.cyanBright(patterns),
@@ -94,8 +99,6 @@ export const cleanCssTask = (options: CleanCssTaskOptions = {}): TaskFunction =>
       '→',
       chalk.greenBright(output),
     );
-
-    const cleanCSS = new CleanCSS({ ...cleanCssOptions, returnPromise: true });
 
     const paths = await globby(patterns, { cwd: input, onlyFiles: true });
     const actions = paths

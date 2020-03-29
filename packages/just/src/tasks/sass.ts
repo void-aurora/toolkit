@@ -6,16 +6,20 @@ import { TaskFunction, logger } from 'just-task';
 
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-named-default */
-import { default as _sass, Options as SassRenderOptions, Result as SassRenderResult } from 'sass';
+import { default as _sass } from 'sass';
 import { default as _postcss } from 'postcss';
 import { default as _autoprefixer } from 'autoprefixer';
+import { default as _CleanCSS } from 'clean-css';
 
-import { tryRequireMulti, logMissingPackages, replaceExtName, asyncParallel } from '../utils';
+import {
+  tryRequireMulti,
+  logMissingPackages,
+  replaceExtName,
+  asyncParallel,
+  applyPostfix,
+} from '../utils';
 
-async function sassAsyncRender(
-  sass: typeof _sass,
-  options: SassRenderOptions,
-): Promise<SassRenderResult> {
+async function sassRender(sass: typeof _sass, options: _sass.Options): Promise<_sass.Result> {
   return new Promise((resolve, reject) => {
     sass.render(options, (error, result) => {
       if (error) {
@@ -26,6 +30,8 @@ async function sassAsyncRender(
     });
   });
 }
+
+export type SassTaskEnv = 'dev' | 'prod' | 'development' | 'production';
 
 export interface SassTaskOptions {
   /**
@@ -51,13 +57,30 @@ export interface SassTaskOptions {
    */
   cwd?: string;
 
+  /**
+   * Specify output for development or production.
+   *
+   * - `dev`: output with source map.
+   * - `prod`: the output will be minified via `clean-css`.
+   *
+   * `__DEV__` and `__PROD__` will be automatically replaced with boolean value,
+   * could be override with `rollupReplaceOptions.values`
+   */
+  env: SassTaskEnv;
+
+  /**
+   * Postfix text append to basename of files, default value is the options `env`.
+   * Set to `false` to disable postfix.
+   */
+  postfix?: string | false;
+
   limit?: number;
 
   /**
    * The options for sass.render(), note that the property `file` will be ignore.\
    * By default, the task will resolve `node_modules` in `cwd` for `includePaths` automatically.
    */
-  sassRenderOptions?: SassRenderOptions;
+  sassRenderOptions?: _sass.Options;
 
   /**
    * Automatically uses `autoprefixer` in postcss or not.
@@ -66,10 +89,20 @@ export interface SassTaskOptions {
   useAutoprefixer?: boolean;
 
   /**
+   * Options for `autoprefixer`
+   */
+  autoprefixerOptions?: _autoprefixer.Options;
+
+  /**
    * Extra plugins of `postcss`.
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   postcssPlugins?: any[];
+
+  /**
+   * Options for `clean-css`
+   */
+  cleanCssOptions?: _CleanCSS.Options;
 }
 
 /**
@@ -78,20 +111,24 @@ export interface SassTaskOptions {
  * @requires postcss
  * @requires autoprefixer
  */
-export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
+export const sassTask = (options: SassTaskOptions): TaskFunction => {
   return async function sassTaskFunction(): Promise<void> {
+    /* eslint-disable @typescript-eslint/naming-convention */
     const {
       missing,
-      packages: { sass, postcss, autoprefixer },
+      packages: { sass, postcss, autoprefixer, CleanCSS },
     } = tryRequireMulti<{
       sass: typeof _sass;
       postcss: typeof _postcss;
       autoprefixer: typeof _autoprefixer;
+      CleanCSS: typeof _CleanCSS;
     }>({
       sass: 'sass',
       postcss: 'postcss',
       autoprefixer: 'autoprefixer',
+      CleanCSS: 'clean-css',
     });
+    /* eslint-enable @typescript-eslint/naming-convention */
 
     if (missing.length > 0) {
       logMissingPackages(missing);
@@ -103,19 +140,37 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
       input: inputRaw = 'sass',
       output: outputRaw = 'dist',
       cwd = process.cwd(),
+      env,
+      postfix,
       limit,
-      sassRenderOptions: sassRenderOptionsRaw = {},
+      sassRenderOptions: sassRenderOptionsRaw,
       useAutoprefixer = true,
+      autoprefixerOptions,
       postcssPlugins = [],
+      cleanCssOptions,
     } = options;
+
+    const isProd = env === 'prod' || env === 'production';
+    const isDev = !isProd;
+    let getOutputFile = (path: string): string => replaceExtName(path, '.css');
+    if (postfix === false) {
+      // noop
+    } else if (postfix === undefined || postfix === '') {
+      getOutputFile = path => applyPostfix(replaceExtName(path, '.css'), env);
+    } else {
+      getOutputFile = path => applyPostfix(replaceExtName(path, '.css'), postfix);
+    }
+
     const input = pth.resolve(cwd, inputRaw);
     const output = pth.resolve(cwd, outputRaw);
+
     const sassRenderOptions = {
       includePaths: [pth.resolve(cwd, 'node_modules')],
       ...sassRenderOptionsRaw,
     };
+
     const postcssProcessor = postcss([
-      ...(useAutoprefixer ? [autoprefixer] : []),
+      ...(useAutoprefixer ? [autoprefixer(autoprefixerOptions)] : []),
       ...postcssPlugins,
     ]);
 
@@ -132,16 +187,36 @@ export const sassTask = (options: SassTaskOptions = {}): TaskFunction => {
       .filter(path => !pth.basename(path).startsWith('_'))
       .map(path => async () => {
         const inputFile = pth.resolve(input, path);
-        const outputFile = pth.resolve(output, replaceExtName(path, '.css'));
+        const outputFile = pth.resolve(output, getOutputFile(path));
+        const mapFile = `${outputFile}.map`;
 
-        const sassResult = await sassAsyncRender(sass, {
+        const sassResult = await sassRender(sass, {
           ...sassRenderOptions,
           file: inputFile,
+          outFile: outputFile,
+          sourceMap: isDev,
+          sourceMapContents: isDev,
         });
-        const css = sassResult.css.toString();
-        const postcssResult = await postcssProcessor.process(css, { from: inputFile });
+        const postcssResult = await postcssProcessor.process(sassResult.css.toString(), {
+          from: inputFile,
+          to: outputFile,
+          map: isDev
+            ? {
+                prev: sassResult.map?.toString(),
+                sourcesContent: true,
+              }
+            : false,
+        });
 
-        await fse.outputFile(outputFile, postcssResult.css);
+        if (isDev) {
+          await fse.outputFile(outputFile, postcssResult.css);
+          await fse.outputFile(mapFile, postcssResult.map.toString());
+        } else {
+          const cleanCss = new CleanCSS({ ...cleanCssOptions, returnPromise: true });
+          const { styles } = await cleanCss.minify(postcssResult.css);
+          await fse.outputFile(outputFile, styles);
+        }
+
         logger.verbose('[sass]', 'created', chalk.greenBright(outputFile));
       });
 
