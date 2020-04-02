@@ -12,6 +12,10 @@
   "files": [
     "rules"
   ],
+  "scripts": {
+    "gen-scss": "pnpm run ts -- ./scripts/generate-scss-rules.ts",
+    "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
+  },
   "sideEffects": false,
   "peerDependencies": {
     "stylelint": "^13.2.1",
