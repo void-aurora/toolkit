@@ -121,11 +121,24 @@ module.exports = {
 
     // Require `!default` flag for `$`-variable declarations.
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-default/README.md
-    'scss/dollar-variable-default': null,
+    'scss/dollar-variable-default': [
+      true,
+      {
+        except: ['last-nested', 'before-dollar-variable'],
+      },
+    ],
+
+    // Require an empty line or disallow empty lines after `$`-variable declarations.,
+    // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-empty-line-after/README.md,
+    'scss/dollar-variable-empty-line-after': null,
 
     // Require a single empty line or disallow empty lines before `$`-variable declarations (Autofixable).
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-empty-line-before/README.md
     'scss/dollar-variable-empty-line-before': null,
+
+    // Require `$`-variable declarations to be placed first in a block (root or a rule).,
+    // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-first-in-block/README.md,
+    'scss/dollar-variable-first-in-block': null,
 
     // Disallow Sass variables that are used without interpolation with CSS features that use custom identifiers.
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-no-missing-interpolation/README.md
@@ -260,5 +273,9 @@ module.exports = {
     // Disallow duplicate mixins within a stylesheet.
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/no-duplicate-mixins/README.md
     'scss/no-duplicate-mixins': true,
+
+    // Disallows the use of global function names, as these global functions are now located inside built-in Sass modules.,
+    // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/no-global-function-names/README.md,
+    'scss/no-global-function-names': true,
   },
 };
