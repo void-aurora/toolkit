@@ -84,6 +84,10 @@ const rules = {
   // extends base rule
   // '@typescript-eslint/camelcase': 'error',
 
+  // Ensures that literals on classes are exposed in a consistent style
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/class-literal-property-style.md
+  '@typescript-eslint/class-literal-property-style': 'off',
+
   // Require PascalCased class and interface names
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/class-name-casing.md
   // deprecated, replace by: `['naming-convention']`

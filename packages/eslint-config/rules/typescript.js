@@ -99,6 +99,10 @@ const rules = {
   // extends base rule
   // '@typescript-eslint/camelcase': 'error',
 
+  // Ensures that literals on classes are exposed in a consistent style
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/class-literal-property-style.md
+  '@typescript-eslint/class-literal-property-style': 'off',
+
   // Require PascalCased class and interface names
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/class-name-casing.md
   // deprecated, replace by: `['naming-convention']`
@@ -286,7 +290,12 @@ const rules = {
 
   // Disallow usage of the `any` type
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-explicit-any.md
-  '@typescript-eslint/no-explicit-any': 'error',
+  '@typescript-eslint/no-explicit-any': [
+    'error',
+    {
+      ignoreRestArgs: true,
+    },
+  ],
 
   // Disallow extra non-null assertion
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extra-non-null-assertion.md
@@ -420,7 +429,7 @@ const rules = {
   // Warns if a type assertion does not change the type of an expression
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-type-assertion.md
   // requires type information
-  '@typescript-eslint/no-unnecessary-type-assertion': 'off',
+  '@typescript-eslint/no-unnecessary-type-assertion': 'error',
 
   // Disallows calling an any type value
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unsafe-call.md
