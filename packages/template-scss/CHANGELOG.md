@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.9](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-scss@1.1.8...@void-aurora/template-scss@1.1.9) (2020-04-02)
+
+### Bug Fixes
+
+- **template-scss:** add devDep prettier-config ([ab027c5](https://github.com/void-aurora/toolkit/commit/ab027c5856344626b8ee53aba24b528c4f231477))
+
 ## [1.1.8](https://github.com/void-aurora/toolkit/compare/@void-aurora/template-scss@1.1.7...@void-aurora/template-scss@1.1.8) (2020-03-14)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/stylelint-config@0.7.0...@void-aurora/stylelint-config@0.8.0) (2020-04-02)
+
+### Features
+
+- **stylelint-config:** update scss rules ([50e5143](https://github.com/void-aurora/toolkit/commit/50e51432d9e7a24c20a7c03efc8fccdc58e40d98))
+
 # [0.7.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/stylelint-config@0.6.7...@void-aurora/stylelint-config@0.7.0) (2020-03-17)
 
 ### Features

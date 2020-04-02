@@ -8,7 +8,7 @@
     "type": "git",
     "url": "git+https://github.com/void-aurora/toolkit.git"
   },
-  "version": "1.3.3",
+  "version": "1.3.4",
   "main": "dist/template-rollup.cjs.js",
   "module": "dist/template-rollup.esm.js",
   "files": [
