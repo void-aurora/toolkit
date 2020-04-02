@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 const gulp = require('gulp');
-const prettierOptions = require('../../prettier-config');
+const prettierOptions = require('@void-aurora/prettier-config');
 const plugins = require('./plugins');
 const config = require('./config');
 
