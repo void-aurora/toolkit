@@ -1,22 +1,23 @@
-// https://prettier.io/docs/en/options.html
+import { Options } from 'prettier';
 
-/**
- * @type {import('prettier').Options}
- */
-module.exports = {
+const options: Options = {
   printWidth: 100,
   tabWidth: 2,
   useTabs: false,
   semi: true,
   singleQuote: true,
-  quoteProps: 'as-needed',
   jsxSingleQuote: false,
   trailingComma: 'all',
   bracketSpacing: true,
   jsxBracketSameLine: false,
-  arrowParens: 'avoid',
+  rangeStart: 0,
+  rangeEnd: Infinity,
   proseWrap: 'preserve',
+  arrowParens: 'avoid',
   htmlWhitespaceSensitivity: 'css',
   endOfLine: 'lf',
+  quoteProps: 'as-needed',
   vueIndentScriptAndStyle: false,
 };
+
+export = options;

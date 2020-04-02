@@ -8,13 +8,18 @@
     "url": "git+https://github.com/void-aurora/toolkit.git"
   },
   "version": "0.5.4",
-  "main": "index.js",
+  "main": "dist/index.js",
   "files": [
-    "index.js"
+    "dist",
+    "src"
   ],
+  "scripts": {
+    "prepare": "tsc"
+  },
   "sideEffects": false,
+  "types": "dist/index.d.ts",
   "peerDependencies": {
-    "prettier": "^1.19.1"
+    "prettier": "^2.0.2"
   },
   "keywords": [
     "prettier",
