@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/void-aurora/toolkit/compare/@void-aurora/stylelint-config@0.8.0...@void-aurora/stylelint-config@0.8.1) (2020-04-03)
+
+**Note:** Version bump only for package @void-aurora/stylelint-config
+
 # [0.8.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/stylelint-config@0.7.0...@void-aurora/stylelint-config@0.8.0) (2020-04-02)
 
 ### Features

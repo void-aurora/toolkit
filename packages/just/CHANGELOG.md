@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/just@0.1.0...@void-aurora/just@0.2.0) (2020-04-03)
+
+### Features
+
+- **just:** task rollup add plugin alias ([758bef7](https://github.com/void-aurora/toolkit/commit/758bef778bd3fb9e216a6e87de3fd57a2f37e52a))
+
 # 0.1.0 (2020-04-02)
 
 ### Bug Fixes

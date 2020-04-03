@@ -8,7 +8,7 @@
     "type": "git",
     "url": "git+https://github.com/void-aurora/toolkit.git"
   },
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "index.js",
   "module": "dist/template-just.esm",
   "files": [
@@ -28,7 +28,7 @@
     "axios": "^0.19.2"
   },
   "devDependencies": {
-    "@void-aurora/just": "^0.1.0"
+    "@void-aurora/just": "^0.2.0"
   },
   "sass": "sass/template-just.scss",
   "style": "dist/template-just.css"
