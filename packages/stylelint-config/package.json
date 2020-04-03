@@ -23,6 +23,9 @@
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.16.0"
   },
+  "devDependencies": {
+    "axios": "^0.19.2"
+  },
   "keywords": [
     "styleguide",
     "stylelint",
