@@ -32,6 +32,7 @@ importers:
       pretty-bytes: 5.3.0
     devDependencies:
       '@microsoft/api-extractor': 7.7.12
+      '@rollup/plugin-alias': 3.0.1_rollup@2.3.2
       '@rollup/plugin-commonjs': 11.0.2_rollup@2.3.2
       '@rollup/plugin-json': 4.0.2_rollup@2.3.2
       '@rollup/plugin-node-resolve': 7.1.1_rollup@2.3.2
@@ -48,6 +49,7 @@ importers:
       sass: 1.26.3
     specifiers:
       '@microsoft/api-extractor': ^7.7.12
+      '@rollup/plugin-alias': ^3.0.1
       '@rollup/plugin-commonjs': ^11.0.2
       '@rollup/plugin-json': ^4.0.2
       '@rollup/plugin-node-resolve': ^7.1.1
@@ -2456,6 +2458,15 @@ packages:
     dev: true
     resolution:
       integrity: sha512-q4Wr7RexkPRrkQpXzUYF5Fj/14Mr65RyOHj6B9d/sQACpqGcStkHZj4qMEtlMY5SnD/69jlL9ItGPbDM0dR/dA==
+  /@rollup/plugin-alias/3.0.1_rollup@2.3.2:
+    dependencies:
+      rollup: 2.3.2
+      slash: 3.0.0
+    dev: true
+    peerDependencies:
+      rollup: ^1.20.0
+    resolution:
+      integrity: sha512-ReSy6iPl3GsWLMNeshXAfgItZFMoMOTYC7MZQQM5va4pqxiGgwl1xZUZfHW6zGyZPK+k8TBadxx+kdmepiUa+g==
   /@rollup/plugin-commonjs/11.0.2_rollup@2.3.2:
     dependencies:
       '@rollup/pluginutils': 3.0.8_rollup@2.3.2

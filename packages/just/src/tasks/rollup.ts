@@ -6,6 +6,8 @@ import { TaskFunction, logger } from 'just-task';
 /* eslint-disable import/no-named-default */
 import * as _rollup from 'rollup';
 
+// https://github.com/rollup/plugins/issues/295
+// import * as _rollupAlias from '@rollup/plugin-alias';
 import * as _rollupNodeResolve from '@rollup/plugin-node-resolve';
 import * as _rollupCommonJS from '@rollup/plugin-commonjs';
 
@@ -154,6 +156,8 @@ export interface RollupTypeScriptTaskOptions {
    */
   extraPlugins?: _rollup.Plugin[];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  rollupAliasOptions?: any;
   rollupNodeResolveOptions?: _rollupNodeResolve.Options;
   rollupCommonJSOptions?: _rollupCommonJS.RollupCommonJSOptions;
   rollupJsonOptions?: _rollupJson.RollupJsonOptions;
@@ -171,6 +175,7 @@ export const rollupTypeScriptTask = (options: RollupTypeScriptTaskOptions): Task
       missing,
       packages: {
         rollup,
+        rollupAlias,
         rollupNodeResolve,
         rollupCommonJS,
         rollupJson,
@@ -180,6 +185,8 @@ export const rollupTypeScriptTask = (options: RollupTypeScriptTaskOptions): Task
       },
     } = tryRequireMulti<{
       rollup: typeof _rollup;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      rollupAlias: (options: any) => _rollup.Plugin;
       rollupNodeResolve: typeof _rollupNodeResolve.default;
       rollupCommonJS: typeof _rollupCommonJS.default;
       rollupJson: typeof _rollupJson.default;
@@ -188,6 +195,7 @@ export const rollupTypeScriptTask = (options: RollupTypeScriptTaskOptions): Task
       rollupTerser: typeof _rollupTerser;
     }>({
       rollup: 'rollup',
+      rollupAlias: '@rollup/plugin-alias',
       rollupNodeResolve: '@rollup/plugin-node-resolve',
       rollupCommonJS: '@rollup/plugin-commonjs',
       rollupJson: '@rollup/plugin-json',
@@ -215,6 +223,7 @@ export const rollupTypeScriptTask = (options: RollupTypeScriptTaskOptions): Task
       outputOptionsOverride,
       extraPlugins = [],
 
+      rollupAliasOptions,
       rollupNodeResolveOptions,
       rollupCommonJSOptions,
       rollupJsonOptions,
@@ -249,6 +258,9 @@ export const rollupTypeScriptTask = (options: RollupTypeScriptTaskOptions): Task
       input,
 
       plugins: [
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        rollupAlias(rollupAliasOptions),
+
         rollupNodeResolve({
           preferBuiltins: true,
           browser: true,
