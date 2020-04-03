@@ -10,7 +10,6 @@
     "moduleResolution": "node",
     "allowJs": false,
     "resolveJsonModule": true,
-    "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
