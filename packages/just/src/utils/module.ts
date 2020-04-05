@@ -75,7 +75,7 @@ export function tryRequireMulti<T extends Record<string, any>>(
 /**
  * Resolve the path to the module's bin file.
  * @param moduleName module name to resolve.
- * @param binName property name in bin object of package.json
+ * @param binName property name in bin object of package.json, default use `moduleName`
  */
 export function resolveBin(moduleName: string, binName?: string, cwd?: string): string | null {
   const pkgPath = resolve(`${moduleName}/package.json`, cwd);
