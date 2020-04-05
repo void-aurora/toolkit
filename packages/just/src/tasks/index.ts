@@ -4,4 +4,5 @@ export * from './file';
 export * from './rollup';
 export * from './sass';
 
+export * from './linters/eslint';
 export * from './linters/prettier';

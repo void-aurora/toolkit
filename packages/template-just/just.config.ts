@@ -5,7 +5,6 @@ import {
   parallel,
   cleanTask,
   sassTask,
-  cleanCssTask,
   RollupTypeScriptTaskPreset,
   RollupTypeScriptTaskEnv,
   rollupTypeScriptTask,
@@ -13,6 +12,8 @@ import {
   prettierTask,
   prettierCheckTask,
   PrettierTaskOptions,
+  eslintTask,
+  EslintTaskOptions,
 } from '@void-aurora/just';
 
 import pkg from './package.json';
@@ -89,3 +90,12 @@ task('prepare', series('clean', 'build', 'check-size'));
   task('prettier', prettierTask(options));
   task('prettier:check', prettierCheckTask(options));
 }
+{
+  const options: EslintTaskOptions = {
+    configPath: '../../.eslintrc.js',
+    ignorePath: '../../.eslintignore',
+  };
+  task('eslint', eslintTask(options));
+}
+
+task('lint', series('prettier:check', 'eslint'));
