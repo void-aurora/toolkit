@@ -8,3 +8,5 @@ npm-shrinkwrap.json
 yarn.lock
 shrinkwrap.yaml
 pnpm-lock.yaml
+
+CHANGELOG.md
