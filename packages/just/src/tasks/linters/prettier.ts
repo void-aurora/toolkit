@@ -1,10 +1,11 @@
+import { Writable, WritableOptions } from 'stream';
 import chalk from 'chalk';
-import { TaskFunction, logger, resolve } from 'just-task';
+import { TaskFunction, logger } from 'just-task';
 
 import {
   notEmptyString,
   spawn,
-  tryRequire,
+  SpawnError,
   resolveBin,
   logMissingPackages,
   normalizeArray,
@@ -39,12 +40,43 @@ async function runPrettier({
 
   const args: string[] = [
     binPath,
+    ...(logger.enableVerbose || check ? [] : ['--loglevel', 'error']),
     ...(notEmptyString(configPath) ? ['--config', configPath] : []),
     ...(notEmptyString(ignorePath) ? ['--ignore-path', ignorePath] : []),
-    ...(logger.enableVerbose ? [] : ['--loglevel', 'error']),
-    ...(check ? ['--check'] : ['--write']),
+    ...(check ? ['--list-different'] : ['--write']),
     ...patterns,
   ];
+
+  if (check) {
+    const files: string[] = [];
+    const write: WritableOptions['write'] = (chunk: Buffer, encoding, next) => {
+      files.push(chunk.toString().trim());
+      next();
+    };
+    const stdout = new Writable({ write });
+    const stderr = new Writable({ write });
+
+    try {
+      await spawn(process.execPath, args, { cwd, stdout, stderr });
+    } catch (error) {
+      if ((error as SpawnError).code === 1) {
+        console.log(
+          [
+            '',
+            [
+              chalk.gray('✖'),
+              chalk.redBright(`${files.length} files aren't formatted by prettier:`),
+            ].join(' '),
+            files.map(f => `  ${f}`).join('\n'),
+            '',
+          ].join('\n'),
+        );
+      }
+      throw error;
+    }
+
+    return;
+  }
 
   await spawn(process.execPath, args, { cwd, stdio: 'inherit' });
 }
