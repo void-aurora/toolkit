@@ -1,5 +1,16 @@
 import { resolve, logger } from 'just-task';
 import { pathsToString } from './file-system';
+import { normalizeArray } from './helpers';
+
+export interface PartialPackage {
+  name: string;
+  version: string;
+  bin?: string;
+  main?: string;
+  module?: string;
+  types?: string;
+  typing?: string;
+}
 
 export function tryRequire<T>(specifier: string): T | null;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -59,14 +70,16 @@ export function tryRequireMulti<T extends Record<string, any>>(
   return { missing, packages };
 }
 
-export function logMissingPackages(missing: string[]): void {
-  const noEffect = 'so that the task has no effect';
-  if (missing.length === 0) {
+const NO_EFFECT = ' is not installed, so that the task has no effect.';
+
+export function logMissingPackages(missing: string | string[]): void {
+  const list = normalizeArray(missing);
+  if (list.length === 0) {
     return;
   }
-  if (missing.length === 1) {
-    logger.warn(`The package ${pathsToString(missing)} is not installed, ${noEffect}.`);
+  if (list.length === 1) {
+    logger.warn(`The package ${pathsToString(list)}${NO_EFFECT}`);
     return;
   }
-  logger.warn(`One of the packages ${pathsToString(missing)} is not installed, ${noEffect}.`);
+  logger.warn(`Some of the packages ${pathsToString(list)}${NO_EFFECT}`);
 }
