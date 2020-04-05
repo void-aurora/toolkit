@@ -8,3 +8,7 @@ export function normalizeArray<T>(value: T | T[]): T[] {
   }
   return [value];
 }
+
+export function notEmptyString(value: string | null | undefined): value is string {
+  return typeof value === 'string' && value !== '';
+}
