@@ -10,6 +10,9 @@ import {
   RollupTypeScriptTaskEnv,
   rollupTypeScriptTask,
   checkSizeTask,
+  prettierTask,
+  prettierCheckTask,
+  PrettierTaskOptions,
 } from '@void-aurora/just';
 
 import pkg from './package.json';
@@ -74,3 +77,15 @@ task('check-size', checkSizeTask());
 task('build', parallel('build:styles', 'build:modules'));
 
 task('prepare', series('clean', 'build', 'check-size'));
+
+// ================
+// Lint
+
+{
+  const options: PrettierTaskOptions = {
+    configPath: '../../.prettierrc.js',
+    ignorePath: '../../.prettierignore',
+  };
+  task('prettier', prettierTask(options));
+  task('prettier:check', prettierCheckTask(options));
+}
