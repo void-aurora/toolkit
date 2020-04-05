@@ -17,13 +17,15 @@ async function runEslint({
   fix,
   configPath,
   ignorePath,
+  maxWarnings,
 }: {
   cwd: string;
   patterns: string[];
-  extensions: string[];
-  fix?: boolean;
   configPath?: string;
   ignorePath?: string;
+  extensions: string[];
+  fix?: boolean;
+  maxWarnings?: number;
 }): Promise<void> {
   const binPath = resolveBin('eslint', undefined, cwd);
   if (!notEmptyString(binPath)) {
@@ -50,11 +52,13 @@ async function runEslint({
 
   const args: string[] = [
     binPath,
+
     ...(logger.enableVerbose ? [] : ['--quiet']),
     ...(notEmptyString(configPath) ? ['--config', configPath] : []),
     ...(notEmptyString(ignorePath) ? ['--ignore-path', ignorePath] : []),
     ...(notEmptyString(ext) ? ['--ext', ext] : []),
     ...(fix ? ['--fix'] : []),
+    ...(typeof maxWarnings === 'number' ? ['--max-warnings', `${maxWarnings}`] : []),
 
     ...patterns,
   ];
@@ -70,17 +74,6 @@ export interface EslintTaskOptions {
   patterns?: string | string[];
 
   /**
-   * Specify file extensions.
-   * @default ['.js', '.jsx', '.ts', '.tsx', '.cjs', '.mjs']
-   */
-  extensions?: string | string[];
-
-  /**
-   * Automatically fix problems.
-   */
-  fix?: boolean;
-
-  /**
    * Path to the eslint configuration file.
    */
   configPath?: string;
@@ -94,6 +87,22 @@ export interface EslintTaskOptions {
    * The current working directory in which to search.
    */
   cwd?: string;
+
+  /**
+   * Specify file extensions.
+   * @default ['.js', '.jsx', '.ts', '.tsx', '.cjs', '.mjs']
+   */
+  extensions?: string | string[];
+
+  /**
+   * Automatically fix problems.
+   */
+  fix?: boolean;
+
+  /**
+   * Number of warnings to trigger nonzero exit code.
+   */
+  maxWarnings?: number;
 }
 
 /**
@@ -103,11 +112,12 @@ export const eslintTask = (options: EslintTaskOptions = {}): TaskFunction => {
   return async function eslintTaskFunction(): Promise<void> {
     const {
       patterns: patternsRaw = '.',
-      extensions: extensionsRaw = ['.js', '.jsx', '.ts', '.tsx', '.cjs', '.mjs'],
-      fix,
       configPath,
       ignorePath,
       cwd = process.cwd(),
+      extensions: extensionsRaw = ['.js', '.jsx', '.ts', '.tsx', '.cjs', '.mjs'],
+      fix,
+      maxWarnings,
     } = options;
     const patterns = normalizeArray(patternsRaw);
     const extensions = normalizeArray(extensionsRaw);

@@ -15,15 +15,15 @@ import {
 async function runPrettier({
   cwd,
   patterns,
-  check,
   configPath,
   ignorePath,
+  check,
 }: {
   cwd: string;
   patterns: string[];
-  check?: boolean;
   configPath?: string;
   ignorePath?: string;
+  check?: boolean;
 }): Promise<void> {
   const binPath = resolveBin('prettier', undefined, cwd);
   if (typeof binPath !== 'string') {
