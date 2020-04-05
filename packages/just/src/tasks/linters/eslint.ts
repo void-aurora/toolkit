@@ -13,10 +13,10 @@ import {
 async function runEslint({
   cwd,
   patterns,
-  extensions,
-  fix,
   configPath,
   ignorePath,
+  extensions,
+  fix,
   maxWarnings,
 }: {
   cwd: string;
@@ -124,10 +124,11 @@ export const eslintTask = (options: EslintTaskOptions = {}): TaskFunction => {
     await runEslint({
       cwd,
       patterns,
-      extensions,
-      fix,
       configPath,
       ignorePath,
+      extensions,
+      fix,
+      maxWarnings,
     });
   };
 };
