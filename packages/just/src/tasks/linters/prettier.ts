@@ -25,7 +25,7 @@ async function runPrettier({
   configPath?: string;
   ignorePath?: string;
 }): Promise<void> {
-  const binPath = resolveBin('prettier');
+  const binPath = resolveBin('prettier', undefined, cwd);
   if (typeof binPath !== 'string') {
     logMissingPackages('prettier');
     return;

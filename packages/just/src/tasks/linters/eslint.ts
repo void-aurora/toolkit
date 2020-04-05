@@ -25,7 +25,7 @@ async function runEslint({
   configPath?: string;
   ignorePath?: string;
 }): Promise<void> {
-  const binPath = resolveBin('eslint');
+  const binPath = resolveBin('eslint', undefined, cwd);
   if (!notEmptyString(binPath)) {
     logMissingPackages('eslint');
     return;
