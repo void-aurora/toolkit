@@ -1,3 +1,4 @@
+import pth from 'path';
 import { resolve, logger } from 'just-task';
 import { pathsToString } from './file-system';
 import { normalizeArray } from './helpers';
@@ -68,6 +69,24 @@ export function tryRequireMulti<T extends Record<string, any>>(
   ) as T;
 
   return { missing, packages };
+}
+
+/**
+ * Resolve the path to the module's bin file.
+ * @param moduleName module name to resolve.
+ */
+export function resolveBin(moduleName: string): string | null {
+  const pkgPath = resolve(`${moduleName}/package.json`);
+  if (typeof pkgPath !== 'string') {
+    return null;
+  }
+
+  const pkg = tryRequire<PartialPackage>(`${moduleName}/package.json`);
+  if (!pkg || typeof pkg.bin !== 'string' || pkg.bin === '') {
+    return null;
+  }
+
+  return pth.resolve(pth.dirname(pkgPath), pkg.bin);
 }
 
 const NO_EFFECT = ' is not installed, so that the task has no effect.';
