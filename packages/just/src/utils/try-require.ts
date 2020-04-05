@@ -1,12 +1,12 @@
 import pth from 'path';
 import { resolve, logger } from 'just-task';
 import { pathsToString } from './file-system';
-import { normalizeArray } from './helpers';
+import { normalizeArray, notEmptyString } from './helpers';
 
-export interface PartialPackage {
+export interface PartialPackageJson {
   name: string;
   version: string;
-  bin?: string;
+  bin?: string | Record<string, string | undefined>;
   main?: string;
   module?: string;
   types?: string;
@@ -74,19 +74,43 @@ export function tryRequireMulti<T extends Record<string, any>>(
 /**
  * Resolve the path to the module's bin file.
  * @param moduleName module name to resolve.
+ * @param binName property name in bin object of package.json
  */
-export function resolveBin(moduleName: string): string | null {
+export function resolveBin(moduleName: string, binName?: string): string | null {
   const pkgPath = resolve(`${moduleName}/package.json`);
   if (typeof pkgPath !== 'string') {
     return null;
   }
 
-  const pkg = tryRequire<PartialPackage>(`${moduleName}/package.json`);
-  if (!pkg || typeof pkg.bin !== 'string' || pkg.bin === '') {
+  const pkg = tryRequire<PartialPackageJson>(`${moduleName}/package.json`);
+  if (!pkg) {
     return null;
   }
 
-  return pth.resolve(pth.dirname(pkgPath), pkg.bin);
+  const name = binName ?? moduleName;
+  // eslint-disable-next-line init-declarations
+  let binPath: string | undefined;
+  switch (typeof pkg.bin) {
+    case 'undefined':
+      return null;
+    case 'string':
+      binPath = pkg.bin;
+      break;
+    case 'object':
+      if (pkg.bin === null) {
+        return null;
+      }
+      binPath = pkg.bin[name];
+      break;
+    default:
+      return null;
+  }
+
+  if (!notEmptyString(binPath)) {
+    return null;
+  }
+
+  return pth.resolve(pth.dirname(pkgPath), binPath);
 }
 
 const NO_EFFECT = ' is not installed, so that the task has no effect.';
