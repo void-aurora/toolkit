@@ -6,3 +6,4 @@ export * from './sass';
 
 export * from './linters/eslint';
 export * from './linters/prettier';
+export * from './linters/stylelint';

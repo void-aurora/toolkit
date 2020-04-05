@@ -14,6 +14,8 @@ import {
   PrettierTaskOptions,
   eslintTask,
   EslintTaskOptions,
+  stylelintTask,
+  StylelintTaskOptions,
 } from '@void-aurora/just';
 
 import pkg from './package.json';
@@ -97,5 +99,12 @@ task('prepare', series('clean', 'build', 'check-size'));
   };
   task('eslint', eslintTask(options));
 }
+{
+  const options: StylelintTaskOptions = {
+    configPath: '../../.stylelintrc.js',
+    ignorePath: '../../.stylelintignore',
+  };
+  task('stylelint', stylelintTask(options));
+}
 
-task('lint', series('prettier:check', 'eslint'));
+task('lint', series('prettier:check', 'eslint', 'stylelint'));
