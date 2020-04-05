@@ -121,16 +121,16 @@ module.exports = {
 
     // Require `!default` flag for `$`-variable declarations.
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-default/README.md
-    'scss/dollar-variable-default': [
-      true,
+    'scss/dollar-variable-default': null,
+
+    // Require an empty line or disallow empty lines after `$`-variable declarations.,
+    // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-empty-line-after/README.md,
+    'scss/dollar-variable-empty-line-after': [
+      'always',
       {
         except: ['last-nested', 'before-dollar-variable'],
       },
     ],
-
-    // Require an empty line or disallow empty lines after `$`-variable declarations.,
-    // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-empty-line-after/README.md,
-    'scss/dollar-variable-empty-line-after': null,
 
     // Require a single empty line or disallow empty lines before `$`-variable declarations (Autofixable).
     // https://github.com/kristerkari/stylelint-scss/blob/master/src/rules/dollar-variable-empty-line-before/README.md
