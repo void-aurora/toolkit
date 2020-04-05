@@ -52,10 +52,12 @@ export const copyTask = (options: CopyTaskOptions): TaskFunction => {
 
     logger.verbose(
       '[copy]',
-      chalk.cyanBright(patterns),
-      chalk.greenBright(from),
+      chalk.cyanBright(pathsToString(patterns, cwd)),
+      chalk.greenBright(pathsToString(from, cwd)),
       '→',
-      chalk.greenBright(to),
+      chalk.greenBright(pathsToString(to, cwd)),
+      'in',
+      chalk.yellow(cwd),
     );
 
     const paths = await globby(patterns, {
@@ -99,7 +101,12 @@ export const cleanTask = (options: CleanTaskOptions = {}): TaskFunction => {
   return async function cleanTaskFunction(): Promise<void> {
     const { patterns = ['temp', 'dist', 'coverage'], cwd = process.cwd(), limit } = options;
 
-    logger.verbose('[clean]', chalk.cyanBright(patterns), 'in', chalk.greenBright(cwd));
+    logger.verbose(
+      '[clean]',
+      chalk.cyanBright(pathsToString(patterns, cwd)),
+      'in',
+      chalk.yellow(cwd),
+    );
 
     const paths = await globby(patterns, {
       cwd,

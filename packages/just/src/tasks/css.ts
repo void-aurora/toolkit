@@ -60,17 +60,6 @@ export interface CleanCssTaskOptions {
  */
 export const cleanCssTask = (options: CleanCssTaskOptions = {}): TaskFunction => {
   return async function minifyCssTaskFunction(): Promise<void> {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const {
-      missing,
-      packages: { CleanCSS },
-    } = tryRequireMulti<{ CleanCSS: typeof _CleanCSS }>({ CleanCSS: 'clean-css' });
-
-    if (missing.length > 0) {
-      logMissingPackages(missing);
-      return;
-    }
-
     const {
       patterns = '**/*.css',
       input: inputRaw = 'dist',
@@ -80,9 +69,20 @@ export const cleanCssTask = (options: CleanCssTaskOptions = {}): TaskFunction =>
       postfix: postfixRaw = 'min',
       cleanCssOptions = {},
     } = options;
+
     const input = pth.resolve(cwd, inputRaw);
     const output = pth.resolve(cwd, outputRaw);
     const postfix = trimDots(postfixRaw);
+
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const {
+      missing,
+      packages: { CleanCSS },
+    } = tryRequireMulti<{ CleanCSS: typeof _CleanCSS }>({ CleanCSS: 'clean-css' }, cwd);
+    if (missing.length > 0) {
+      logMissingPackages(missing);
+      return;
+    }
 
     if (postfix === '' && inputRaw === outputRaw) {
       throw new Error(
@@ -98,6 +98,8 @@ export const cleanCssTask = (options: CleanCssTaskOptions = {}): TaskFunction =>
       chalk.greenBright(input),
       '→',
       chalk.greenBright(output),
+      'in',
+      chalk.yellow(cwd),
     );
 
     const paths = await globby(patterns, { cwd: input, onlyFiles: true });

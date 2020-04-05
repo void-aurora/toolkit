@@ -28,16 +28,34 @@ import {
   pathsToString,
 } from '../utils';
 
+function resolveRollupInputOption(cwd: string, input: _rollup.InputOption): _rollup.InputOption {
+  if (typeof input === 'string') {
+    return pth.resolve(cwd, input);
+  }
+  if (Array.isArray(input)) {
+    return input.map(p => pth.resolve(cwd, p));
+  }
+  return Object.fromEntries(Object.entries(input).map(([n, p]) => [n, pth.resolve(cwd, p)]));
+}
+
 async function rollupBuild(
   rollup: typeof _rollup,
   inputOptions: _rollup.InputOptions,
   outputOptions: _rollup.OutputOptions[],
+  cwd: string,
 ): Promise<_rollup.RollupBuild> {
   logger.verbose(
     '[rollup]',
-    chalk.greenBright(pathsToString(inputOptions.input)),
+    chalk.greenBright(pathsToString(inputOptions.input, cwd)),
     '→',
-    chalk.greenBright(pathsToString(outputOptions.map(opts => opts.file as string))),
+    chalk.greenBright(
+      pathsToString(
+        outputOptions.map(opts => opts.file as string),
+        cwd,
+      ),
+    ),
+    'in',
+    chalk.yellow(cwd),
   );
 
   const bundle = await rollup.rollup(inputOptions);
@@ -51,8 +69,20 @@ async function rollupBuild(
 }
 
 export interface RollupTaskOptions {
+  /**
+   * Rollup input options.
+   */
   inputOptions: _rollup.InputOptions;
+
+  /**
+   * Rollup output options.
+   */
   outputOptions: _rollup.OutputOptions | _rollup.OutputOptions[];
+
+  /**
+   * The current working directory in which to search.
+   */
+  cwd?: string;
 }
 
 /**
@@ -61,20 +91,34 @@ export interface RollupTaskOptions {
  */
 export const rollupTask = (options: RollupTaskOptions): TaskFunction => {
   return async function rollupTaskFunction(): Promise<void> {
+    const { inputOptions, outputOptions: outputOptionsRaw, cwd = process.cwd() } = options;
+    const outputOptions = normalizeArray(outputOptionsRaw);
+
+    const { input: inputRaw = 'src/index.js' } = inputOptions;
+    const input = resolveRollupInputOption(cwd, inputRaw);
+
     const {
       missing,
       packages: { rollup },
-    } = tryRequireMulti<{ rollup: typeof _rollup }>({ rollup: 'rollup' });
+    } = tryRequireMulti<{ rollup: typeof _rollup }>({ rollup: 'rollup' }, cwd);
 
     if (missing.length > 0) {
       logMissingPackages(missing);
       return;
     }
 
-    const { inputOptions, outputOptions: outputOptionsRaw } = options;
-    const outputOptions = normalizeArray(outputOptionsRaw);
-
-    await rollupBuild(rollup, inputOptions, outputOptions);
+    await rollupBuild(
+      rollup,
+      {
+        ...inputOptions,
+        input,
+      },
+      outputOptions.map(oo => ({
+        ...oo,
+        file: pth.resolve(cwd, oo.file as string),
+      })),
+      cwd,
+    );
   };
 };
 
@@ -172,44 +216,6 @@ export interface RollupTypeScriptTaskOptions {
 export const rollupTypeScriptTask = (options: RollupTypeScriptTaskOptions): TaskFunction => {
   return async function rollupTypeScriptTaskFunction(): Promise<void> {
     const {
-      missing,
-      packages: {
-        rollup,
-        rollupAlias,
-        rollupNodeResolve,
-        rollupCommonJS,
-        rollupJson,
-        rollupReplace,
-        rollupTypeScript2,
-        rollupTerser: { terser: rollupTerser },
-      },
-    } = tryRequireMulti<{
-      rollup: typeof _rollup;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      rollupAlias: (options: any) => _rollup.Plugin;
-      rollupNodeResolve: typeof _rollupNodeResolve.default;
-      rollupCommonJS: typeof _rollupCommonJS.default;
-      rollupJson: typeof _rollupJson.default;
-      rollupReplace: typeof _rollupReplace.default;
-      rollupTypeScript2: typeof _rollupTypeScript2.default;
-      rollupTerser: typeof _rollupTerser;
-    }>({
-      rollup: 'rollup',
-      rollupAlias: '@rollup/plugin-alias',
-      rollupNodeResolve: '@rollup/plugin-node-resolve',
-      rollupCommonJS: '@rollup/plugin-commonjs',
-      rollupJson: '@rollup/plugin-json',
-      rollupReplace: '@rollup/plugin-replace',
-      rollupTypeScript2: 'rollup-plugin-typescript2',
-      rollupTerser: 'rollup-plugin-terser',
-    });
-
-    if (missing.length > 0) {
-      logMissingPackages(missing);
-      return;
-    }
-
-    const {
       preset,
       env,
       input: inputRaw,
@@ -246,6 +252,47 @@ export const rollupTypeScriptTask = (options: RollupTypeScriptTaskOptions): Task
             postfix === undefined || postfix === '' ? `${preset}.${env}` : postfix,
           ),
     );
+
+    const {
+      missing,
+      packages: {
+        rollup,
+        rollupAlias,
+        rollupNodeResolve,
+        rollupCommonJS,
+        rollupJson,
+        rollupReplace,
+        rollupTypeScript2,
+        rollupTerser: { terser: rollupTerser },
+      },
+    } = tryRequireMulti<{
+      rollup: typeof _rollup;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      rollupAlias: (options: any) => _rollup.Plugin;
+      rollupNodeResolve: typeof _rollupNodeResolve.default;
+      rollupCommonJS: typeof _rollupCommonJS.default;
+      rollupJson: typeof _rollupJson.default;
+      rollupReplace: typeof _rollupReplace.default;
+      rollupTypeScript2: typeof _rollupTypeScript2.default;
+      rollupTerser: typeof _rollupTerser;
+    }>(
+      {
+        rollup: 'rollup',
+        rollupAlias: '@rollup/plugin-alias',
+        rollupNodeResolve: '@rollup/plugin-node-resolve',
+        rollupCommonJS: '@rollup/plugin-commonjs',
+        rollupJson: '@rollup/plugin-json',
+        rollupReplace: '@rollup/plugin-replace',
+        rollupTypeScript2: 'rollup-plugin-typescript2',
+        rollupTerser: 'rollup-plugin-terser',
+      },
+      cwd,
+    );
+
+    if (missing.length > 0) {
+      logMissingPackages(missing);
+      return;
+    }
 
     const inputOptions: _rollup.InputOptions = {
       external:
@@ -321,6 +368,6 @@ export const rollupTypeScriptTask = (options: RollupTypeScriptTaskOptions): Task
       file: output,
     };
 
-    await rollupBuild(rollup, inputOptions, [outputOptions]);
+    await rollupBuild(rollup, inputOptions, [outputOptions], cwd);
   };
 };

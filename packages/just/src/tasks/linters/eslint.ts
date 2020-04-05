@@ -4,10 +4,10 @@ import { TaskFunction, logger } from 'just-task';
 import {
   notEmptyString,
   spawn,
-  tryRequire,
   resolveBin,
   logMissingPackages,
   normalizeArray,
+  pathsToString,
 } from '../../utils';
 
 async function runEslint({
@@ -42,10 +42,10 @@ async function runEslint({
   logger.verbose(
     '[eslint]',
     'linting',
-    chalk.cyanBright(patterns),
-    chalk.cyanBright(ext),
+    chalk.cyanBright(pathsToString(patterns)),
+    chalk.cyan(ext),
     'in',
-    chalk.greenBright(cwd),
+    chalk.yellow(cwd),
   );
 
   const args: string[] = [

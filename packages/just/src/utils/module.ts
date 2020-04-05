@@ -13,10 +13,10 @@ export interface PartialPackageJson {
   typing?: string;
 }
 
-export function tryRequire<T>(specifier: string): T | null;
+export function tryRequire<T>(moduleName: string, cwd?: string): T | null;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function tryRequire(specifier: string): any {
-  const resolved = resolve(specifier);
+export function tryRequire(moduleName: string, cwd?: string): any {
+  const resolved = resolve(moduleName, cwd);
 
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   if (!resolved) {
@@ -56,11 +56,12 @@ export interface TryRequireMultiResult<T extends Record<string, any>> {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function tryRequireMulti<T extends Record<string, any>>(
   map: Record<keyof T, string>,
+  cwd?: string,
 ): TryRequireMultiResult<T> {
   const missing: string[] = [];
   const packages = Object.fromEntries(
     Object.entries(map).map(([name, path]: [keyof T, string]) => {
-      const pkg = tryRequire<T[keyof T]>(path);
+      const pkg = tryRequire<T[keyof T]>(path, cwd);
       if (pkg === null) {
         missing.push(path);
       }
@@ -76,13 +77,13 @@ export function tryRequireMulti<T extends Record<string, any>>(
  * @param moduleName module name to resolve.
  * @param binName property name in bin object of package.json
  */
-export function resolveBin(moduleName: string, binName?: string): string | null {
-  const pkgPath = resolve(`${moduleName}/package.json`);
+export function resolveBin(moduleName: string, binName?: string, cwd?: string): string | null {
+  const pkgPath = resolve(`${moduleName}/package.json`, cwd);
   if (typeof pkgPath !== 'string') {
     return null;
   }
 
-  const pkg = tryRequire<PartialPackageJson>(`${moduleName}/package.json`);
+  const pkg = tryRequire<PartialPackageJson>(`${moduleName}/package.json`, cwd);
   if (!pkg) {
     return null;
   }

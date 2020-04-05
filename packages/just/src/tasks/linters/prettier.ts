@@ -9,6 +9,7 @@ import {
   resolveBin,
   logMissingPackages,
   normalizeArray,
+  pathsToString,
 } from '../../utils';
 
 async function runPrettier({
@@ -33,9 +34,9 @@ async function runPrettier({
   logger.verbose(
     '[prettier]',
     check ? 'checking' : 'formatting',
-    chalk.cyanBright(patterns),
+    chalk.cyanBright(pathsToString(patterns)),
     'in',
-    chalk.greenBright(cwd),
+    chalk.yellow(cwd),
   );
 
   const args: string[] = [

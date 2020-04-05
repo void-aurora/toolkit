@@ -1,5 +1,4 @@
 import pth from 'path';
-import { Buffer } from 'buffer';
 import { gzipSync, brotliCompressSync } from 'zlib';
 import fse from 'fs-extra';
 import globby from 'globby';
@@ -50,7 +49,12 @@ export const checkSizeTask = (options: CheckSizeTaskOptions = {}): TaskFunction 
       limit,
     } = options;
 
-    logger.verbose('[check-size]', chalk.cyanBright(patterns), 'in', chalk.greenBright(cwd));
+    logger.verbose(
+      '[check-size]',
+      chalk.cyanBright(pathsToString(patterns, cwd)),
+      'in',
+      chalk.yellow(cwd),
+    );
 
     const statusKeys = ['path', 'original', 'gzip', 'brotli'] as const;
     type StatusKey = typeof statusKeys[number];

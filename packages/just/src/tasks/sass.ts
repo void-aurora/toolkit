@@ -17,6 +17,7 @@ import {
   replaceExtName,
   asyncParallel,
   applyPostfix,
+  pathsToString,
 } from '../utils';
 
 async function sassRender(sass: typeof _sass, options: _sass.Options): Promise<_sass.Result> {
@@ -113,28 +114,6 @@ export interface SassTaskOptions {
  */
 export const sassTask = (options: SassTaskOptions): TaskFunction => {
   return async function sassTaskFunction(): Promise<void> {
-    /* eslint-disable @typescript-eslint/naming-convention */
-    const {
-      missing,
-      packages: { sass, postcss, autoprefixer, CleanCSS },
-    } = tryRequireMulti<{
-      sass: typeof _sass;
-      postcss: typeof _postcss;
-      autoprefixer: typeof _autoprefixer;
-      CleanCSS: typeof _CleanCSS;
-    }>({
-      sass: 'sass',
-      postcss: 'postcss',
-      autoprefixer: 'autoprefixer',
-      CleanCSS: 'clean-css',
-    });
-    /* eslint-enable @typescript-eslint/naming-convention */
-
-    if (missing.length > 0) {
-      logMissingPackages(missing);
-      return;
-    }
-
     const {
       patterns = '**/*.scss',
       input: inputRaw = 'sass',
@@ -169,18 +148,45 @@ export const sassTask = (options: SassTaskOptions): TaskFunction => {
       ...sassRenderOptionsRaw,
     };
 
+    /* eslint-disable @typescript-eslint/naming-convention */
+    const {
+      missing,
+      packages: { sass, postcss, autoprefixer, CleanCSS },
+    } = tryRequireMulti<{
+      sass: typeof _sass;
+      postcss: typeof _postcss;
+      autoprefixer: typeof _autoprefixer;
+      CleanCSS: typeof _CleanCSS;
+    }>(
+      {
+        sass: 'sass',
+        postcss: 'postcss',
+        autoprefixer: 'autoprefixer',
+        CleanCSS: 'clean-css',
+      },
+      cwd,
+    );
+    /* eslint-enable @typescript-eslint/naming-convention */
+
+    if (missing.length > 0) {
+      logMissingPackages(missing);
+      return;
+    }
+
+    logger.verbose(
+      '[sass]',
+      chalk.cyanBright(pathsToString(patterns)),
+      chalk.greenBright(pathsToString(input, cwd)),
+      '→',
+      chalk.greenBright(pathsToString(output, cwd)),
+      'in',
+      chalk.yellow(cwd),
+    );
+
     const postcssProcessor = postcss([
       ...(useAutoprefixer ? [autoprefixer(autoprefixerOptions)] : []),
       ...postcssPlugins,
     ]);
-
-    logger.verbose(
-      '[sass]',
-      chalk.cyanBright(patterns),
-      chalk.greenBright(input),
-      '→',
-      chalk.greenBright(output),
-    );
 
     const paths = await globby(patterns, { cwd: input, onlyFiles: true });
     const actions = paths
