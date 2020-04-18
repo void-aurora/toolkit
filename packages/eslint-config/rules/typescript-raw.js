@@ -24,6 +24,7 @@ const ruleNamesRequireTypeInfo = [
   '@typescript-eslint/no-unnecessary-qualifier',
   '@typescript-eslint/no-unnecessary-type-arguments',
   '@typescript-eslint/no-unnecessary-type-assertion',
+  '@typescript-eslint/no-unsafe-assignment',
   '@typescript-eslint/no-unsafe-call',
   '@typescript-eslint/no-unsafe-member-access',
   '@typescript-eslint/no-unsafe-return',
@@ -32,6 +33,7 @@ const ruleNamesRequireTypeInfo = [
   '@typescript-eslint/prefer-nullish-coalescing',
   '@typescript-eslint/prefer-readonly',
   '@typescript-eslint/prefer-readonly-parameter-types',
+  '@typescript-eslint/prefer-reduce-type-parameter',
   '@typescript-eslint/prefer-regexp-exec',
   '@typescript-eslint/prefer-string-starts-ends-with',
   '@typescript-eslint/promise-function-async',
@@ -66,7 +68,7 @@ const rules = {
 
   // Bans “// @ts-ignore” comments from being used
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-ts-ignore.md
-  // deprecated, replace by: `['@typescript-eslint/ban-ts-comment']`
+  // deprecated, replace by: `['ban-ts-comment']`
   // '@typescript-eslint/ban-ts-ignore': 'error',
 
   // Bans specific types from being used
@@ -155,6 +157,10 @@ const rules = {
   // Require a consistent member declaration order
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/member-ordering.md
   '@typescript-eslint/member-ordering': 'off',
+
+  // Enforces using a particular method signature syntax.
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/method-signature-style.md
+  '@typescript-eslint/method-signature-style': 'off',
 
   // Enforces naming conventions for everything across a codebase
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/naming-convention.md
@@ -302,6 +308,11 @@ const rules = {
   // requires type information
   '@typescript-eslint/no-unnecessary-type-assertion': 'error',
 
+  // Disallows assigning any to variables and properties
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unsafe-assignment.md
+  // requires type information
+  '@typescript-eslint/no-unsafe-assignment': 'off',
+
   // Disallows calling an any type value
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unsafe-call.md
   // requires type information
@@ -391,6 +402,11 @@ const rules = {
   // requires type information
   '@typescript-eslint/prefer-readonly-parameter-types': 'off',
 
+  // Prefer using type parameter when calling `Array#reduce` instead of casting
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-reduce-type-parameter.md
+  // requires type information
+  '@typescript-eslint/prefer-reduce-type-parameter': 'off',
+
   // Enforce that `RegExp#exec` is used instead of `String#match` if no global flag is provided
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-regexp-exec.md
   // requires type information
@@ -400,6 +416,10 @@ const rules = {
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-string-starts-ends-with.md
   // requires type information
   '@typescript-eslint/prefer-string-starts-ends-with': 'error',
+
+  // Recommends using `// @ts-expect-error` over `// @ts-ignore`
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-ts-expect-error.md
+  '@typescript-eslint/prefer-ts-expect-error': 'off',
 
   // Requires any function or method that returns a Promise to be marked async
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/promise-function-async.md
