@@ -29,14 +29,14 @@
   "sideEffects": false,
   "types": "dist/esm/index.d.ts",
   "dependencies": {
-    "core-js": "^3.6.4"
+    "core-js": "^3.6.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
     "@babel/preset-typescript": "^7.9.0",
-    "babel-jest": "^25.2.6"
+    "babel-jest": "^25.3.0"
   },
   "jest": {
     "collectCoverage": true,
