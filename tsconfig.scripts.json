@@ -1,10 +1,22 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "target": "ES6",
-    "module": "commonjs",
+    "target": "ES2019",
+    "module": "CommonJS",
+    "lib": ["ESNext"],
     "allowJs": true,
-    "resolveJsonModule": true,
-    "declaration": false
+    "checkJs": true,
+    "jsx": "preserve",
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "strict": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "types": ["node"],
+    "esModuleInterop": true,
+    "importHelpers": false,
+    "noEmitHelpers": false,
+    "resolveJsonModule": true
   }
 }

@@ -1,13 +1,9 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2017",
     "module": "CommonJS",
-    "noEmitHelpers": true,
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
     "outDir": "dist"
   },
-  "include": ["src/index.ts"]
+  "include": ["src/**/*"]
 }

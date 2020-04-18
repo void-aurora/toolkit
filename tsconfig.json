@@ -1,21 +1,23 @@
 {
+  // Root TypeScript Config https://www.typescriptlang.org/v2/en/tsconfig
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ESNext", // Node 8 ES2017, Node 10 ES2018, Node 12 ES2019
     "module": "ESNext",
-    "lib": ["ESNext", "ScriptHost"],
-    "typeRoots": ["node_modules/@types"],
-    "types": ["node", "jest"],
-    "strict": true,
-    "jsx": "preserve",
-    "moduleResolution": "node",
+    "lib": ["ESNext"],
     "allowJs": false,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
+    "checkJs": false,
+    "jsx": "preserve",
     "declaration": true,
     "declarationMap": true,
-    "baseUrl": "."
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "types": ["node", "jest"],
+    "esModuleInterop": true,
+    "importHelpers": false,
+    "noEmitHelpers": false,
+    "resolveJsonModule": true
   },
   "include": [
     // workspaces
