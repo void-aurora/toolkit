@@ -18,17 +18,17 @@
   },
   "sideEffects": false,
   "peerDependencies": {
-    "stylelint": "^13.3.2",
+    "stylelint": "^13.3.3",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-prettier": "^1.1.2",
-    "stylelint-scss": "^3.17.0"
+    "stylelint-scss": "^3.17.1"
   },
   "devDependencies": {
     "axios": "^0.19.2",
-    "stylelint": "^13.3.2",
+    "stylelint": "^13.3.3",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-prettier": "^1.1.2",
-    "stylelint-scss": "^3.17.0"
+    "stylelint-scss": "^3.17.1"
   },
   "keywords": [
     "styleguide",

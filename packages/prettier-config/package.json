@@ -21,11 +21,11 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "peerDependencies": {
-    "prettier": "^2.0.4"
+    "prettier": "^2.0.5"
   },
   "devDependencies": {
     "@types/prettier": "^2.0.0",
-    "prettier": "^2.0.4"
+    "prettier": "^2.0.5"
   },
   "keywords": [
     "prettier",
