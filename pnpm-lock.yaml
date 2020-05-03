@@ -3,6 +3,7 @@ importers:
     devDependencies:
       '@types/jest': 25.2.1
       '@types/node': 13.13.4
+      beachball: 1.31.0
       jest: 25.5.4
       lerna: 3.20.2
       ts-jest: 25.4.0_jest@25.5.4+typescript@3.8.3
@@ -12,6 +13,7 @@ importers:
     specifiers:
       '@types/jest': ^25.2.1
       '@types/node': ^13.13.4
+      beachball: ^1.31.0
       jest: ^25.5.4
       lerna: ^3.20.2
       ts-jest: ^25.4.0
@@ -3590,6 +3592,22 @@ packages:
     dev: true
     resolution:
       integrity: sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=
+  /beachball/1.31.0:
+    dependencies:
+      cosmiconfig: 6.0.0
+      fs-extra: 8.1.0
+      git-url-parse: 11.1.2
+      glob: 7.1.6
+      lodash: 4.17.15
+      minimatch: 3.0.4
+      prompts: 2.1.0
+      semver: 6.3.0
+      toposort: 2.0.2
+      yargs-parser: 13.1.2
+    dev: true
+    hasBin: true
+    resolution:
+      integrity: sha512-IQTpnItQPt9O5nZ3nVE4Gqxt4ipJ+zJTkKaAst0aDVAQSSVB90AOIUB/TAXx2CZaYCebt4DfnzPSNu09PTXU6g==
   /before-after-hook/2.1.0:
     dev: true
     resolution:
@@ -10039,6 +10057,15 @@ packages:
       node: '>=0.12'
     resolution:
       integrity: sha1-ZznpaOMFHaIM5kl/srUPaRHfPW0=
+  /prompts/2.1.0:
+    dependencies:
+      kleur: 3.0.3
+      sisteransi: 1.0.5
+    dev: true
+    engines:
+      node: '>= 6'
+    resolution:
+      integrity: sha512-+x5TozgqYdOwWsQFZizE/Tra3fKvAoy037kOyU6cgz84n8f6zxngLOV4O32kTwt9FcLCxAqw0P/c8rOr9y+Gfg==
   /prompts/2.3.2:
     dependencies:
       kleur: 3.0.3
@@ -11877,6 +11904,10 @@ packages:
       node: '>= 0.10'
     resolution:
       integrity: sha1-/JKtq6ByZHvAtn1rA2ZKoZUJOvY=
+  /toposort/2.0.2:
+    dev: true
+    resolution:
+      integrity: sha1-riF2gXXRVZ1IvvNUILL0li8JwzA=
   /tough-cookie/2.5.0:
     dependencies:
       psl: 1.8.0
@@ -12709,6 +12740,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-C6kB/WJDiaxONLJQnF8ccx9SEeoTTLek8RVbaOIsrAUS8VrBEXfmeSnCZxygc+XC2sNMBIwOOnfcxiynjHsVSQ==
+  /yargs-parser/13.1.2:
+    dependencies:
+      camelcase: 5.3.1
+      decamelize: 1.2.0
+    dev: true
+    resolution:
+      integrity: sha512-3lbsNRf/j+A4QuSZfDRA7HRSfWrzO0YjqTJd5kjAq37Zep1CEgaYmrH9Q3GwPiB9cHyd1Y1UwggGhJGoxipbzg==
   /yargs-parser/15.0.1:
     dependencies:
       camelcase: 5.3.1

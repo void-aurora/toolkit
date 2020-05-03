@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "beachball": "beachball",
     "commit": "commit",
     "preinstall": "node ./scripts/preinstall.js",
     "lerna": "echo 'use pnpm to run script'",
@@ -12,11 +13,12 @@
     "lint-staged": "lint-staged",
     "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json",
     "version": "pnpm i -r && git add ./pnpm-lock.yaml",
-    "z": "echo 'empty script'"
+    "z": "echo empty script"
   },
   "devDependencies": {
     "@types/jest": "^25.2.1",
     "@types/node": "^13.13.4",
+    "beachball": "^1.31.0",
     "jest": "^25.5.4",
     "lerna": "^3.20.2",
     "ts-jest": "^25.4.0",
