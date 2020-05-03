@@ -268,7 +268,7 @@ export const rollupTypeScriptTask = (options: RollupTypeScriptTaskOptions): Task
     } = tryRequireMulti<{
       rollup: typeof _rollup;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      rollupAlias: (options: any) => _rollup.Plugin;
+      rollupAlias: _rollup.PluginImpl<any>;
       rollupNodeResolve: typeof _rollupNodeResolve.default;
       rollupCommonJS: typeof _rollupCommonJS.default;
       rollupJson: typeof _rollupJson.default;
@@ -345,7 +345,7 @@ export const rollupTypeScriptTask = (options: RollupTypeScriptTaskOptions): Task
             /* eslint-disable */
             __DEV__: `${isDev}`,
             __PROD__: `${isProd}`,
-            /* eslint-enable  */
+            /* eslint-enable */
             ...rollupReplaceOptions?.values,
           },
         }),
