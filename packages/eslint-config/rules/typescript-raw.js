@@ -12,6 +12,7 @@ const ruleNamesDeprecated = [
 // rules which require type information
 const ruleNamesRequireTypeInfo = [
   '@typescript-eslint/await-thenable',
+  '@typescript-eslint/dot-notation',
   '@typescript-eslint/naming-convention',
   '@typescript-eslint/no-base-to-string',
   '@typescript-eslint/no-floating-promises',
@@ -113,6 +114,12 @@ const rules = {
   // extends base rule
   '@typescript-eslint/default-param-last': 'off',
 
+  // enforce dot notation whenever possible
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/dot-notation.md
+  // requires type information
+  // extends base rule
+  '@typescript-eslint/dot-notation': 'off',
+
   // Require explicit return types on functions and class methods
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-function-return-type.md
   '@typescript-eslint/explicit-function-return-type': 'warn',
@@ -140,10 +147,20 @@ const rules = {
   // extends base rule
   '@typescript-eslint/indent': 'off',
 
+  // require or disallow initialization in variable declarations
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/init-declarations.md
+  // extends base rule
+  '@typescript-eslint/init-declarations': 'off',
+
   // Require that interface names should or should not prefixed with `I`
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/interface-name-prefix.md
   // deprecated, replace by: `['naming-convention']`
   // '@typescript-eslint/interface-name-prefix': 'error',
+
+  // Enforce consistent spacing before and after keywords
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/keyword-spacing.md
+  // extends base rule
+  '@typescript-eslint/keyword-spacing': 'off',
 
   // Require a specific member delimiter style for interfaces and type literals
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/member-delimiter-style.md
@@ -235,6 +252,10 @@ const rules = {
   // Disallows explicit type declarations for variables or parameters initialized to a number, string, or boolean
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-inferrable-types.md
   '@typescript-eslint/no-inferrable-types': 'error',
+
+  // Disallows usage of `void` type outside of generic or return types
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-invalid-void-type.md
+  '@typescript-eslint/no-invalid-void-type': 'off',
 
   // Disallow magic numbers
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-magic-numbers.md
