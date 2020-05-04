@@ -5,7 +5,9 @@
     "packages/*"
   ],
   "scripts": {
-    "beachball": "beachball",
+    "beachball:change": "beachball change",
+    "beachball:check": "beachball check",
+    "beachball:publish": "beachball publish",
     "commit": "commit",
     "preinstall": "node ./scripts/preinstall.js",
     "lerna": "echo 'use pnpm to run script'",
