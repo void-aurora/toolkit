@@ -1,7 +1,16 @@
-# Change Log
+# Change Log - @void-aurora/commitlint-config
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+This log was last generated on Mon, 04 May 2020 01:17:40 GMT and should not be manually modified.
+
+<!-- Start content -->
+
+## 0.6.5
+
+Mon, 04 May 2020 01:17:40 GMT
+
+### Patches
+
+- undefined (duduluu@outlook.com)
 
 ## [0.6.4](https://github.com/void-aurora/toolkit/compare/@void-aurora/commitlint-config@0.6.3...@void-aurora/commitlint-config@0.6.4) (2020-02-20)
 

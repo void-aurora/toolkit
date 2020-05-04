@@ -1,23 +1,16 @@
-# Change Log
+# Change Log - @void-aurora/eslint-config
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+This log was last generated on Mon, 04 May 2020 01:17:40 GMT and should not be manually modified.
 
-# [0.11.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.10.3...@void-aurora/eslint-config@0.11.0) (2020-04-02)
+<!-- Start content -->
 
-### Bug Fixes
+## 0.12.0
 
-- **eslint-config:** change import/no-extraneous-dependencies allow devDeps for build scripts and just config ([e536ce2](https://github.com/void-aurora/toolkit/commit/e536ce29de4cb188bae003cc1242c9e3905a88c4))
-- **eslint-config:** disable rule import/no-extraneous-dependencies for non-src scripts ([5bedfa5](https://github.com/void-aurora/toolkit/commit/5bedfa51014df154085650935fc3a0003d591f2a))
-- **eslint-config:** disable strict for index.js ([2056e34](https://github.com/void-aurora/toolkit/commit/2056e3488a47e351ffa79a52450642587516ed57))
-- **eslint-config:** disable ts/prefer-readonly-parameter-types ([cdc63a8](https://github.com/void-aurora/toolkit/commit/cdc63a80777b92e864ab0c316c0c5ded1652aea3))
-- **eslint-config:** fix import/no-extraneous-dependencies allow devDeps in build, scripts and tests ([025e65d](https://github.com/void-aurora/toolkit/commit/025e65df868a3c0b097c0820c0fbce6bd4e8944b))
-- **eslint-config:** import/no-extraneous-dependencies allow peerDependencies ([a6cffe5](https://github.com/void-aurora/toolkit/commit/a6cffe5c4936977dc37af857dd28cfd0d5b5fefe))
+Mon, 04 May 2020 01:17:40 GMT
 
-### Features
+### Minor changes
 
-- **eslint-config:** set complexity max from 11 to 16 ([7e27246](https://github.com/void-aurora/toolkit/commit/7e272469c466b40340e60b0602798122679bb493))
-- **eslint-config:** update ts rules ([ae08aac](https://github.com/void-aurora/toolkit/commit/ae08aac4598f72be57e3666842bd0e607277e6fc))
+- undefined (duduluu@outlook.com)
 
 ## [0.10.3](https://github.com/void-aurora/toolkit/compare/@void-aurora/eslint-config@0.10.2...@void-aurora/eslint-config@0.10.3) (2020-03-17)
 

@@ -1,0 +1,19 @@
+{
+  "name": "@void-aurora/stylelint-config",
+  "entries": [
+    {
+      "date": "Mon, 04 May 2020 01:17:40 GMT",
+      "tag": "@void-aurora/stylelint-config_v0.8.2",
+      "version": "0.8.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "duduluu@outlook.com",
+            "commit": "c13499a5ed5ad28a25bf50a74bd34282589f3dfe",
+            "package": "@void-aurora/stylelint-config"
+          }
+        ]
+      }
+    }
+  ]
+}

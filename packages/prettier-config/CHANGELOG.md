@@ -1,13 +1,16 @@
-# Change Log
+# Change Log - @void-aurora/prettier-config
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+This log was last generated on Mon, 04 May 2020 01:17:40 GMT and should not be manually modified.
 
-# [0.6.0](https://github.com/void-aurora/toolkit/compare/@void-aurora/prettier-config@0.5.4...@void-aurora/prettier-config@0.6.0) (2020-04-02)
+<!-- Start content -->
 
-### Features
+## 0.6.1
 
-- **prettier-config:** update options and use ts ([81a762d](https://github.com/void-aurora/toolkit/commit/81a762d4eaab782f9685e115039bae601fe87427))
+Mon, 04 May 2020 01:17:40 GMT
+
+### Patches
+
+- undefined (duduluu@outlook.com)
 
 ## [0.5.4](https://github.com/void-aurora/toolkit/compare/@void-aurora/prettier-config@0.5.3...@void-aurora/prettier-config@0.5.4) (2020-02-20)
 

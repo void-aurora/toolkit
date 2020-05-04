@@ -1,3 +1,17 @@
+# Change Log - @void-aurora/just
+
+This log was last generated on Mon, 04 May 2020 01:17:40 GMT and should not be manually modified.
+
+<!-- Start content -->
+
+## 0.3.0
+
+Mon, 04 May 2020 01:17:40 GMT
+
+### Minor changes
+
+- undefined (duduluu@outlook.com)
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

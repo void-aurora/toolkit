@@ -1,7 +1,16 @@
-# Change Log
+# Change Log - @void-aurora/toolkit
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+This log was last generated on Mon, 04 May 2020 01:17:40 GMT and should not be manually modified.
+
+<!-- Start content -->
+
+## 0.10.0
+
+Mon, 04 May 2020 01:17:40 GMT
+
+### Minor changes
+
+- undefined (duduluu@outlook.com)
 
 ## [0.9.19](https://github.com/void-aurora/toolkit/compare/@void-aurora/toolkit@0.9.18...@void-aurora/toolkit@0.9.19) (2020-04-03)
 

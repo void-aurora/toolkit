@@ -28,7 +28,7 @@
     "axios": "^0.19.2"
   },
   "devDependencies": {
-    "@void-aurora/just": "^0.2.0"
+    "@void-aurora/just": "^0.3.0"
   },
   "sass": "sass/template-just.scss",
   "style": "dist/template-just.css"

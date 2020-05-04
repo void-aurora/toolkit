@@ -1,7 +1,16 @@
-# Change Log
+# Change Log - @void-aurora/stylelint-config
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+This log was last generated on Mon, 04 May 2020 01:17:40 GMT and should not be manually modified.
+
+<!-- Start content -->
+
+## 0.8.2
+
+Mon, 04 May 2020 01:17:40 GMT
+
+### Patches
+
+- undefined (duduluu@outlook.com)
 
 ## [0.8.1](https://github.com/void-aurora/toolkit/compare/@void-aurora/stylelint-config@0.8.0...@void-aurora/stylelint-config@0.8.1) (2020-04-03)
 
