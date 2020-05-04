@@ -16,7 +16,6 @@ const types = [
 ];
 
 module.exports = {
-  extends: ['@commitlint/config-lerna-scopes'],
   parserPreset: 'conventional-changelog-conventionalcommits',
   rules: {
     'body-leading-blank': [2, 'always'],

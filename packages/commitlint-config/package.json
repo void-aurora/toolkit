@@ -15,12 +15,10 @@
   "sideEffects": false,
   "peerDependencies": {
     "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-lerna-scopes": "^8.3.4",
     "conventional-changelog-conventionalcommits": "^4.2.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-lerna-scopes": "^8.3.4",
     "conventional-changelog-conventionalcommits": "^4.2.3"
   },
   "keywords": [
