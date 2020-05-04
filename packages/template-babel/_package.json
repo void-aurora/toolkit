@@ -11,10 +11,7 @@
   "version": "1.2.5",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["dist", "src"],
   "scripts": {
     "build": "pnpm run build:cjs && pnpm run build:types:cjs && pnpm run build:esm && pnpm run build:types:esm",
     "build:cjs": "babel src --extensions \".ts\" -d dist/cjs -s --ignore \"src/**/*.spec.ts\",\"src/**/*.test.ts\"",

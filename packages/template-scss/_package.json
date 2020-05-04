@@ -10,10 +10,7 @@
   },
   "version": "1.1.9",
   "main": "dist/template-scss.min.css",
-  "files": [
-    "dist",
-    "sass"
-  ],
+  "files": ["dist", "sass"],
   "scripts": {
     "build": "gulp",
     "clean:dist": "rimraf ./dist",

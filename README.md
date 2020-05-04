@@ -39,26 +39,12 @@ A series of tools for Void Aurora projects
 
 ### Build tools
 
-| Package | NPM                         |
-| ------- | --------------------------- |
-| [just]  | [![just-version]][just-npm] |
+| Package         | NPM                                           |
+| --------------- | --------------------------------------------- |
+| [just]          | [![just-version]][just-npm]                   |
+| [template-just] | For composite project, builds with just-task. |
 
 [just]: https://github.com/void-aurora/toolkit/tree/master/packages/just
 [just-version]: https://img.shields.io/npm/v/@void-aurora/just?style=flat-square
 [just-npm]: https://www.npmjs.com/package/@void-aurora/just
-
-### Sub-package templates
-
-| Package               | Description                                   |
-| --------------------- | --------------------------------------------- |
-| [template-typescript] | For TypeScript                                |
-| [template-babel]      | For TypeScript, builds with babel.            |
-| [template-rollup]     | For TypeScript, builds with rollup.           |
-| [template-scss]       | For SCSS, builds with gulp and dart-sass.     |
-| [template-just]       | For composite project, builds with just-task. |
-
-[template-typescript]: https://github.com/void-aurora/toolkit/tree/master/packages/template-typescript
-[template-babel]: https://github.com/void-aurora/toolkit/tree/master/packages/template-babel
-[template-rollup]: https://github.com/void-aurora/toolkit/tree/master/packages/template-rollup
-[template-scss]: https://github.com/void-aurora/toolkit/tree/master/packages/template-scss
 [template-just]: https://github.com/void-aurora/toolkit/tree/master/packages/template-just
