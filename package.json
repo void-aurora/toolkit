@@ -8,8 +8,8 @@
     "preinstall": "node ./scripts/preinstall.js",
     "lint-commit": "commitlint",
     "lint-staged": "lint-staged",
-    "prepublish": "pnpm -r i --ignore-scripts && git add ./pnpm-lock.yaml",
     "ts": "ts-node -r tsconfig-paths/register -P ./tsconfig.scripts.json",
+    "update-lock": "pnpm -r i --ignore-scripts && git add ./pnpm-lock.yaml",
     "z": "echo empty script"
   },
   "devDependencies": {
