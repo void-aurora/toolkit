@@ -36,7 +36,7 @@ export async function track(): Promise<void> {
     return typeof value === 'string' && value !== '';
   }
 
-  function addMetaLines(meta: Rule.RuleMetaData | TSESLint.RuleMetaData<any>): void {
+  function addRule(meta: Rule.RuleMetaData | TSESLint.RuleMetaData<any>, name: string): void {
     const { docs = {}, deprecated } = meta;
     if (isNotEmptyString(docs.description)) {
       lines.push(`// ${docs.description}`);
@@ -65,6 +65,14 @@ export async function track(): Promise<void> {
         lines.push('// @deprecated');
       }
     }
+
+    if (deprecated) {
+      lines.push(`// '${name}': 'off',`);
+    } else {
+      lines.push(`'${name}': 'off',`);
+    }
+
+    lines.push('');
   }
 
   {
@@ -84,9 +92,7 @@ export async function track(): Promise<void> {
         lines.push(`'${category}': {`);
         subRules.forEach(([name, rule]) => {
           const { meta = {} } = rule;
-          addMetaLines(meta);
-          lines.push(`'${name}': 'off',`);
-          lines.push('');
+          addRule(meta, name);
           if (meta.deprecated) {
             misc.deprecated.origin.push(name);
           }
@@ -105,9 +111,7 @@ export async function track(): Promise<void> {
       .forEach(([name, rule]) => {
         const fullName = `import/${name}`;
         const { meta = {} } = rule;
-        addMetaLines(meta);
-        lines.push(`'${fullName}': 'off',`);
-        lines.push('');
+        addRule(meta, fullName);
         if (meta.deprecated) {
           misc.deprecated.import.push(fullName);
         }
@@ -134,9 +138,7 @@ export async function track(): Promise<void> {
         subRules.forEach(([name, rule]) => {
           const fullName = `@typescript-eslint/${name}`;
           const { meta } = rule;
-          addMetaLines(meta);
-          lines.push(`'${fullName}': 'off',`);
-          lines.push('');
+          addRule(meta, fullName);
           if (meta.deprecated) {
             misc.deprecated.ts.push(fullName);
           }
@@ -158,4 +160,5 @@ export async function track(): Promise<void> {
   return fse.outputFile(resolve(__dirname, 'raw.ts'), content);
 }
 
+// eslint-disable-next-line no-console
 track().catch(console.error);

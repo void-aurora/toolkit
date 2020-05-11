@@ -173,7 +173,7 @@ const rulesOrigin = {
     // disallow assignments to native objects or read-only global variables
     // https://eslint.org/docs/rules/no-native-reassign
     // @deprecated replace by: `no-global-assign`
-    'no-native-reassign': 'off',
+    // 'no-native-reassign': 'off',
 
     // disallow `new` operators outside of assignments or comparisons
     // https://eslint.org/docs/rules/no-new
@@ -412,7 +412,7 @@ const rulesOrigin = {
     // require `Reflect` methods where applicable
     // https://eslint.org/docs/rules/prefer-reflect
     // @deprecated replace by:
-    'prefer-reflect': 'off',
+    // 'prefer-reflect': 'off',
 
     // require rest parameters instead of `arguments`
     // https://eslint.org/docs/rules/prefer-rest-params
@@ -605,7 +605,7 @@ const rulesOrigin = {
     // disallow negating the left operand in `in` expressions
     // https://eslint.org/docs/rules/no-negated-in-lhs
     // @deprecated replace by: `no-unsafe-negation`
-    'no-negated-in-lhs': 'off',
+    // 'no-negated-in-lhs': 'off',
 
     // disallow calling global object properties as functions
     // https://eslint.org/docs/rules/no-obj-calls
@@ -658,7 +658,7 @@ const rulesOrigin = {
     // enforce valid JSDoc comments
     // https://eslint.org/docs/rules/valid-jsdoc
     // @deprecated replace by:
-    'valid-jsdoc': 'off',
+    // 'valid-jsdoc': 'off',
 
     // enforce comparing `typeof` expressions against valid strings
     // https://eslint.org/docs/rules/valid-typeof
@@ -771,7 +771,7 @@ const rulesOrigin = {
     // enforce consistent indentation
     // https://eslint.org/docs/rules/indent-legacy
     // @deprecated replace by: `indent`
-    'indent-legacy': 'off',
+    // 'indent-legacy': 'off',
 
     // enforce the consistent use of either double or single quotes in JSX attributes
     // https://eslint.org/docs/rules/jsx-quotes
@@ -800,7 +800,7 @@ const rulesOrigin = {
     // require or disallow newlines around directives
     // https://eslint.org/docs/rules/lines-around-directive
     // @deprecated replace by: `padding-line-between-statements`
-    'lines-around-directive': 'off',
+    // 'lines-around-directive': 'off',
 
     // require or disallow an empty line between class members
     // https://eslint.org/docs/rules/lines-between-class-members
@@ -857,12 +857,12 @@ const rulesOrigin = {
     // require or disallow an empty line after variable declarations
     // https://eslint.org/docs/rules/newline-after-var
     // @deprecated replace by: `padding-line-between-statements`
-    'newline-after-var': 'off',
+    // 'newline-after-var': 'off',
 
     // require an empty line before `return` statements
     // https://eslint.org/docs/rules/newline-before-return
     // @deprecated replace by: `padding-line-between-statements`
-    'newline-before-return': 'off',
+    // 'newline-before-return': 'off',
 
     // require a newline after each call in a method chain
     // https://eslint.org/docs/rules/newline-per-chained-call
@@ -927,7 +927,7 @@ const rulesOrigin = {
     // disallow spacing between function identifiers and their applications (deprecated)
     // https://eslint.org/docs/rules/no-spaced-func
     // @deprecated replace by: `func-call-spacing`
-    'no-spaced-func': 'off',
+    // 'no-spaced-func': 'off',
 
     // disallow all tabs
     // https://eslint.org/docs/rules/no-tabs
@@ -1012,7 +1012,7 @@ const rulesOrigin = {
     // require JSDoc comments
     // https://eslint.org/docs/rules/require-jsdoc
     // @deprecated replace by:
-    'require-jsdoc': 'off',
+    // 'require-jsdoc': 'off',
 
     // require or disallow semicolons instead of ASI
     // https://eslint.org/docs/rules/semi
@@ -1083,7 +1083,7 @@ const rulesOrigin = {
     // disallow `catch` clause parameters from shadowing variables in the outer scope
     // https://eslint.org/docs/rules/no-catch-shadow
     // @deprecated replace by: `no-shadow`
-    'no-catch-shadow': 'off',
+    // 'no-catch-shadow': 'off',
 
     // disallow deleting variables
     // https://eslint.org/docs/rules/no-delete-var
@@ -1151,7 +1151,7 @@ const rulesImport = {
 
   // https://github.com/benmosher/eslint-plugin-import/blob/7b25c1cb95ee18acc1531002fd343e1e6031f9ed/docs/rules/imports-first.md
   // @deprecated
-  'import/imports-first': 'off',
+  // 'import/imports-first': 'off',
 
   // https://github.com/benmosher/eslint-plugin-import/blob/v2.20.2/docs/rules/max-dependencies.md
   'import/max-dependencies': 'off',
@@ -1271,7 +1271,7 @@ const rulesTS = {
     // Bans “// @ts-ignore” comments from being used
     // https://github.com/typescript-eslint/typescript-eslint/blob/v2.30.0/packages/eslint-plugin/docs/rules/ban-ts-ignore.md
     // @deprecated replace by: `ban-ts-comment`
-    '@typescript-eslint/ban-ts-ignore': 'off',
+    // '@typescript-eslint/ban-ts-ignore': 'off',
 
     // Bans specific types from being used
     // https://github.com/typescript-eslint/typescript-eslint/blob/v2.30.0/packages/eslint-plugin/docs/rules/ban-types.md
@@ -1284,7 +1284,7 @@ const rulesTS = {
     // Require PascalCased class and interface names
     // https://github.com/typescript-eslint/typescript-eslint/blob/v2.30.0/packages/eslint-plugin/docs/rules/class-name-casing.md
     // @deprecated replace by: `naming-convention`
-    '@typescript-eslint/class-name-casing': 'off',
+    // '@typescript-eslint/class-name-casing': 'off',
 
     // Enforces consistent usage of type assertions
     // https://github.com/typescript-eslint/typescript-eslint/blob/v2.30.0/packages/eslint-plugin/docs/rules/consistent-type-assertions.md
@@ -1408,7 +1408,7 @@ const rulesTS = {
     // Disallow untyped public methods
     // https://github.com/typescript-eslint/typescript-eslint/blob/v2.30.0/packages/eslint-plugin/docs/rules/no-untyped-public-signature.md
     // @deprecated replace by: `explicit-module-boundary-types`
-    '@typescript-eslint/no-untyped-public-signature': 'off',
+    // '@typescript-eslint/no-untyped-public-signature': 'off',
 
     // Disallow unused expressions
     // https://github.com/typescript-eslint/typescript-eslint/blob/v2.30.0/packages/eslint-plugin/docs/rules/no-unused-expressions.md
@@ -1591,7 +1591,7 @@ const rulesTS = {
     // https://github.com/typescript-eslint/typescript-eslint/blob/v2.30.0/packages/eslint-plugin/docs/rules/camelcase.md
     // @extends-base-rule
     // @deprecated replace by: `naming-convention`
-    '@typescript-eslint/camelcase': 'off',
+    // '@typescript-eslint/camelcase': 'off',
 
     // Enforces consistent spacing before and after commas
     // https://github.com/typescript-eslint/typescript-eslint/blob/v2.30.0/packages/eslint-plugin/docs/rules/comma-spacing.md
@@ -1622,7 +1622,7 @@ const rulesTS = {
     // Enforces naming of generic type variables
     // https://github.com/typescript-eslint/typescript-eslint/blob/v2.30.0/packages/eslint-plugin/docs/rules/generic-type-naming.md
     // @deprecated replace by: `naming-convention`
-    '@typescript-eslint/generic-type-naming': 'off',
+    // '@typescript-eslint/generic-type-naming': 'off',
 
     // Enforce consistent indentation
     // https://github.com/typescript-eslint/typescript-eslint/blob/v2.30.0/packages/eslint-plugin/docs/rules/indent.md
@@ -1632,7 +1632,7 @@ const rulesTS = {
     // Require that interface names should or should not prefixed with `I`
     // https://github.com/typescript-eslint/typescript-eslint/blob/v2.30.0/packages/eslint-plugin/docs/rules/interface-name-prefix.md
     // @deprecated replace by: `naming-convention`
-    '@typescript-eslint/interface-name-prefix': 'off',
+    // '@typescript-eslint/interface-name-prefix': 'off',
 
     // Enforce consistent spacing before and after keywords
     // https://github.com/typescript-eslint/typescript-eslint/blob/v2.30.0/packages/eslint-plugin/docs/rules/keyword-spacing.md
@@ -1646,7 +1646,7 @@ const rulesTS = {
     // Enforces naming conventions for class members by visibility
     // https://github.com/typescript-eslint/typescript-eslint/blob/v2.30.0/packages/eslint-plugin/docs/rules/member-naming.md
     // @deprecated replace by: `naming-convention`
-    '@typescript-eslint/member-naming': 'off',
+    // '@typescript-eslint/member-naming': 'off',
 
     // Require a consistent member declaration order
     // https://github.com/typescript-eslint/typescript-eslint/blob/v2.30.0/packages/eslint-plugin/docs/rules/member-ordering.md
