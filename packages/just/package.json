@@ -27,6 +27,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@types/fs-extra": "^8.1.0",
+    "@types/undertaker": "^1.2.3",
     "chalk": "^4.0.0",
     "fs-extra": "^9.0.0",
     "globby": "^11.0.0",
