@@ -13,8 +13,10 @@
     "rules"
   ],
   "scripts": {
-    "gen-ts": "node ./scripts/generate-typescript-rules.js",
-    "test": "jest"
+    "gen": "pnpm run gen-og && pnpm run gen-ts",
+    "test": "jest",
+    "track": "pnpm run ts -- ./scripts/track.ts",
+    "ts": "ts-node -r tsconfig-paths/register -P ../../tsconfig.scripts.json"
   },
   "sideEffects": false,
   "peerDependencies": {
